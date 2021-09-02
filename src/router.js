@@ -1,0 +1,73 @@
+import VueRouter from 'vue-router'
+
+import Front from "./pages/Front";
+import Home from "./pages/Home";
+import Marketplace from "./pages/Marketplace";
+import Details from "./pages/Details";
+import MyWallet from "./pages/MyWallet";
+import Mint from "./pages/Mint";
+import MyPunks from "./pages/MyPunks";
+import About from "./pages/About";
+import ForSale from "./pages/ForSale";
+
+
+
+const routes = [{
+    path: '/',
+    name: 'front',
+    component: Front,
+    children: [{
+        path: '/',
+        name: 'home',
+        component: Home,
+    },
+    {
+        path: '/i/:id',
+        name: 'invite_home',
+        component: Home,
+    },
+    {
+        path: '/mint',
+        name: 'mint',
+        component: Mint,
+    },
+    {
+        path: '/myPunks',
+        name: 'myPunks',
+        component: MyPunks,
+    },
+    {
+        path: '/gallery',
+        name: 'gallery',
+        component: Marketplace,
+    },
+    {
+        path: '/forSale',
+        name: 'forSale',
+        component: ForSale,
+    },
+    {
+        path: '/detail/crosspunks/:id',
+        name: 'details',
+        component: Details,
+    },
+    {
+        path: '/mywallet',
+        name: 'mywallet',
+        component: MyWallet,
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: About,
+    },
+    ]
+}];
+
+const router = new VueRouter({
+    history: true,
+    mode: 'history',
+    routes,
+});
+
+export default router
