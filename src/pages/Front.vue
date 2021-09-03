@@ -5,15 +5,13 @@
                 <nav style="margin-bottom: 50px;" class="navbar navbar-expand-lg navbar-light ">
                     <div class="container">
                         <a aria-current="page" style="color: black" class="nav-link active" id="logo" href="/">
-                            <img alt=""
-                                 src="/crosspunks_logo.png"
-                                 class="d-inline-block align-top"
-                                 style="margin-right: 5px;"
-                                 height="40">
+                            <img alt="" src="/crosspunks_logo.png" class="d-inline-block align-top" style="margin-right: 5px;" height="40">
                         </a>
                         <button @click="toggleCollapse" aria-controls="responsive-navbar-nav" type="button"
                                 aria-label="Toggle navigation"
-                                class="navbar-toggler collapsed"><span class="navbar-toggler-icon"></span></button>
+                                class="navbar-toggler collapsed">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
                         <div class="ml-auto navbar-collapse " v-bind:class="{ 'collapse' : showMenu }"
                              id="responsive-navbar-nav">
                             <div class="ml-auto navbar-nav">
@@ -32,9 +30,9 @@
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'forSale'}" class="nav-link ">
                                     ForSale
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'mywallet'}"
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'wallet'}"
                                              class="nav-link ">
-                                    MyWallet
+                                    Wallet
                                 </router-link>
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'about'}"
                                              class="nav-link ">
@@ -184,7 +182,3 @@
         },
     }
 </script>
-
-
-
-

@@ -4,7 +4,7 @@ import Front from "./pages/Front";
 import Home from "./pages/Home";
 import Marketplace from "./pages/Marketplace";
 import Details from "./pages/Details";
-import MyWallet from "./pages/MyWallet";
+import Wallet from "./pages/Wallet";
 import Mint from "./pages/Mint";
 import MyPunks from "./pages/MyPunks";
 import About from "./pages/About";
@@ -52,7 +52,7 @@ const routes = [{
     {
         path: '/wallet',
         name: 'wallet',
-        component: MyWallet,
+        component: Wallet,
     },
     {
         path: '/about',
