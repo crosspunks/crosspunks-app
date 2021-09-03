@@ -45,34 +45,7 @@ class _walletManager {
     dexAddr = "0xDe6b13a12F301763eb786D25f70aA6Bc9A7517f2";
 
     constructor() {
-        if (window.ethereum) {
-            this.web3Global = new Web3(ethereum);
-            this.walletStatus = true;
-            try {
-                ethereum.enable();
-            } catch (error) {
-                console.log(error);
-            }
-        } else if (window.web3) {
-            this.web3Global = new Web3(web3.currentProvider);
-            this.walletStatus = true;
-        } else {
-            console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-        }
-
-        if (window.ethereum) {
-            window.ethereum.request(TESTNET).catch((error) => {
-                console.log(error);
-            });
-
-            window.ethereum.request({
-                method: 'wallet_switchEthereumChain',
-                // params: [{ chainId: '0x38' }], // BSC Mainnet
-                params: [{ chainId: '0x61' }], // BSC Testnet
-            }).catch((error) => {
-                console.log(error);
-            });
-        }
+        this.connectToMetamask();
 
         if (this.walletStatus) {
             this.nft = new this.web3Global.eth.Contract(nftAbi.abi, this.nftAddr);
@@ -91,9 +64,22 @@ class _walletManager {
             }
         } else if (window.web3) {
             this.web3Global = new Web3(web3.currentProvider);
-            //this.walletStatus = true;
         } else {
             console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+        }
+
+        if (window.ethereum) {
+            window.ethereum.request(TESTNET).catch((error) => {
+                console.log(error);
+            });
+
+            window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                // params: [{ chainId: '0x38' }], // BSC Mainnet
+                params: [{ chainId: '0x61' }], // BSC Testnet
+            }).catch((error) => {
+                console.log(error);
+            });
         }
     }
 

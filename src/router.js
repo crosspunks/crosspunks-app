@@ -20,42 +20,42 @@ const routes = [{
         component: Home,
     },
     {
-        path: '#/i/:id',
+        path: '/i/:id',
         name: 'invite_home',
         component: Home,
     },
     {
-        path: '#/mint',
+        path: '/mint',
         name: 'mint',
         component: Mint,
     },
     {
-        path: '#/myPunks',
+        path: '/myPunks',
         name: 'myPunks',
         component: MyPunks,
     },
     {
-        path: '#/gallery',
+        path: '/gallery',
         name: 'gallery',
         component: Marketplace,
     },
     {
-        path: '#/forSale',
+        path: '/forSale',
         name: 'forSale',
         component: ForSale,
     },
     {
-        path: '#/detail/crosspunk/:id',
+        path: '/detail/crosspunk/:id',
         name: 'details',
         component: Details,
     },
     {
-        path: '#/wallet',
+        path: '/wallet',
         name: 'wallet',
         component: Wallet,
     },
     {
-        path: '#/about',
+        path: '/about',
         name: 'about',
         component: About,
     },
@@ -64,7 +64,7 @@ const routes = [{
 
 const router = new VueRouter({
     history: true,
-    mode: 'history',
+    mode: 'hash',
     routes,
 });
 
