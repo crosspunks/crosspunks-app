@@ -1,351 +1,316 @@
 <template>
-  <div class="container">
-    <div class="row" style="min-height: 300px;">
-        <div class="col-md-2" ></div>
-        <div class="col-md-8" >
-<!--            <div v-if="!this.walletStatus" class="row">-->
-
-<!--                <div v-if="this.walletStatus==false" style="margin: 0 auto;">-->
-<!--                    <button  type="button" class="btn" >-->
-<!--                        <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px"   role="status">-->
-<!--                            <span class="sr-only">Loading...</span>-->
-<!--                        </div>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <div v-else class="text-center" style="margin: 0 auto;">-->
-<!--                    <h1> Connect your Metamask</h1>-->
-<!--                    <div class="text-center" style="margin-bottom: 20px;">-->
-<!--                    </div>-->
-<!--                    <button v-if="this.walletStatus == null" @click="walletManager.connectToTronLInk()" type="button" class="btn btn-primary">-->
-<!--                        Connect Wallet-->
-<!--                    </button>-->
-<!--                    <button v-else type="button" class="btn btn-primary">-->
-<!--                        Connect Wallet-->
-<!--                        <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">-->
-<!--                            <span class="sr-only">Loading...</span>-->
-<!--                        </div>-->
-<!--                    </button>-->
-<!--                </div>-->
-
-<!--            </div>-->
-            <div  v-if="punk_loading"  class="text-center">
-                <button  type="button" class="btn" style="margin: 0 auto;">
-                    <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px"   role="status">
-                        <span class="sr-only">Loading...</span>
+    <div class="container">
+        <div class="row" style="min-height: 300px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div v-if="!this.walletStatus" class="row">
+                    <div v-if="this.walletStatus==false" style="margin: 0 auto;">
+                        <button type="button" class="btn">
+                            <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </button>
                     </div>
-                </button>
-            </div>
-            <div v-else>
-                <div class="row" >
-                    <div class="col-md-6" >
-                        <img v-if="crypto_Punks.indexOf(currentPunk.idx) > -1" class="card-img-top pixelated" :src="('/crypto/' + currentPunk.idx +'-CrossPunks.png')">
-                        <img v-else class="card-img-top pixelated" :src="(`https://crosspunks.com/images/crosspunks/${currentPunk.idx}.png`)">
+                    <div v-else class="text-center" style="margin: 0 auto;">
+                        <h1> Connect your Metamask</h1>
+                        <div class="text-center" style="margin-bottom: 20px;"></div>
+                        <button v-if="this.walletStatus == null" @click="walletManager.connectToMetamask()" type="button" class="btn btn-primary">
+                            Connect Wallet
+                        </button>
+                        <button v-else type="button" class="btn btn-primary">
+                            Connect Wallet
+                            <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </button>
                     </div>
-                    <div class="col-md-6" >
-                        <div class="pl-3">
-                            <div class="row" >
-                                <h3>CrossPunk #{{ currentPunk.idx }}</h3>
-                            </div>
-                            <div class="row" >
-                                <h5>{{ currentPunk.type }}</h5>
-                            </div>
-                            <div class="row" >
-                                <p v-if="this.token_owner">owned by : <a target="_blank" :href="'https://bscscan.com/address/'+ this.token_owner">{{ this.token_owner.substr(0, 8)}}</a></p>
-                                <p v-else >not mined</p>
-                            </div>
-                            <div class="row" >
-                                <span v-for="(tag, index) in currentPunk.attributes" v-bind:key="index" style="margin-right: 4px; margin-bottom: 4px;" class="badge badge-primary">{{ tag }} ({{ punks_attributes[tag] }})</span>
-                            </div>
-                            <div class="row" >
-                                <p style="font-size: 18px">Rank {{ currentPunk.rank }}</p>
-                            </div>
-                            <hr />
-                            <div v-if="this.token_owner">
+                </div>
+                <div v-if="punk_loading" class="text-center">
+                    <button  type="button" class="btn" style="margin: 0 auto;">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </button>
+                </div>
+                <div v-else>
+                    <div class="row" >
+                        <div class="col-md-6" >
+                            <img v-if="crypto_Punks.indexOf(currentPunk.idx) > -1" class="card-img-top pixelated" :src="('/crypto/' + currentPunk.idx +'-CrossPunks.png')">
+                            <img v-else class="card-img-top pixelated" :src="(`https://crosspunks.com/images/crosspunks/${currentPunk.idx}.png`)">
+                        </div>
+                        <div class="col-md-6" >
+                            <div class="pl-3">
                                 <div class="row" >
-                                    <h5>Market Summary </h5>
+                                    <h3>CrossPunk #{{ currentPunk.idx }}</h3>
                                 </div>
-                                <div v-if="!is_for_sale" class="row text-danger" >
-                                    <p>it's not for sale</p>
+                                <div class="row" >
+                                    <h5>{{ currentPunk.type }}</h5>
                                 </div>
-
-                                <div v-if="is_for_sale">
-                                    <div class="row text-success" >
-                                        <p>Offered by owner for <span style="color: #000">{{ sale_by_owner }} trx</span></p>
-                                    </div>
-
-                                    <div v-if="this.walletStatus">
-                                        <div v-if="punkBids.hasBid" class="row text-warning" >
-                                            <p>There is a bid of <span style="color: #000">{{ punkBids.value }} trx</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
-                                        </div>
-
-                                        <div v-if="punkBids.bidder === walletManager.ttronWeb.defaultAddress.base58" class="row mb-2" >
-                                            <div class="col-md-12" >
-                                                <button class="btn btn-warning btn-block" @click="cancelBid" >
-                                                    Cancel Bid
-                                                    <div v-if="cancel_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
-                                                        <span class="sr-only">Loading...</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div v-if="this.token_owner !== walletManager.ttronWeb.defaultAddress.base58" class="row" >
-                                            <div class="col-md-6" >
-                                                <button class="btn btn-success btn-block" @click="buy" >
-                                                    Buy
-                                                    <div v-if="buy_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
-                                                        <span class="sr-only">Loading...</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-6" >
-                                                <button class="btn btn-primary btn-block" @click="showBidModal()">Bid</button>
-                                            </div>
-                                        </div>
-
-                                        <div v-else>
-                                        <div v-if="punkBids && punkBids.hasBid" class="row mb-2" >
-                                            <div class="col-md-12" >
-                                                <button @click="acceptBid" class="btn btn-info btn-block" >
-                                                    Accept Bid
-                                                    <div v-if="accept_bid_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
-                                                        <span class="sr-only">Loading...</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div  class="row" >
-                                            <div class="col-md-12" >
-                                                <button @click="cancelSelling" class="btn btn-warning btn-block" >
-                                                    Cancel Selling
-                                                    <div v-if="cancel_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
-                                                        <span class="sr-only">Loading...</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-
+                                <div class="row" >
+                                    <p v-if="this.token_owner">owned by : <a target="_blank" :href="'https://bscscan.com/address/'+ this.token_owner">{{ this.token_owner.substr(0, 8)}}</a></p>
+                                    <p v-else >not mined</p>
                                 </div>
+                                <div class="row" >
+                                    <span v-for="(tag, index) in currentPunk.attributes" v-bind:key="index" style="margin-right: 4px; margin-bottom: 4px;" class="badge badge-primary">{{ tag }} ({{ punks_attributes[tag] }})</span>
+                                </div>
+                                <div class="row" >
+                                    <p style="font-size: 18px">Rank {{ currentPunk.rank }}</p>
+                                </div>
+                                <hr />
+                                <div v-if="this.token_owner">
+                                    <div class="row" >
+                                        <h5>Market Summary</h5>
+                                    </div>
+                                    <div v-if="!is_for_sale" class="row text-danger">
+                                        <p>it's not for sale</p>
+                                    </div>
+                                    <div v-if="is_for_sale">
+                                        <div class="row text-success">
+                                            <p>Offered by owner for <span style="color: #000">{{ sale_by_owner }} BNB</span></p>
+                                        </div>
+                                        <div v-if="this.walletStatus">
+                                            <div v-if="punkBids.hasBid" class="row text-warning" >
+                                                <p>There is a bid of <span style="color: #000">{{ punkBids.value }} BNB</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
+                                            </div>
+                                            <div v-if="punkBids.bidder === walletManager.ttronWeb.defaultAddress.base58" class="row mb-2">
+                                                <div class="col-md-12" >
+                                                    <button class="btn btn-warning btn-block" @click="cancelBid">
+                                                        Cancel Bid
+                                                        <div v-if="cancel_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </div>
 
-                                <div v-else-if="this.walletStatus && this.token_owner == walletManager.ttronWeb.defaultAddress.base58" class="row" >
-                                    <div class="col-md-12" >
-                                        <button @click="showOfferForSale()" class="btn btn-primary btn-block" >
-                                            offer for sale
+                                            <div v-if="this.token_owner !== walletManager.ttronWeb.defaultAddress.base58" class="row">
+                                                <div class="col-md-6" >
+                                                    <button class="btn btn-success btn-block" @click="buy">
+                                                        Buy
+                                                        <div v-if="buy_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-6" >
+                                                    <button class="btn btn-primary btn-block" @click="showBidModal()">Bid</button>
+                                                </div>
+                                            </div>
+                                            <div v-else>
+                                                <div v-if="punkBids && punkBids.hasBid" class="row mb-2">
+                                                    <div class="col-md-12">
+                                                        <button @click="acceptBid" class="btn btn-info btn-block" >
+                                                            Accept Bid
+                                                            <div v-if="accept_bid_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div  class="row">
+                                                    <div class="col-md-12">
+                                                        <button @click="cancelSelling" class="btn btn-warning btn-block">
+                                                            Cancel Selling
+                                                            <div v-if="cancel_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-else-if="this.walletStatus && this.token_owner == walletManager.ttronWeb.defaultAddress.base58" class="row">
+                                        <div class="col-md-12" >
+                                            <button @click="showOfferForSale()" class="btn btn-primary btn-block">
+                                                offer for sale
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div v-if="!this.walletStatus" class="row">
+                                        <div class="text-center" style="margin: 0 auto;">
+                                            <button v-if="this.walletStatus == null" @click="walletManager.connectToTronLInk()" type="button" class="btn btn-primary">
+                                                Connect Wallet
+                                            </button>
+                                            <button v-else type="button" class="btn btn-primary">
+                                                Connect Wallet
+                                                <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div style="margin-top: 40px; width: 100%"><h4 class="text-center">Market History</h4>
+                            <table class="table table-sm table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>From</th>
+                                        <th>Amount</th>
+                                        <th>Txn</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="row in marketHistory" v-bind:key="row.txID">
+                                        <td>
+                                            <span v-if="row.methodName == 'buyPunk'">Bought</span>
+                                            <span v-if="row.methodName == 'acceptBidForPunk'">Accept Bid</span>
+                                            <span v-if="row.methodName == 'offerPunkForSale'">Offered</span>
+                                            <span v-if="row.methodName == 'punkNoLongerForSale'">Offer Withdrawn</span>
+                                            <span v-if="row.methodName == 'enterBidForPunk'">Bid</span>
+                                            <span v-if="row.methodName == 'withdrawBidForPunk'">Bid Withdrawn</span>
+                                        </td>
+                                        <td>
+                                            <a target="_blank" :href="'https://bscscan.com/address/'+ row.ownerAddress">
+                                                {{ row.ownerAddress.substr(0, 8) }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span v-if="row.methodName == 'offerPunkForSale'">
+                                                {{ walletManager.tronWebGlobal.BigNumber(row.methodParam[1].hex).toNumber() / 1000000 }} BNB ~(${{fixInThreeDec((walletManager.tronWebGlobal.BigNumber(row.methodParam[1].hex).toNumber() / 1000000) * row.trx_price)}})
+                                            </span>
+                                            <span v-if="row.methodName == 'enterBidForPunk' || row.methodName == 'buyPunk'">
+                                                {{ row.amount / 1000000 }} BNB ~(${{fixInThreeDec((row.amount / 1000000) * row.trx_price)}})
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a target="_blank" :href="'https://bscscan.com/tx/' + row.txID">
+                                                {{ (new Date(row.blockTimestamp / 1)).getFullYear() + "/" + ((new Date(row.blockTimestamp / 1)).getMonth() + 1) + "/" + (new Date(row.blockTimestamp / 1)).getDate() }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr v-if="birthday">
+                                        <td><span>Born</span></td>
+                                        <td>
+                                            <a target="_blank" :href="'https://bscscan.com/address/'+ birthday.mint_by">
+                                                {{ birthday.mint_by.substr(0, 8) }}
+                                            </a>
+                                        </td>
+                                        <td>1000 BNB</td>
+                                        <td>
+                                            <span>
+                                                {{ (new Date(birthday.mint_date / 1)).getFullYear() + "/" + ((new Date(birthday.mint_date / 1)).getMonth() + 1) + "/" + (new Date(birthday.mint_date / 1)).getDate() }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div v-if="modalOfferForSale">
+            <transition name="modal">
+                <div class="modal-mask">
+                    <div class="modal-wrapper">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Offer for sale</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" @click="modalOfferForSale = false">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form" >
+                                        <div class="form-group">
+                                            <label>price (BNB)</label>
+                                            <input v-model="offer_price" type="number" min="0" class="form-control" placeholder="Enter price">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>sale to special address (optional)</label>
+                                            <small class="form-text text-muted">enter wallet address, if you want to sale to special address</small>
+                                            <input v-model="offer_wallet_address" type="text" class="form-control" placeholder="Enter Wallet Address">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p v-if="offer_error" class="text-danger">{{ offer_error }}</p>
+                                        <p v-if="offer_msg" class="text-success">{{ offer_msg }}</p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="display: block">
+                                    <button type="button" class="btn btn-secondary " style="float: left" @click="modalOfferForSale = false">Close</button>
+                                    <div v-if="is_approved_first_time === false">
+                                        <button type="button" class="btn btn-primary" @click="offerForSale" style="float: right" :disabled="offer_btn_submit2_disable">
+                                            2-Submit
+                                            <div v-if="offer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
                                         </button>
-                                    </div>
-                                </div>
-
-                                <div v-if="!this.walletStatus" class="row">
-                                    <div class="text-center" style="margin: 0 auto;">
-                                        <button v-if="this.walletStatus == null" @click="walletManager.connectToTronLInk()" type="button" class="btn btn-primary">
-                                            Connect Wallet
-                                        </button>
-                                        <button v-else type="button" class="btn btn-primary">
-                                            Connect Wallet
-                                            <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
+                                        <button type="button" class="btn btn-primary" @click="approve" style="float: right; margin-right: 4px;"  :disabled="offer_btn_approve_disable">
+                                            1-Approve
+                                            <div v-if="offer_btn_approve_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </button>
                                     </div>
-
+                                    <div v-else >
+                                        <button type="button" class="btn btn-primary" @click="offerForSale" style="float: right">
+                                            Submit
+                                            <div v-if="offer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </button>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-3" >
-                <div style="margin-top: 40px; width: 100%"><h4 class="text-center">Market History</h4>
-                    <table class="table table-sm table-striped table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>From</th>
-                            <th>Amount</th>
-                            <th>Txn</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="row in marketHistory" v-bind:key="row.txID">
-                                <td>
-                                    <span v-if="row.methodName == 'buyPunk'">Bought</span>
-                                    <span v-if="row.methodName == 'acceptBidForPunk'">Accept Bid</span>
-                                    <span v-if="row.methodName == 'offerPunkForSale'">Offered</span>
-                                    <span v-if="row.methodName == 'punkNoLongerForSale'">Offer Withdrawn</span>
-                                    <span v-if="row.methodName == 'enterBidForPunk'">Bid</span>
-                                    <span v-if="row.methodName == 'withdrawBidForPunk'">Bid Withdrawn</span>
-                                </td>
-                                <td>
-
-                                    <a target="_blank" :href="'https://bscscan.com/address/'+ row.ownerAddress">
-                                        {{ row.ownerAddress.substr(0, 8) }}
-                                    </a>
-
-                                </td>
-                                <td>
-                                    <span v-if="row.methodName == 'offerPunkForSale'">
-                                        {{ walletManager.tronWebGlobal.BigNumber(row.methodParam[1].hex).toNumber() / 1000000 }} trx ~(${{fixInThreeDec((walletManager.tronWebGlobal.BigNumber(row.methodParam[1].hex).toNumber() / 1000000) * row.trx_price)}})
-                                    </span>
-
-                                    <span v-if="row.methodName == 'enterBidForPunk' || row.methodName == 'buyPunk'">
-                                        {{ row.amount / 1000000 }} trx ~(${{fixInThreeDec((row.amount / 1000000) * row.trx_price)}})
-                                    </span>
-
-                                </td>
-                                <td>
-                                    <a target="_blank" :href="'https://bscscan.com/tx/' + row.txID">
-                                        {{ (new Date(row.blockTimestamp / 1)).getFullYear() + "/" + ((new Date(row.blockTimestamp / 1)).getMonth() + 1) + "/" + (new Date(row.blockTimestamp / 1)).getDate() }}
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr v-if="birthday" >
-                                <td>
-                                    <span>Born</span>
-                                </td>
-                                <td>
-
-                                    <a target="_blank" :href="'https://bscscan.com/address/'+ birthday.mint_by">
-                                        {{ birthday.mint_by.substr(0, 8) }}
-                                    </a>
-
-                                </td>
-                                <td>
-                                    1000 trx
-                                </td>
-                                <td>
-                                    <span>
-                                        {{ (new Date(birthday.mint_date / 1)).getFullYear() + "/" + ((new Date(birthday.mint_date / 1)).getMonth() + 1) + "/" + (new Date(birthday.mint_date / 1)).getDate() }}
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            </div>
+            </transition>
         </div>
-        <div class="col-md-2" ></div>
+        <div v-if="modal_bid">
+            <transition name="modal">
+                <div class="modal-mask">
+                    <div class="modal-wrapper">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Bid</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" @click="modal_bid = false">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form" >
+                                        <div class="form-group">
+                                            <label>price (BNB)</label>
+                                            <input v-model="bid_price" type="number" :min="(punkBids.hasBid ? punkBids.value : '')" class="form-control" placeholder="Enter price">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p v-if="bid_error" class="text-danger">{{ bid_error }}</p>
+                                        <p v-if="bid_msg" class="text-success">{{ bid_msg }}</p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="display: block">
+                                    <button type="button" class="btn btn-secondary " style="float: left" @click="modal_bid = false">Close</button>
+                                    <div>
+                                        <button type="button" class="btn btn-primary" @click="bid" style="float: right">
+                                            Submit
+                                            <div v-if="bid_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
     </div>
-
-      <div v-if="modalOfferForSale">
-          <transition name="modal">
-              <div class="modal-mask">
-                  <div class="modal-wrapper">
-                      <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                              <div class="modal-header">
-                                  <h5 class="modal-title">Offer for sale</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true" @click="modalOfferForSale = false">&times;</span>
-                                  </button>
-                              </div>
-                              <div class="modal-body">
-
-                                  <div class="form" >
-                                      <div class="form-group">
-                                          <label>price (trx)</label>
-                                          <input v-model="offer_price" type="number" min="0" class="form-control" placeholder="Enter price">
-                                      </div>
-                                      <div class="form-group">
-                                          <label>sale to special address (optional)</label>
-                                          <small class="form-text text-muted">enter wallet address, if you want to sale to special address</small>
-                                          <input v-model="offer_wallet_address" type="text" class="form-control" placeholder="Enter Wallet Address">
-                                      </div>
-                                  </div>
-
-                                  <div >
-                                      <p v-if="offer_error" class="text-danger">{{ offer_error }}</p>
-                                      <p v-if="offer_msg" class="text-success">{{ offer_msg }}</p>
-                                  </div>
-
-                              </div>
-                              <div class="modal-footer" style="display: block">
-                                  <button type="button" class="btn btn-secondary " style="float: left" @click="modalOfferForSale = false">Close</button>
-
-                                  <div v-if="is_approved_first_time === false">
-                                      <button type="button" class="btn btn-primary" @click="offerForSale" style="float: right" :disabled="offer_btn_submit2_disable">
-                                          2-Submit
-                                          <div v-if="offer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
-                                              <span class="sr-only">Loading...</span>
-                                          </div>
-                                      </button>
-
-                                      <button type="button" class="btn btn-primary" @click="approve" style="float: right; margin-right: 4px;"  :disabled="offer_btn_approve_disable">
-                                          1-Approve
-                                          <div v-if="offer_btn_approve_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
-                                              <span class="sr-only">Loading...</span>
-                                          </div>
-                                      </button>
-                                  </div>
-                                  <div v-else >
-                                      <button type="button" class="btn btn-primary" @click="offerForSale" style="float: right">
-                                          Submit
-                                          <div v-if="offer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
-                                              <span class="sr-only">Loading...</span>
-                                          </div>
-                                      </button>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </transition>
-      </div>
-
-      <div v-if="modal_bid">
-          <transition name="modal">
-              <div class="modal-mask">
-                  <div class="modal-wrapper">
-                      <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                              <div class="modal-header">
-                                  <h5 class="modal-title">Bid</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true" @click="modal_bid = false">&times;</span>
-                                  </button>
-                              </div>
-                              <div class="modal-body">
-
-                                  <div class="form" >
-                                      <div class="form-group">
-                                          <label>price (trx)</label>
-                                          <input v-model="bid_price" type="number" :min="(punkBids.hasBid ? punkBids.value : '')" class="form-control" placeholder="Enter price">
-                                      </div>
-                                  </div>
-
-                                  <div >
-                                      <p v-if="bid_error" class="text-danger">{{ bid_error }}</p>
-                                      <p v-if="bid_msg" class="text-success">{{ bid_msg }}</p>
-                                  </div>
-
-                              </div>
-                              <div class="modal-footer" style="display: block">
-                                  <button type="button" class="btn btn-secondary " style="float: left" @click="modal_bid = false">Close</button>
-                                  <div >
-                                      <button type="button" class="btn btn-primary" @click="bid" style="float: right">
-                                          Submit
-                                          <div v-if="bid_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
-                                              <span class="sr-only">Loading...</span>
-                                          </div>
-                                      </button>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </transition>
-      </div>
-
-
-
-  </div>
 </template>
-<script>
 
+<script>
 export default {
   name: "Details",
   data(){
@@ -514,9 +479,9 @@ export default {
                 let address = this.offer_wallet_address.trim();
 
                 if(!(price >= 0)){
-                    this.offer_error = "enter correct price(trx)";
+                    this.offer_error = "enter correct price (BNB)";
                 }else if(10000 > price){
-                    this.offer_error = "you can not enter price lower than 10K trx";
+                    this.offer_error = "you can not enter price lower than 10K BNB";
                 }else if((address.length > 0 && !this.walletManager.ttronWeb.isAddress(address))){
                     this.offer_error = "wallet address is not correct";
                 }else if((address.length > 0 && address === this.walletManager.ttronWeb.defaultAddress.base58)){
@@ -636,13 +601,13 @@ export default {
                 this.bid_msg = "";
                 let price = parseInt(this.bid_price);
                 if(!(price >= 0)) {
-                    this.bid_error = "enter correct price(trx)";
+                    this.bid_error = "enter correct price (BNB)";
                 }else if(this.punkBids && this.punkBids.hasBid && this.punkBids.value && this.punkBids.value >= price) {
                     this.bid_error = "you can not bid lower than last bid";
                 }else if(10000 > price){
-                    this.bid_error = "you can not bid lower than 10K trx";
+                    this.bid_error = "you can not bid lower than 10K BNB";
                 }else if(this.balance < (price * 1000000)){
-                    this.bid_error = "you don't have enough trx";
+                    this.bid_error = "you don't have enough BNB";
                 }else{
 
                     this.bid_btn_loading = true;
