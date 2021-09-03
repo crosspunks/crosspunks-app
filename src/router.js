@@ -47,7 +47,7 @@ const routes = [{
         component: ForSale,
     },
     {
-        path: '/detail/crosspunks/:id',
+        path: '/detail/crosspunk/:id',
         name: 'details',
         component: Details,
     },

@@ -51,18 +51,13 @@
                                         <span class="onoffswitch-switch"></span>
                                     </label>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </nav>
-
-
-                <router-view></router-view>
+               <router-view></router-view>
             </div>
         </div>
-
         <div class="container" >
             <div class="container" style="margin-top: 20px;">
                 <div class="row mb-5 flex-row-reverse">
@@ -77,10 +72,7 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
 </template>
 
 <style scoped >
@@ -167,9 +159,7 @@
         },
         methods: {
             changeThemeMode() {
-
                 window.changeThemeMode(this.themeMode);
-
             },
             toggleCollapse() {
                 this.showMenu = !this.showMenu
@@ -186,13 +176,10 @@
                     win.push(w);
                 }
                 this.winner = win;
-
             },
             closeSidebar(){
-
                 document.getElementById("mySidebar").style.width = "0";
                 document.getElementById("sidebarCover").classList.add('hideCover')
-
             }
         },
     }

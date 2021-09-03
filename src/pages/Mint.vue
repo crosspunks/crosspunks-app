@@ -6,7 +6,7 @@
                     <div class="col-md-4" ></div>
                     <div class="col-md-4 card" >
                         <div class="card-body" style="text-align: center;" >
-                            <h4 class="card-title pb-2"><strong>Mint A CrossPunks</strong></h4>
+                            <h4 class="card-title pb-2"><strong>Mint A CrossPunk</strong></h4>
                             <p class="card-text">it costs 1000 trx to mint a CrossPunk</p>
                             <p class="card-text">CrossPunks left : 0</p>
 

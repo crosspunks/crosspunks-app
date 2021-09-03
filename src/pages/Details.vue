@@ -50,7 +50,7 @@
                                 <h5>{{ currentPunk.type }}</h5>
                             </div>
                             <div class="row" >
-                                <p v-if="this.token_owner">owned by : <a target="_blank" :href="'https://tronscan.io/?address/'+ this.token_owner +'#/address/' + this.token_owner">{{ this.token_owner.substr(0, 8)}}</a></p>
+                                <p v-if="this.token_owner">owned by : <a target="_blank" :href="'https://bscscan.com/address/'+ this.token_owner">{{ this.token_owner.substr(0, 8)}}</a></p>
                                 <p v-else >not mined</p>
                             </div>
                             <div class="row" >
@@ -75,7 +75,7 @@
 
                                     <div v-if="this.walletStatus">
                                         <div v-if="punkBids.hasBid" class="row text-warning" >
-                                            <p>There is a bid of <span style="color: #000">{{ punkBids.value }} trx</span> for this punk from <a :href="'https://tronscan.io/?address/'+ this.punkBids.bidder +'#/address/' + this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
+                                            <p>There is a bid of <span style="color: #000">{{ punkBids.value }} trx</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
                                         </div>
 
                                         <div v-if="punkBids.bidder === walletManager.ttronWeb.defaultAddress.base58" class="row mb-2" >
@@ -179,7 +179,7 @@
                                 </td>
                                 <td>
 
-                                    <a target="_blank" :href="'https://tronscan.io/?address/'+ row.ownerAddress +'#/address/' + row.ownerAddress">
+                                    <a target="_blank" :href="'https://bscscan.com/address/'+ row.ownerAddress">
                                         {{ row.ownerAddress.substr(0, 8) }}
                                     </a>
 
@@ -195,7 +195,7 @@
 
                                 </td>
                                 <td>
-                                    <a target="_blank" :href="'https://tronscan.io/#/transaction/' + row.txID">
+                                    <a target="_blank" :href="'https://bscscan.com/tx/' + row.txID">
                                         {{ (new Date(row.blockTimestamp / 1)).getFullYear() + "/" + ((new Date(row.blockTimestamp / 1)).getMonth() + 1) + "/" + (new Date(row.blockTimestamp / 1)).getDate() }}
                                     </a>
                                 </td>
@@ -206,7 +206,7 @@
                                 </td>
                                 <td>
 
-                                    <a target="_blank" :href="'https://tronscan.io/?address/'+ birthday.mint_by +'#/address/' + birthday.mint_by">
+                                    <a target="_blank" :href="'https://bscscan.com/address/'+ birthday.mint_by">
                                         {{ birthday.mint_by.substr(0, 8) }}
                                     </a>
 
