@@ -72,7 +72,7 @@
                                             <div v-if="punkBids.hasBid" class="row text-warning" >
                                                 <p>There is a bid of <span style="color: #000">{{ punkBids.value }} BNB</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
                                             </div>
-                                            <div v-if="punkBids.bidder === walletManager.ttronWeb.defaultAddress.base58" class="row mb-2">
+                                            <div v-if="punkBids.bidder === walletAddr" class="row mb-2">
                                                 <div class="col-md-12" >
                                                     <button class="btn btn-warning btn-block" @click="cancelBid">
                                                         Cancel Bid
@@ -83,7 +83,7 @@
                                                 </div>
                                             </div>
 
-                                            <div v-if="this.token_owner !== walletManager.ttronWeb.defaultAddress.base58" class="row">
+                                            <div v-if="this.token_owner !== walletAddr" class="row">
                                                 <div class="col-md-6" >
                                                     <button class="btn btn-success btn-block" @click="buy">
                                                         Buy
@@ -120,7 +120,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-else-if="this.walletStatus && this.token_owner == walletManager.ttronWeb.defaultAddress.base58" class="row">
+                                    <div v-else-if="this.walletStatus && this.token_owner == walletAddr" class="row">
                                         <div class="col-md-12" >
                                             <button @click="showOfferForSale()" class="btn btn-primary btn-block">
                                                 offer for sale
@@ -311,121 +311,117 @@
 </template>
 
 <script>
-export default {
-  name: "Details",
-  data(){
-    return {
-        walletStatus : false,
-        currentPunk : '',
-        is_load_this_punk : false,
-        punk_loading : true,
-        token_owner : false,
-        crypto_Punks : [3442, 910, 846, 794, 377, 373, 300, 224, 220, 81, 57],
-        punks_attributes : {},
-        is_for_sale : false,
-        sale_by_owner : false,
-        punkBids : false,
-        modalOfferForSale : false,
-        offer_btn_loading : false,
-        offer_price : '',
-        offer_wallet_address : '',
-        offer_error : '',
-        offer_msg : '',
-        is_approved : false,
-        is_approved_first_time : null,
-        offer_btn_approve_disable : true,
-        offer_btn_submit2_disable : true,
-        offer_btn_approve_loading : false,
-        cancel_btn_loading : false,
-        modal_bid : false,
-        bid_price : '',
-        bid_error : '',
-        bid_msg : '',
-        bid_btn_loading : false,
-        balance : 0,
-        accept_bid_btn_loading : false,
-        cancel_bid_btn_loading : false,
-        buy_btn_loading : false,
-        marketHistory : [],
-        birthday : false
-
-    }
-  },
-  mounted() {
-      if(this.$route.params.id >= 0 && this.$route.params.id < 10000){
-          this.currentPunk = window.punks[this.$route.params.id];
-          this.punks_attributes = window.punks_attributes;
-
-          setInterval(()=>{
-              this.walletStatus = this.walletManager.walletStatus;
-              if(!this.is_load_this_punk){
-                  this.is_load_this_punk = true;
-                  this.loadData();
-              }
-          }, 100);
-
-
-      }else{
-          window.location.href = '/'
-      }
-  },
-    methods: {
-        async loadData(){
-
-            if(!this.walletManager.contractGlobal.ownerOf){
-                this.is_load_this_punk = false;
-            }else {
-                try {
-
-                    let dataServer = await this.$http.get(`https://crosspunks.com/server/history?id=${this.currentPunk.idx}`)
-                    dataServer = JSON.parse(dataServer.data.msg);
-                    this.birthday = dataServer['birthday'] ? dataServer['birthday'][0] : false;
-                    this.marketHistory = [];
-                    for(let r in dataServer['trade_history']){
-                        if(dataServer['trade_history'][r].status == "SUCCESS") {
-                            dataServer['trade_history'][r].data = JSON.parse(dataServer['trade_history'][r].data);
-                            dataServer['trade_history'][r].methodParam = JSON.parse(dataServer['trade_history'][r].methodParam);
-                            this.marketHistory.push(dataServer['trade_history'][r]);
-                        }
-                    }
-
-                    // console.log(this.marketHistory);
-
-                    let addr = await this.walletManager.contractGlobal.ownerOf(this.currentPunk.idx).call();
-                    this.token_owner = this.walletManager.tronWebGlobal.address.fromHex(addr);
-
-                    this.punkBids = await this.walletManager.dexGlobal.punkBids(this.currentPunk.idx).call();
-                    if(this.punkBids && this.punkBids.hasBid){
-                        this.punkBids.bidder = this.walletManager.tronWebGlobal.address.fromHex(this.punkBids.bidder);
-                        this.punkBids.value = this.punkBids.value / 1000000;
-                    }
-
-                    if(this.token_owner == this.walletManager.dex_addr){
-                        this.token_owner = false;
-                        let offeredForSale = await this.walletManager.dexGlobal.punksOfferedForSale(this.currentPunk.idx).call();
-                        this.token_owner = this.walletManager.tronWebGlobal.address.fromHex(offeredForSale.seller);
-                        this.is_for_sale = offeredForSale.isForSale
-                        this.sale_by_owner = offeredForSale.minValue / 1000000;
-                    }else{
-                        this.is_for_sale = false;
-                        this.sale_by_owner = false;
-                        this.punkBids = false;
-                        await this.checkApproved();
-                    }
-
-                    this.is_approved_first_time = this.is_approved;
-
-                    if(this.walletStatus) {
-                        this.balance = await this.walletManager.ttronWeb.trx.getBalance()
-                    }else{
-                        this.balance = 0;
-                    }
-
-                }catch (e) {
-                    console.log(e);
-                }
-                this.punk_loading = false;
+    export default {
+        name: "Details",
+        data(){
+            return {
+                walletStatus : false,
+                currentPunk : '',
+                is_load_this_punk : false,
+                punk_loading : true,
+                token_owner : false,
+                crypto_Punks : [3442, 910, 846, 794, 377, 373, 300, 224, 220, 81, 57],
+                punks_attributes : {},
+                is_for_sale : false,
+                sale_by_owner : false,
+                punkBids : false,
+                modalOfferForSale : false,
+                offer_btn_loading : false,
+                offer_price : '',
+                offer_wallet_address : '',
+                offer_error : '',
+                offer_msg : '',
+                is_approved : false,
+                is_approved_first_time : null,
+                offer_btn_approve_disable : true,
+                offer_btn_submit2_disable : true,
+                offer_btn_approve_loading : false,
+                cancel_btn_loading : false,
+                modal_bid : false,
+                bid_price : '',
+                bid_error : '',
+                bid_msg : '',
+                bid_btn_loading : false,
+                balance : 0,
+                accept_bid_btn_loading : false,
+                cancel_bid_btn_loading : false,
+                buy_btn_loading : false,
+                marketHistory : [],
+                birthday : false,
+                walletAddr: '',
             }
+        },
+        mounted() {
+            if (this.$route.params.id >= 0 && this.$route.params.id < 10000) {
+                this.currentPunk = window.punks[this.$route.params.id];
+                this.punks_attributes = window.punks_attributes;
+
+                setInterval(()=>{
+                    this.walletStatus = this.walletManager.walletStatus;
+                    if(!this.is_load_this_punk){
+                        this.is_load_this_punk = true;
+                        this.loadData();
+                    }
+                }, 100);
+            } else {
+                window.location.href = '/'
+            }
+        },
+        methods: {
+            async loadData() {
+                this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
+
+                if (!this.walletManager.nft.methods.ownerOf) {
+                    this.is_load_this_punk = false;
+                } else {
+                    try {
+                        // let dataServer = await this.$http.get(`https://crosspunks.com/server/history?id=${this.currentPunk.idx}`)
+                        // dataServer = JSON.parse(dataServer.data.msg);
+                        // this.birthday = dataServer['birthday'] ? dataServer['birthday'][0] : false;
+                        // this.marketHistory = [];
+                        // for (let r in dataServer['trade_history']) {
+                        //     if (dataServer['trade_history'][r].status == "SUCCESS") {
+                        //         dataServer['trade_history'][r].data = JSON.parse(dataServer['trade_history'][r].data);
+                        //         dataServer['trade_history'][r].methodParam = JSON.parse(dataServer['trade_history'][r].methodParam);
+                        //         this.marketHistory.push(dataServer['trade_history'][r]);
+                        //     }
+                        // }
+
+                        // console.log(this.marketHistory);
+
+                        this.token_owner = await this.walletManager.nft.methods.ownerOf(this.currentPunk.idx).call();
+
+                        this.punkBids = await this.walletManager.dex.methods.punkBids(this.currentPunk.idx).call();
+                        if (this.punkBids && this.punkBids.hasBid) {
+                            this.punkBids.value = this.punkBids.value / 1000000;
+                        }
+
+                        if (this.token_owner == this.walletManager.dexAddr) {
+                            this.token_owner = false;
+                            let offeredForSale = await this.walletManager.dex.methods.punksOfferedForSale(this.currentPunk.idx).call();
+                            this.token_owner = offeredForSale.seller;
+                            this.is_for_sale = offeredForSale.isForSale
+                            this.sale_by_owner = offeredForSale.minValue / 1000000;
+                        } else {
+                            this.is_for_sale = false;
+                            this.sale_by_owner = false;
+                            this.punkBids = false;
+                            await this.checkApproved();
+                        }
+
+                        this.is_approved_first_time = this.is_approved;
+
+                        if (this.walletStatus) {
+                            // TODO
+                            this.balance = await this.walletManager.ttronWeb.trx.getBalance()
+                        } else {
+                            this.balance = 0;
+                        }
+                    } catch (e) {
+                        console.log(e);
+                    }
+                    this.punk_loading = false;
+                }
 
           // let mybalance = await this.walletManager.contract.balanceOf(this.walletManager.ttronWeb.defaultAddress.base58).call();
           // mybalance = (this.walletManager.ttronWeb.BigNumber(mybalance).toNumber());
@@ -436,303 +432,258 @@ export default {
           //     let number = await this.walletManager.contract.tokenOfOwnerByIndex(this.walletManager.ttronWeb.defaultAddress.base58, i).call();
           //     this.myAllPunks.push(window.punks[(this.walletManager.ttronWeb.BigNumber(number).toNumber())]);
           // }
-      },
+            },
 
-        async checkApproved(){
-            if(this.token_owner === this.walletManager.ttronWeb.defaultAddress.base58){
-                this.is_approved = await this.walletManager.contract.isApprovedForAll(this.token_owner, this.walletManager.dex_addr).call();
-            }
-            if(this.is_approved) {
-                this.offer_btn_approve_disable = true;
-                this.offer_btn_submit2_disable = false;
-            }else{
-                this.offer_btn_approve_disable = false;
-                this.offer_btn_submit2_disable = true;
-            }
-        },
+            async checkApproved() {
+                if (this.token_owner === this.walletAddr) {
+                    this.is_approved = await this.walletManager.nft.methods.isApprovedForAll(this.token_owner, this.walletManager.dexAddr).call();
+                }
+                if (this.is_approved) {
+                    this.offer_btn_approve_disable = true;
+                    this.offer_btn_submit2_disable = false;
+                } else {
+                    this.offer_btn_approve_disable = false;
+                    this.offer_btn_submit2_disable = true;
+                }
+            },
 
-        async showOfferForSale(){
-            this.offer_error = "";
-            this.offer_msg = "";
-            this.offer_price = "";
-            this.offer_wallet_address = "";
-
-            if(this.is_approved) {
-                this.offer_btn_approve_disable = true;
-                this.offer_btn_submit2_disable = false;
-            }else{
-                this.offer_btn_approve_disable = false;
-                this.offer_btn_submit2_disable = true;
-            }
-
-            this.modalOfferForSale = true;
-        },
-
-        async offerForSale(){
-            if(!this.offer_btn_loading) {
-
-
+            async showOfferForSale() {
                 this.offer_error = "";
                 this.offer_msg = "";
+                this.offer_price = "";
+                this.offer_wallet_address = "";
 
-                let price = parseInt(this.offer_price);
-                let address = this.offer_wallet_address.trim();
+                if (this.is_approved) {
+                    this.offer_btn_approve_disable = true;
+                    this.offer_btn_submit2_disable = false;
+                } else {
+                    this.offer_btn_approve_disable = false;
+                    this.offer_btn_submit2_disable = true;
+                }
 
-                if(!(price >= 0)){
-                    this.offer_error = "enter correct price (BNB)";
-                }else if(10000 > price){
-                    this.offer_error = "you can not enter price lower than 10K BNB";
-                }else if((address.length > 0 && !this.walletManager.ttronWeb.isAddress(address))){
-                    this.offer_error = "wallet address is not correct";
-                }else if((address.length > 0 && address === this.walletManager.ttronWeb.defaultAddress.base58)){
-                    this.offer_error = "you can not enter your wallet address";
-                }else{
-                    this.offer_btn_loading = true;
+                this.modalOfferForSale = true;
+            },
 
-                    try{
-                        price = price * 1000000;
-                        console.log(address, address.length);
-                        if(address.length > 0){
-                            await this.walletManager.dex.offerPunkForSaleToAddress(this.currentPunk.idx, price, address).send({
-                                feeLimit: 100000000,
-                                callValue: 0,
-                                shouldPollResponse: false
-                            });
-                        }else{
-                            await this.walletManager.dex.offerPunkForSale(this.currentPunk.idx, price).send({
-                                feeLimit: 100000000,
-                                callValue: 0,
-                                shouldPollResponse: false
-                            });
+            async offerForSale() {
+                if (!this.offer_btn_loading) {
+                    this.offer_error = "";
+                    this.offer_msg = "";
+
+                    let price = parseInt(this.offer_price);
+                    let address = this.offer_wallet_address.trim();
+
+                    if (!(price >= 0)) {
+                        this.offer_error = "enter correct price (BNB)";
+                    } else if(10000 > price) {
+                        this.offer_error = "you can not enter price lower than 10K BNB";
+                    // TODO
+                    } else if((address.length > 0 && !this.walletManager.ttronWeb.isAddress(address))) {
+                        this.offer_error = "wallet address is not correct";
+                    } else if((address.length > 0 && address === this.walletAddr)) {
+                        this.offer_error = "you can not enter your wallet address";
+                    } else {
+                        this.offer_btn_loading = true;
+                        try {
+                            price = price * 1000000;
+                            console.log(address, address.length);
+                            if (address.length > 0) {
+                                await this.walletManager.dex.methods.offerPunkForSaleToAddress(this.currentPunk.idx, price, address).send({
+                                    feeLimit: 100000000,
+                                    callValue: 0,
+                                    shouldPollResponse: false
+                                });
+                            } else {
+                                await this.walletManager.dex.methods.offerPunkForSale(this.currentPunk.idx, price).send({
+                                    feeLimit: 100000000,
+                                    callValue: 0,
+                                    shouldPollResponse: false
+                                });
+                            }
+
+                            setTimeout(()=>{
+                                this.offer_msg = "Your transaction has been broadcast to network!";
+                                setTimeout(async()=>{
+                                    await this.loadData();
+                                    this.offer_btn_loading = false;
+                                    this.modalOfferForSale = false;
+                                }, 1500);
+                            }, 1000);
+                        } catch(e) {
+                            await this.loadData();
+                            this.offer_error = "failed!";
+                            this.offer_btn_loading = false;
                         }
+                    }
+                }
+            },
 
-                        setTimeout(()=>{
-                            this.offer_msg = "Your transaction has been broadcast to network !";
-                            setTimeout(async()=>{
-                                await this.loadData();
-                                this.offer_btn_loading = false;
-                                this.modalOfferForSale = false;
-                            }, 1500);
-                        }, 1000);
-
-
-
-                    }catch(e){
-                        await this.loadData();
-                        this.offer_error = "failed !";
-                        this.offer_btn_loading = false;
+            async approve() {
+                if (!this.offer_btn_approve_loading) {
+                    this.offer_btn_approve_loading = true;
+                    try {
+                        await this.walletManager.nft.methods.setApprovalForAll(this.walletManager.dex_addr, true).send({
+                            feeLimit: 50000000,
+                            callValue: 0,
+                            shouldPollResponse: false
+                        });
+                    } catch (e) {
+                        this.offer_btn_approve_loading = false;
                     }
 
-
-
+                    setTimeout(async () => {
+                        await this.checkApproved();
+                        this.offer_btn_approve_loading = false;
+                    }, 5000);
                 }
+            },
 
-            }
-        },
-
-        async approve(){
-            if(!this.offer_btn_approve_loading){
-                this.offer_btn_approve_loading = true;
-
-                try {
-                    await this.walletManager.contract.setApprovalForAll(this.walletManager.dex_addr, true).send({
-                        feeLimit: 50000000,
-                        callValue: 0,
-                        shouldPollResponse: false
-                    });
-                }catch (e) {
-                    this.offer_btn_approve_loading = false;
-                }
-
-                setTimeout(async ()=>{
-                    await this.checkApproved();
-                    this.offer_btn_approve_loading = false;
-                }, 5000);
-
-
-            }
-        },
-
-        async cancelSelling(){
-
-            if(!this.cancel_btn_loading){
-
-                this.cancel_btn_loading = true;
-
-                try{
-
-                    await this.walletManager.dex.punkNoLongerForSale(this.currentPunk.idx).send({
-                        feeLimit: 50000000,
-                        callValue: 0,
-                        shouldPollResponse: false
-                    });
-
-                    setTimeout(async ()=>{
-                        await this.loadData();
-                        this.cancel_btn_loading = false;
-                    }, 4500)
-
-                }catch (e) {
-                    await this.loadData();
-                    this.cancel_btn_loading = false;
-                }
-
-            }
-
-        },
-
-        async showBidModal(){
-            this.modal_bid = true
-            this.bid_error = "";
-            this.bid_msg = "";
-            this.bid_price = "";
-
-        },
-
-        async bid(){
-            if(!this.bid_btn_loading) {
-
-                try {
-                    this.balance = await this.walletManager.ttronWeb.trx.getBalance()
-                }catch (e) {
-                    console.log(e);
-                }
-                this.bid_error = "";
-                this.bid_msg = "";
-                let price = parseInt(this.bid_price);
-                if(!(price >= 0)) {
-                    this.bid_error = "enter correct price (BNB)";
-                }else if(this.punkBids && this.punkBids.hasBid && this.punkBids.value && this.punkBids.value >= price) {
-                    this.bid_error = "you can not bid lower than last bid";
-                }else if(10000 > price){
-                    this.bid_error = "you can not bid lower than 10K BNB";
-                }else if(this.balance < (price * 1000000)){
-                    this.bid_error = "you don't have enough BNB";
-                }else{
-
-                    this.bid_btn_loading = true;
-
-                    try{
-                        price = price * 1000000;
-
-                        await this.walletManager.dex.enterBidForPunk(this.currentPunk.idx).send({
-                            feeLimit: 100000000,
-                            callValue: price,
+            async cancelSelling() {
+                if (!this.cancel_btn_loading) {
+                    this.cancel_btn_loading = true;
+                    try {
+                        await this.walletManager.dex.methods.punkNoLongerForSale(this.currentPunk.idx).send({
+                            feeLimit: 50000000,
+                            callValue: 0,
                             shouldPollResponse: false
                         });
 
-                        setTimeout(()=>{
-                            this.bid_msg = "Your transaction has been broadcast to network !";
-                            setTimeout(async()=>{
-                                await this.loadData();
-                                this.bid_btn_loading = false;
-                                this.modal_bid = false;
-                            }, 1500);
-                        }, 1000);
-
-
-
-                    }catch(e){
-                        await this.loadData();
-                        this.bid_error = "failed !";
-                        this.bid_btn_loading = false;
-                    }
-
-
-
-                }
-
-            }
-        },
-
-        async acceptBid(){
-
-            if(!this.accept_bid_btn_loading){
-                this.accept_bid_btn_loading = true;
-
-                try{
-                    await this.walletManager.dex.acceptBidForPunk(this.currentPunk.idx, (this.punkBids.value * 1000000)).send({
-                        feeLimit: 100000000,
-                        callValue: 0,
-                        shouldPollResponse: false
-                    });
-
-                    setTimeout(async()=>{
-                        await this.loadData();
-                        this.accept_bid_btn_loading = false;
-                    }, 2500);
-
-                }catch (e) {
-                    this.accept_bid_btn_loading = false;
-                }
-
-            }
-
-        },
-
-        async cancelBid(){
-
-            if(!this.cancel_btn_loading){
-                this.cancel_btn_loading = true;
-
-                try{
-
-                    await this.walletManager.dex.withdrawBidForPunk(this.currentPunk.idx).send({
-                        feeLimit: 100000000,
-                        callValue: 0,
-                        shouldPollResponse: false
-                    });
-
-                    setTimeout(async()=>{
+                        setTimeout(async () => {
+                            await this.loadData();
+                            this.cancel_btn_loading = false;
+                        }, 4500)
+                    } catch (e) {
                         await this.loadData();
                         this.cancel_btn_loading = false;
-                    }, 2500);
-
-                }catch(e){
-                    await this.loadData();
-                    this.cancel_btn_loading = false;
+                    }
                 }
+            },
 
-            }
+            async showBidModal() {
+                this.modal_bid = true
+                this.bid_error = "";
+                this.bid_msg = "";
+                this.bid_price = "";
+            },
 
-        },
+            async bid(){
+                if (!this.bid_btn_loading) {
+                    try {
+                        // TODO
+                        this.balance = await this.walletManager.ttronWeb.trx.getBalance()
+                    } catch (e) {
+                        console.log(e);
+                    }
+                    this.bid_error = "";
+                    this.bid_msg = "";
+                    let price = parseInt(this.bid_price);
+                    if (!(price >= 0)) {
+                        this.bid_error = "enter correct price (BNB)";
+                    } else if(this.punkBids && this.punkBids.hasBid && this.punkBids.value && this.punkBids.value >= price) {
+                        this.bid_error = "you can not bid lower than last bid";
+                    } else if(10000 > price) {
+                        this.bid_error = "you can not bid lower than 10K BNB";
+                    } else if(this.balance < (price * 1000000)) {
+                        this.bid_error = "you don't have enough BNB";
+                    } else {
+                        this.bid_btn_loading = true;
+                        try {
+                            price = price * 1000000;
+                            
+                            await this.walletManager.dex.methods.enterBidForPunk(this.currentPunk.idx).send({
+                                feeLimit: 100000000,
+                                callValue: price,
+                                shouldPollResponse: false
+                            });
 
-        async buy(){
+                            setTimeout(() => {
+                                this.bid_msg = "Your transaction has been broadcast to network!";
+                                setTimeout(async () => {
+                                    await this.loadData();
+                                    this.bid_btn_loading = false;
+                                    this.modal_bid = false;
+                                }, 1500);
+                            }, 1000);
+                        } catch(e) {
+                            await this.loadData();
+                            this.bid_error = "failed!";
+                            this.bid_btn_loading = false;
+                        }
+                    }
+                }
+            },
 
-            if(!this.buy_btn_loading){
-                this.buy_btn_loading = true;
+            async acceptBid() {
+                if (!this.accept_bid_btn_loading) {
+                    this.accept_bid_btn_loading = true;
+                    try {
+                        await this.walletManager.dex.methods.acceptBidForPunk(this.currentPunk.idx, (this.punkBids.value * 1000000)).send({
+                            feeLimit: 100000000,
+                            callValue: 0,
+                            shouldPollResponse: false
+                        });
 
-                try{
+                        setTimeout(async () => {
+                            await this.loadData();
+                            this.accept_bid_btn_loading = false;
+                        }, 2500);
 
-                    await this.walletManager.dex.buyPunk(this.currentPunk.idx).send({
-                        feeLimit: 100000000,
-                        callValue: this.sale_by_owner * 1000000,
-                        shouldPollResponse: false
-                    });
+                    } catch (e) {
+                        this.accept_bid_btn_loading = false;
+                    }
+                }
+            },
+            
+            async cancelBid() {
+                if (!this.cancel_btn_loading) {
+                    this.cancel_btn_loading = true;
+                    try {
+                        await this.walletManager.dex.methods.withdrawBidForPunk(this.currentPunk.idx).send({
+                            feeLimit: 100000000,
+                            callValue: 0,
+                            shouldPollResponse: false
+                        });
 
-                    setTimeout(async()=>{
+                        setTimeout(async () => {
+                            await this.loadData();
+                            this.cancel_btn_loading = false;
+                        }, 2500);
+                    } catch(e) {
+                        await this.loadData();
+                        this.cancel_btn_loading = false;
+                    }
+                }
+            },
+
+            async buy() {
+                if (!this.buy_btn_loading) {
+                    this.buy_btn_loading = true;
+                    try {
+                        await this.walletManager.dex.methods.buyPunk(this.currentPunk.idx).send({
+                            feeLimit: 100000000,
+                            callValue: this.sale_by_owner * 1000000,
+                            shouldPollResponse: false
+                        });
+
+                        setTimeout(async () => {
+                            await this.loadData();
+                            this.buy_btn_loading = false;
+                        }, 2500);
+                    } catch(e) {
                         await this.loadData();
                         this.buy_btn_loading = false;
-                    }, 2500);
-
-                }catch(e){
-                    await this.loadData();
-                    this.buy_btn_loading = false;
+                    }
                 }
+            },
 
+            fixInThreeDec(str) {
+                let _s = parseFloat(str);
+                _s = +_s.toFixed(3);
+                return _s;
             }
-
         },
-
-        fixInThreeDec(str){
-            let _s = parseFloat(str);
-            _s = +_s.toFixed(3);
-            return _s;
-        }
-
-  },
-};
+    };
 </script>
+
 <style scoped>
     .modal-mask {
         position: fixed;

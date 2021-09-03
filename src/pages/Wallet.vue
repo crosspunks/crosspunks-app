@@ -109,9 +109,8 @@ export default {
     },
     methods: {
         async showData() {
+            this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
             (async () => {
-                this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
-
                 let bf = await this.walletManager.nft.methods
                     .balanceOf(
                         this.walletAddr
@@ -125,8 +124,6 @@ export default {
             })();
 
             (async () => {
-                this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
-
                 this.userAirDrop = await this.walletManager.nft.methods
                     .usersAirdrop(
                         this.walletAddr
