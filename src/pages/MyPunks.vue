@@ -1,12 +1,10 @@
 <template>
     <div class="container-fluid" style="min-height: 500px">
-
         <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" @click="closeSidebar">&times;</a>
 
-            <div class="sidebarWrapper" >
-                <div >
-
+            <div class="sidebarWrapper">
+                <div>
                     <p class="sidebarHeader">
                         Sort By
                     </p>
@@ -14,7 +12,7 @@
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer" >
-                                <input id="token_id_lowest" v-model="sortBy.token_id_lowest" @change="changeSortBy($event)" data-id="token_id_lowest"  type="checkbox">
+                                <input id="token_id_lowest" v-model="sortBy.token_id_lowest" @change="changeSortBy($event)" data-id="token_id_lowest" type="checkbox">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="token_id_lowest" class="form-check-label chLabel">Lowest token id</label>
@@ -24,7 +22,7 @@
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer" >
-                                <input id="token_id_highest" v-model="sortBy.token_id_highest" @change="changeSortBy($event)" data-id="token_id_highest"  type="checkbox">
+                                <input id="token_id_highest" v-model="sortBy.token_id_highest" @change="changeSortBy($event)" data-id="token_id_highest" type="checkbox">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="token_id_highest" class="form-check-label chLabel">Highest token id</label>
@@ -34,7 +32,7 @@
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer" >
-                                <input id="price_lowest" v-model="sortBy.price_lowest" @change="changeSortBy($event)" data-id="price_lowest"  type="checkbox">
+                                <input id="price_lowest" v-model="sortBy.price_lowest" @change="changeSortBy($event)" data-id="price_lowest" type="checkbox">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="price_lowest" class="form-check-label chLabel">Lowest price</label>
@@ -44,7 +42,7 @@
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer" >
-                                <input id="price_highest" v-model="sortBy.price_highest" @change="changeSortBy($event)" data-id="price_highest"  type="checkbox">
+                                <input id="price_highest" v-model="sortBy.price_highest" @change="changeSortBy($event)" data-id="price_highest" type="checkbox">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="price_highest" class="form-check-label chLabel">Highest price</label>
@@ -54,7 +52,7 @@
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer" >
-                                <input id="bid_lowest" v-model="sortBy.bid_lowest" @change="changeSortBy($event)" data-id="bid_lowest"  type="checkbox">
+                                <input id="bid_lowest" v-model="sortBy.bid_lowest" @change="changeSortBy($event)" data-id="bid_lowest" type="checkbox">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="bid_lowest" class="form-check-label chLabel">Lowest bid</label>
@@ -64,7 +62,7 @@
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer" >
-                                <input id="bid_highest" v-model="sortBy.bid_highest" @change="changeSortBy($event)" data-id="bid_highest"  type="checkbox">
+                                <input id="bid_highest" v-model="sortBy.bid_highest" @change="changeSortBy($event)" data-id="bid_highest" type="checkbox">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="bid_highest" class="form-check-label chLabel">Highest bid</label>
@@ -74,7 +72,7 @@
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer" >
-                                <input id="rank_lowest" v-model="sortBy.rank_lowest" @change="changeSortBy($event)" data-id="rank_lowest"  type="checkbox">
+                                <input id="rank_lowest" v-model="sortBy.rank_lowest" @change="changeSortBy($event)" data-id="rank_lowest" type="checkbox">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="rank_lowest" class="form-check-label chLabel">Lowest rank</label>
@@ -84,7 +82,7 @@
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer" >
-                                <input id="rank_highest" v-model="sortBy.rank_highest" @change="changeSortBy($event)" data-id="rank_highest"  type="checkbox">
+                                <input id="rank_highest" v-model="sortBy.rank_highest" @change="changeSortBy($event)" data-id="rank_highest" type="checkbox">
                                 <span class="checkmark"></span>
                             </div>
                             <label for="rank_highest" class="form-check-label chLabel">Highest rank</label>
@@ -107,7 +105,7 @@
                         <div>
                             <div class="form-group form-check-inline">
                                 <div class="chContainer" >
-                                    <input id="filter_attr_count_0"   @change="changeAttrCount($event)" v-model="attr_count['0']" type="checkbox" >
+                                    <input id="filter_attr_count_0" @change="changeAttrCount($event)" v-model="attr_count['0']" type="checkbox" />
                                     <span class="checkmark"></span>
                                 </div>
                                 <label for="filter_attr_count_0" class="form-check-label chLabel">0 ({{ filter_data.attribute_count[0] || 0 }})</label>
@@ -115,7 +113,7 @@
 
                             <div class="form-group form-check-inline">
                                 <div class="chContainer" >
-                                    <input id="filter_attr_count_1"   @change="changeAttrCount($event)" v-model="attr_count['1']" type="checkbox" >
+                                    <input id="filter_attr_count_1" @change="changeAttrCount($event)" v-model="attr_count['1']" type="checkbox" />
                                     <span class="checkmark"></span>
                                 </div>
                                 <label for="filter_attr_count_1" class="form-check-label chLabel">1 ({{ filter_data.attribute_count[1] || 0 }})</label>
@@ -123,7 +121,7 @@
 
                             <div class="form-group form-check-inline">
                                 <div class="chContainer" >
-                                    <input id="filter_attr_count_2"   @change="changeAttrCount($event)" v-model="attr_count['2']" type="checkbox" >
+                                    <input id="filter_attr_count_2" @change="changeAttrCount($event)" v-model="attr_count['2']" type="checkbox" />
                                     <span class="checkmark"></span>
                                 </div>
                                 <label for="filter_attr_count_2" class="form-check-label chLabel">2 ({{ filter_data.attribute_count[2] || 0 }})</label>
@@ -131,7 +129,7 @@
 
                             <div class="form-group form-check-inline">
                                 <div class="chContainer" >
-                                    <input  id="filter_attr_count_3"  @change="changeAttrCount($event)" v-model="attr_count['3']" type="checkbox" >
+                                    <input  id="filter_attr_count_3" @change="changeAttrCount($event)" v-model="attr_count['3']" type="checkbox" />
                                     <span class="checkmark"></span>
                                 </div>
                                 <label for="filter_attr_count_3" class="form-check-label chLabel">3 ({{ filter_data.attribute_count[3] || 0 }})</label>
@@ -139,7 +137,7 @@
 
                             <div class="form-group form-check-inline">
                                 <div class="chContainer" >
-                                    <input  id="filter_attr_count_4"  @change="changeAttrCount($event)" v-model="attr_count['4']" type="checkbox" >
+                                    <input  id="filter_attr_count_4" @change="changeAttrCount($event)" v-model="attr_count['4']" type="checkbox" />
                                     <span class="checkmark"></span>
                                 </div>
                                 <label for="filter_attr_count_4" class="form-check-label chLabel">4 ({{ filter_data.attribute_count[4] || 0 }})</label>
@@ -147,7 +145,7 @@
 
                             <div class="form-group form-check-inline">
                                 <div class="chContainer" >
-                                    <input  id="filter_attr_count_5"  @change="changeAttrCount($event)" v-model="attr_count['5']" type="checkbox" >
+                                    <input  id="filter_attr_count_5" @change="changeAttrCount($event)" v-model="attr_count['5']" type="checkbox" />
                                     <span class="checkmark"></span>
                                 </div>
                                 <label for="filter_attr_count_5" class="form-check-label chLabel">5 ({{ filter_data.attribute_count[5] || 0 }})</label>
@@ -155,7 +153,7 @@
 
                             <div class="form-group form-check-inline">
                                 <div class="chContainer" >
-                                    <input  id="filter_attr_count_6"  @change="changeAttrCount($event)" v-model="attr_count['6']" type="checkbox" >
+                                    <input  id="filter_attr_count_6" @change="changeAttrCount($event)" v-model="attr_count['6']" type="checkbox" />
                                     <span class="checkmark"></span>
                                 </div>
                                 <label for="filter_attr_count_6" class="form-check-label chLabel">6 ({{ filter_data.attribute_count[6] || 0 }})</label>
@@ -163,7 +161,7 @@
 
                             <div class="form-group form-check-inline">
                                 <div class="chContainer" >
-                                    <input  id="filter_attr_count_7"  @change="changeAttrCount($event)" v-model="attr_count['7']" type="checkbox" >
+                                    <input  id="filter_attr_count_7" @change="changeAttrCount($event)" v-model="attr_count['7']" type="checkbox" />
                                     <span class="checkmark"></span>
                                 </div>
                                 <label for="filter_attr_count_7" class="form-check-label chLabel">7 ({{ filter_data.attribute_count[7] || 0 }})</label>
@@ -187,9 +185,49 @@
                         </div>
 
                         <div>
-                            <div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_type_Female" @change="changeType($event)" v-model="types.Female" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_type_Female" class="form-check-label chLabel">Female ({{ filter_data.punk_type["Female"] || 0 }})</label> </div><div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_type_Male" @change="changeType($event)" v-model="types.Male" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_type_Male" class="form-check-label chLabel">Male ({{ filter_data.punk_type["Male"] || 0 }})</label> </div><div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_type_JustinSun" @change="changeType($event)" v-model="types.JustinSun" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_type_JustinSun" class="form-check-label chLabel">JustinSun ({{ filter_data.punk_type["JustinSun"] || 0 }})</label> </div><div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_type_Zombie" @change="changeType($event)" v-model="types.Zombie" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_type_Zombie" class="form-check-label chLabel">Zombie ({{ filter_data.punk_type["Zombie"] || 0 }})</label> </div><div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_type_Ape" @change="changeType($event)" v-model="types.Ape" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_type_Ape" class="form-check-label chLabel">Ape ({{ filter_data.punk_type["Ape"] || 0 }})</label> </div><div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_type_Alien" @change="changeType($event)" v-model="types.Alien" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_type_Alien" class="form-check-label chLabel">Alien ({{ filter_data.punk_type["Alien"] || 0 }})</label> </div>
+                            <div class="form-group form-check-inline">
+                                <div class="chContainer">
+                                    <input id="filter_id_type_Female" @change="changeType($event)" v-model="types.Female" type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </div>
+                                <label for="filter_id_type_Female" class="form-check-label chLabel">Female ({{ filter_data.punk_type["Female"] || 0 }})</label>
+                            </div>
+                            <div class="form-group form-check-inline">
+                                <div class="chContainer">
+                                    <input id="filter_id_type_Male" @change="changeType($event)" v-model="types.Male" type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </div>
+                                <label for="filter_id_type_Male" class="form-check-label chLabel">Male ({{ filter_data.punk_type["Male"] || 0 }})</label>
+                            </div>
+                            <div class="form-group form-check-inline">
+                                <div class="chContainer">
+                                    <input id="filter_id_type_JustinSun" @change="changeType($event)" v-model="types.JustinSun" type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </div>
+                                <label for="filter_id_type_JustinSun" class="form-check-label chLabel">JustinSun ({{ filter_data.punk_type["JustinSun"] || 0 }})</label>
+                            </div>
+                            <div class="form-group form-check-inline">
+                                <div class="chContainer">
+                                    <input id="filter_id_type_Zombie" @change="changeType($event)" v-model="types.Zombie" type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </div>
+                                <label for="filter_id_type_Zombie" class="form-check-label chLabel">Zombie ({{ filter_data.punk_type["Zombie"] || 0 }})</label>
+                            </div>
+                            <div class="form-group form-check-inline">
+                                <div class="chContainer">
+                                    <input id="filter_id_type_Ape" @change="changeType($event)" v-model="types.Ape" type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </div>
+                                <label for="filter_id_type_Ape" class="form-check-label chLabel">Ape ({{ filter_data.punk_type["Ape"] || 0 }})</label>
+                            </div>
+                            <div class="form-group form-check-inline">
+                                <div class="chContainer">
+                                    <input id="filter_id_type_Alien" @change="changeType($event)" v-model="types.Alien" type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </div>
+                                <label for="filter_id_type_Alien" class="form-check-label chLabel">Alien ({{ filter_data.punk_type["Alien"] || 0 }})</label>
+                            </div>
                         </div>
-
                     </div>
 
                     <p class="sidebarHeader">
@@ -345,7 +383,6 @@
     </div>
 </template>
 <script>
-
     export default {
         name: "Details",
         data(){
@@ -384,7 +421,6 @@
             }
         },
         mounted() {
-
             setInterval(()=>{
                 this.walletStatus = this.walletManager.walletStatus;
                 if(this.walletStatus && !this.is_load_my_punk){
@@ -392,26 +428,19 @@
                     this.getMyPunks();
                 }
             }, 100);
-
-
-
         },
         created() {
-
             window.onscroll = ()=>{
                 if(document.documentElement.scrollTop + window.innerHeight + 400 > document.documentElement.offsetHeight){
                     this.addPunks();
                 }
             }
-
         },
         methods: {
             showDetail(index){
                 this.$router.push({name: "details", params : {id : index}});
             },
-
             async getMyPunks(){
-
                 if(!this.punk_loading) {
                     this.punk_loading = true;
 
@@ -441,13 +470,13 @@
                                 }
 
                             }
-                        }catch (e) {
+                        } catch (e) {
                             console.log("can not read from server");
                         }
 
                         if(!loadFromServer) {
-                            mybalance = await this.walletManager.contract.balanceOf(this.walletManager.dex_addr).call();
-                            mybalance = (this.walletManager.tronWebGlobal.BigNumber(mybalance).toNumber());
+                            mybalance = await this.walletManager.nft.methods.balanceOf(this.walletManager.dexAddr).call();
+                            //mybalance = (this.walletManager.tronWebGlobal.BigNumber(mybalance).toNumber());
 
                             for(let i=0; i<mybalance; i++){
                                 let number = await this.walletManager.contract.tokenOfOwnerByIndex(this.walletManager.dex_addr, i).call();
@@ -457,7 +486,6 @@
                                     this.myAllPunks.push(p);
                             }
                         }
-
 
                         loadFromServer = false;
 
@@ -517,14 +545,12 @@
             },
 
             setFilterDetails(){
-
                 this.filter_data.punk_Attribute = {};
                 let attr = {};
                 this.filter_data.punk_type = {};
                 this.filter_data.attribute_count = {};
 
                 for (let i = 0; i < this.myAllPunks.length; i++) {
-
                     let _t =  this.myAllPunks[i].type;
                     if(!this.filter_data.punk_type[_t])
                         this.filter_data.punk_type[_t] = 0;
@@ -558,22 +584,16 @@
                 );
 
                 for(let a in attr){
-
                     let key = a.replace(/\s/g, '');
                     key = key.replace(/\d/g, '');
                     key = key.replace(/-/g, '');
-
                     this.filter_data.punk_Attribute[key] = attr[a];
-
                 }
-
             },
 
             addPunks(){
-
                 if(!this.last_add) {
                     this.last_add = setTimeout(() => {
-
                         let l = this.punks.length;
 
                         for (let i = l; i < l + 60 && i < this.allPunks.length; i++) {
@@ -637,7 +657,6 @@
             },
 
             changeAttr(e){
-
                 this.searchById = '';
 
                 if(e.target.getAttribute('data-id') == "all" && this.checkbox.all){
@@ -675,7 +694,6 @@
             },
 
             filterAttr(){
-
                 let active_attr_count = "all";
                 let _allPunksCount = [];
 
@@ -691,9 +709,9 @@
                 }
 
 
-                if(active_attr_count == "all"){
+                if (active_attr_count == "all") {
                     _allPunksCount = JSON.parse(JSON.stringify(this.myAllPunks));
-                }else{
+                } else {
                     for(let i=0; i<this.myAllPunks.length; i++){
                         if(active_attr_count.indexOf(this.myAllPunks[i].attributes.length + "") > -1)
                             _allPunksCount.push(this.myAllPunks[i]);
@@ -703,27 +721,23 @@
 
                 let activeAttr = "all";
                 let _allPunks = [];
-                if(!this.checkbox.all){
+                if (!this.checkbox.all) {
                     activeAttr = [];
                     for(let ch in this.checkbox){
-                        if(ch == "all")
+                        if (ch == "all")
                             continue;
 
-                        if(this.checkbox[ch])
+                        if (this.checkbox[ch])
                             activeAttr.push(ch);
                     }
                 }
 
-                if(activeAttr == "all"){
+                if (activeAttr == "all") {
                     _allPunks = _allPunksCount;
-                }else{
-                    for(let i=0; i<_allPunksCount.length; i++){
+                } else {
+                    for (let i=0; i<_allPunksCount.length; i++) {
                         let exists = false;
-
-
-
-                        for(let w=0; w<_allPunksCount[i].attributes.length; w++){
-
+                        for (let w=0; w<_allPunksCount[i].attributes.length; w++) {
                             let key = (_allPunksCount[i].attributes[w]).replace(/\s/g, '');
                             key = key.replace(/\d/g, '');
                             key = key.replace(/-/g, '');
@@ -732,40 +746,35 @@
                                 exists = true;
                             }
                         }
-                        if(exists)
+                        if (exists)
                             _allPunks.push(_allPunksCount[i]);
 
                     }
                 }
 
-
-
                 let activeType = "all";
                 this.allPunks = [];
-                if(!this.types.all){
+                if (!this.types.all) {
                     activeType = [];
-                    for(let ch in this.types){
-                        if(ch == "all")
+                    for (let ch in this.types) {
+                        if (ch == "all")
                             continue;
 
-                        if(this.types[ch])
+                        if (this.types[ch])
                             activeType.push(ch);
                     }
                 }
 
                 let _allActive = [];
-                if(activeType == "all"){
+                if (activeType == "all") {
                     _allActive = _allPunks;
-                }else{
-                    for(let i=0; i<_allPunks.length; i++){
-                        if(activeType.indexOf(_allPunks[i].type) > -1){
+                } else {
+                    for (let i=0; i<_allPunks.length; i++) {
+                        if (activeType.indexOf(_allPunks[i].type) > -1) {
                             _allActive.push(_allPunks[i]);
                         }
-
-
                     }
                 }
-
 
                 let sortBy = false;
                 for (let s in this.sortBy) {
@@ -784,13 +793,6 @@
                 } else {
                     this.allPunks = _allActive;
                 }
-
-
-
-
-
-
-
 
                 if (sortBy) {
                     this.allPunks.sort((a, b) => {
@@ -862,15 +864,11 @@
                     })
                 }
 
-
-
                 this.punks = [];
 
                 for(let i=0; i<60&&i<this.allPunks.length; i++){
                     this.punks.push(this.allPunks[i]);
                 }
-
-
             },
 
             changeFilterShow(){
@@ -886,6 +884,7 @@
         },
     };
 </script>
+
 <style scoped>
     .form-group.form-check-inline {
         display: block;

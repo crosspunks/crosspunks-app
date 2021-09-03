@@ -62,7 +62,7 @@
                                 </button>
                             </div>
                             <div v-else class="text-center" style="margin: 0 auto">
-                                <h1>Connect your Metamask Wallet</h1>
+                                <h1>Connect your Metamask</h1>
                                 <div class="text-center" style="margin-bottom: 20px"></div>
                                 <button v-if="this.walletStatus == null" @click="walletManager.connectToMetamask()" type="button" class="btn btn-primary">
                                     Connect Wallet
@@ -95,7 +95,6 @@ export default {
             userBalanceOf: "",
             userAirDrop: {},
             airDropLoading: false,
-
             walletAddr: "",
         };
     },

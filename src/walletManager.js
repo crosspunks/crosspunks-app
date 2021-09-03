@@ -41,8 +41,8 @@ class _walletManager {
     walletStatus = false;
     web3Global = false;
 
-    nftAddr = "0x63b96b34b4e34abd815bd1ac91dfda0ee4aac27f";
-    dexAddr = "0x2c215815ae4524f2dccdabc2b9cb1ca9fa7b8c0d";
+    nftAddr = "0x51c5aF9FEcF83439d78FD07C834cfDf872ff2A38";
+    dexAddr = "0xDe6b13a12F301763eb786D25f70aA6Bc9A7517f2";
 
     constructor() {
         if (window.ethereum) {
