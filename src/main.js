@@ -5,14 +5,14 @@ import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'
 import router from './router'
 import Index from './Index'
-//import walletManager from "./walletManager";
+import walletManager from "./walletManager";
 
 import 'bootstrap'
 
 Vue.router = router;
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
-// Vue.use(walletManager);
+Vue.use(walletManager);
 
 // Vue.component('main-component', );
 import punks from './punks'

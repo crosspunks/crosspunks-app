@@ -3,12 +3,9 @@
         <div class="row">
             <div class="col">
                 <div class="row" >
-
                     <div class="col-md-1" ></div>
                     <div class="col-md-10" >
-                        <div id="home"
-                             class="p-8 mv-8 border-8 bg-pinku bg-opacity-90 pageboxborder border-opacity-100 my-6 flex flex-col w-11/12 ">
-
+                        <div id="home" class="p-8 mv-8 border-8 bg-pinku bg-opacity-90 pageboxborder border-opacity-100 my-6 flex flex-col w-11/12 ">
                             <span class="flex-wrap  text-center text-blau vw5 charriot mb-4 ">About</span>
                             <div class="row" >
                                 <div class="col-md-1" ></div>
@@ -30,34 +27,18 @@
                             <span class=" flex-wrap vw2 mb-4 text-pink-500 font-bold">
                                 - even though Cryptopunks were way cheaper last year than now, I had no money to buy any, so I challenged myself to make them "interesting enough" . So we came up with the CrossPunks concept. CrossPunks carry the original Cryptopunk but they carry many different traits such as justin sun CrossPunks and more attributes,  And you know, sometimes childrens are much cooler than their parents. 😉
                             </span>
-
                         </div>
-
                     </div>
                     <div class="col-md-1" ></div>
-
                 </div>
-
             </div>
         </div>
     </div>
 </template>
+
 <script>
-
 export default {
-  name: "About",
-    data() {
-        return {
-
-        }
-    },
-  mounted() {
-
-
-  },
-  methods: {
-
-  }
+    name: "About",
 };
 </script>
 

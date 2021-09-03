@@ -10,8 +10,6 @@ import MyPunks from "./pages/MyPunks";
 import About from "./pages/About";
 import ForSale from "./pages/ForSale";
 
-
-
 const routes = [{
     path: '/',
     name: 'front',
@@ -52,8 +50,8 @@ const routes = [{
         component: Details,
     },
     {
-        path: '/mywallet',
-        name: 'mywallet',
+        path: '/wallet',
+        name: 'wallet',
         component: MyWallet,
     },
     {
