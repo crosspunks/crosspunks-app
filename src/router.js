@@ -4,10 +4,8 @@ import Front from "./pages/Front";
 import Home from "./pages/Home";
 import Marketplace from "./pages/Marketplace";
 import Details from "./pages/Details";
-import Wallet from "./pages/Wallet";
 import Mint from "./pages/Mint";
 import MyPunks from "./pages/MyPunks";
-import About from "./pages/About";
 import ForSale from "./pages/ForSale";
 
 const routes = [{
@@ -18,46 +16,43 @@ const routes = [{
         path: '/',
         name: 'home',
         component: Home,
+        meta: { title: 'Home' },
     },
     {
         path: '/i/:id',
         name: 'invite_home',
         component: Home,
+        meta: { title: 'Home' },
     },
     {
         path: '/mint',
         name: 'mint',
         component: Mint,
+        meta: { title: 'Mint' },
     },
     {
         path: '/myPunks',
         name: 'myPunks',
         component: MyPunks,
+        meta: { title: 'MyPunks' },
     },
     {
         path: '/gallery',
         name: 'gallery',
         component: Marketplace,
+        meta: { title: 'Gallery' },
     },
     {
         path: '/forSale',
         name: 'forSale',
         component: ForSale,
+        meta: { title: 'ForSale' },
     },
     {
         path: '/detail/crosspunk/:id',
         name: 'details',
         component: Details,
-    },
-    {
-        path: '/wallet',
-        name: 'wallet',
-        component: Wallet,
-    },
-    {
-        path: '/about',
-        name: 'about',
-        component: About,
+        meta: { title: 'Details' },
     },
     ]
 }];

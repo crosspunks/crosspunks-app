@@ -25,4 +25,12 @@ if (window.location.href.indexOf('crosspunks.com') > -1 || window.location.href.
         render: h => h(Index),
         el: '#app',
         router,
+        watch: {
+            $route: {
+                immediate: true,
+                handler(to, from) {
+                    document.title = to.meta.title + ' | CrossPunks';
+                }
+            },
+        }
     });

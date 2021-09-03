@@ -12,7 +12,7 @@
                                 class="navbar-toggler collapsed">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="ml-auto navbar-collapse " v-bind:class="{ 'collapse' : showMenu }"
+                        <div class="ml-auto navbar-collapse" v-bind:class="{ 'collapse' : showMenu }"
                              id="responsive-navbar-nav">
                             <div class="ml-auto navbar-nav">
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'home'}" class="nav-link ">
@@ -29,14 +29,6 @@
                                 </router-link>
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'forSale'}" class="nav-link ">
                                     ForSale
-                                </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'wallet'}"
-                                             class="nav-link ">
-                                    Wallet
-                                </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'about'}"
-                                             class="nav-link ">
-                                    About
                                 </router-link>
                                 <a target="_blank" class="nav-link" href="https://bscscan.com/address/0xD12Dd8aEb8F96D0bFF6aA9C74bDf92009741d3Aa">
                                     Contract

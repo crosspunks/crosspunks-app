@@ -12,8 +12,7 @@
                             <p class="card-text">
                                 it costs 1000 trx to mint a CrossPunk
                             </p>
-                            <p class="card-text">CrossPunks left : 0</p>
-
+                            <p class="card-text">CrossPunks left : {{ punkLeft }}</p>
                             <div class="form-group row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6">
@@ -21,15 +20,9 @@
                                         <option value="1">1 x CrossPunk</option>
                                         <option value="2">2 x CrossPunk</option>
                                         <option value="5">5 x CrossPunk</option>
-                                        <option value="10">
-                                            10 x CrossPunk
-                                        </option>
-                                        <option value="15">
-                                            15 x CrossPunk
-                                        </option>
-                                        <option value="20">
-                                            20 x CrossPunk
-                                        </option>
+                                        <option value="10">10 x CrossPunk</option>
+                                        <option value="15">15 x CrossPunk</option>
+                                        <option value="20">20 x CrossPunk</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3"></div>
@@ -153,11 +146,7 @@ export default {
                 let number = await this.walletManager.nft.methods
                     .totalSupply()
                     .call();
-                this.punkLeft = number
-                    // 10000 -
-                    // this.walletManager.tronWebGlobal
-                    //     .BigNumber(number)
-                    //     .toNumber();
+                this.punkLeft = 10000 - number;
             }, 1000);
         },
 
