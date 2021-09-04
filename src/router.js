@@ -35,7 +35,7 @@ const routes = [{
         path: '/myPunks',
         name: 'myPunks',
         component: MyPunks,
-        meta: { title: 'MyPunks' },
+        meta: { title: 'My Punks' },
     },
     {
         path: '/gallery',

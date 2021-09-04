@@ -19,7 +19,7 @@
                                     Mint
                                 </router-link>
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'myPunks'}" class="nav-link ">
-                                    MyCrossPunks
+                                    My Punks
                                 </router-link>
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'gallery'}" class="nav-link ">
                                     Gallery
