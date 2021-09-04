@@ -596,12 +596,10 @@
                     } else {
                         this.bid_btn_loading = true;
                         try {
-                            price = price * 1000000;
-                            
                             await this.walletManager.dex.methods.enterBidForPunk(this.currentPunk.idx).send({
                                 from,
                                 feeLimit: 100000000,
-                                callValue: price,
+                                value: this.walletManager.web3Global.utils.toWei(price, 'ether'),
                                 shouldPollResponse: false
                             });
 
@@ -676,7 +674,7 @@
                         await this.walletManager.dex.methods.buyPunk(this.currentPunk.idx).send({
                             from,
                             feeLimit: 100000000,
-                            callValue: this.sale_by_owner * 1000000,
+                            value: this.walletManager.web3Global.utils.toWei(this.sale_by_owner, 'ether'),
                             shouldPollResponse: false
                         });
 
