@@ -676,7 +676,11 @@
                     let _allPunksPrice = [];
                     for (let i = 0; i < _allPunks.length; i++) {
                         // console.log(_allPunks[i].bid.minValue.hex, this.walletManager.ttronWeb.BigNumber(_allPunks[i].bid.minValue.hex ? _allPunks[i].bid.minValue.hex : _allPunks[i].bid.minValue).toNumber(), (parseInt(this.minimum_price) * 1000000000));
-                        if (this.walletManager.tronWebGlobal.BigNumber(_allPunks[i].bid.minValue.hex ? _allPunks[i].bid.minValue.hex : _allPunks[i].bid.minValue).toNumber() >= (parseInt(this.minimum_price) * 1000000000))
+                        // TODO
+                        if (
+                            new this.walletManager.web3Global.utils.BN(_allPunks[i].bid.minValue.hex ? _allPunks[i].bid.minValue.hex : _allPunks[i].bid.minValue)
+                                .gte(new this.walletManager.web3Global.utils.BN(parseInt(this.minimum_price) * 1000000000))
+                        )
                             _allPunksPrice.push(_allPunks[i]);
                     }
                     _allPunks = _allPunksPrice;
@@ -732,7 +736,6 @@
                             } else if (sortBy === "rank_highest") {
                                 return b.rank - a.rank;
                             } else if (sortBy === "price_lowest") {
-
                                 if (!this.price_idx[a.idx])
                                     this.price_idx[a.idx] = this.walletManager.web3Global.utils.fromWei(a.bid.minValue.hex ? a.bid.minValue.hex : a.bid.minValue);
 
@@ -744,9 +747,7 @@
                                 let second = this.price_idx[b.idx];
 
                                 return (first - second);
-
                             } else if (sortBy === "price_highest") {
-
                                 if (!this.price_idx[a.idx])
                                     this.price_idx[a.idx] = this.walletManager.web3Global.utils.fromWei(a.bid.minValue.hex ? a.bid.minValue.hex : a.bid.minValue);
 
@@ -758,9 +759,7 @@
                                 let second = this.price_idx[b.idx];
 
                                 return (second - first);
-
                             } else if (sortBy === "bid_lowest") {
-
                                 if (!this.price_bid_idx[a.idx])
                                     this.price_bid_idx[a.idx] = this.walletManager.web3Global.utils.fromWei(a.real_bid.value.hex ? a.real_bid.value.hex : a.real_bid.value);
 
@@ -772,9 +771,7 @@
                                 let second = this.price_bid_idx[b.idx];
 
                                 return (first - second);
-
                             } else if (sortBy === "bid_highest") {
-
                                 if (!this.price_bid_idx[a.idx])
                                     this.price_bid_idx[a.idx] = this.walletManager.web3Global.utils.fromWei(a.real_bid.value.hex ? a.real_bid.value.hex : a.real_bid.value);
 
@@ -786,7 +783,6 @@
                                 let second = this.price_bid_idx[b.idx];
 
                                 return (second - first);
-
                             }
                         })
                     }
