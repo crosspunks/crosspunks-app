@@ -7,6 +7,7 @@ import Details from "./pages/Details";
 import Mint from "./pages/Mint";
 import MyPunks from "./pages/MyPunks";
 import ForSale from "./pages/ForSale";
+import Referral from "./pages/Referral";
 
 const routes = [{
     path: '/',
@@ -53,6 +54,12 @@ const routes = [{
         name: 'details',
         component: Details,
         meta: { title: 'Details' },
+    },
+    {
+        path: '/referralLink',
+        name: 'referralLink',
+        component: Referral,
+        meta: { title: 'My referral link' },
     },
     ]
 }];

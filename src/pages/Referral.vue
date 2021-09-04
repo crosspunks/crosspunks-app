@@ -134,10 +134,12 @@ export default {
         },
 
         async withdrawCrossPunksBNB() {
+            let from = await this.walletManager.web3Global.eth.getCoinbase();
             if (this.userBalanceOf > 0) {
                 this.withdraw_msg = "";
                 try {
                     await this.walletManager.nft.methods.withdraw().send({
+                        from,
                         feeLimit: 300000000,
                         shouldPollResponse: false,
                     });
@@ -153,9 +155,10 @@ export default {
         async getAirDropLink() {
             if (!this.airDropLoading) {
                 this.airDropLoading = true;
-
+                let from = await this.walletManager.web3Global.eth.getCoinbase();
                 try {
-                    await this.walletManager.ntf.methods.startAirDrop().send({
+                    await this.walletManager.nft.methods.startAirDrop().send({
+                        from,
                         feeLimit: 300000000,
                         shouldPollResponse: false,
                     });

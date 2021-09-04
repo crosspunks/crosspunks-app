@@ -417,6 +417,7 @@
                 },
                 price_idx : {},
                 price_bid_idx : {},
+                walletAddr: "",
             }
         },
         mounted() {
@@ -440,6 +441,7 @@
                 this.$router.push({name: "details", params : {id : index}});
             },
             async getMyPunks(){
+                this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
                 if(!this.punk_loading) {
                     this.punk_loading = true;
 
@@ -473,15 +475,16 @@
                             console.log("can not read from server");
                         }
 
-                        if(!loadFromServer) {
+                        if (!loadFromServer) {
                             mybalance = await this.walletManager.nft.methods.balanceOf(this.walletManager.dexAddr).call();
                             //mybalance = (this.walletManager.tronWebGlobal.BigNumber(mybalance).toNumber());
 
-                            for(let i=0; i<mybalance; i++){
-                                let number = await this.walletManager.contract.tokenOfOwnerByIndex(this.walletManager.dex_addr, i).call();
-                                let p = JSON.parse(JSON.stringify(window.punks[(this.walletManager.tronWebGlobal.BigNumber(number).toNumber())]));
-                                p.bid = await this.walletManager.dex.punksOfferedForSale(this.walletManager.tronWebGlobal.BigNumber(number).toNumber()).call();
-                                if(this.walletManager.ttronWeb.address.fromHex(p.bid.seller) == this.walletManager.ttronWeb.defaultAddress.base58)
+                            for (let i = 0; i < mybalance; i++) {
+                                let number = await this.walletManager.nft.methods.tokenOfOwnerByIndex(this.walletManager.dexAddr, i).call();
+                                //let p = JSON.parse(JSON.stringify(window.punks[(this.walletManager.tronWebGlobal.BigNumber(number).toNumber())]));
+                                let p = JSON.parse(JSON.stringify(window.punks[(number)]));
+                                p.bid = await this.walletManager.dex.methods.punksOfferedForSale(number).call();
+                                if (p.bid.seller == this.walletAddr)
                                     this.myAllPunks.push(p);
                             }
                         }
@@ -498,18 +501,18 @@
                                 }
 
                             }
-                        }catch (e) {
+                        } catch (e) {
                             console.log("can not read my punks from server");
                         }
 
                         if(!loadFromServer) {
-                            // mybalance = await this.walletManager.contract.balanceOf(this.walletManager.ttronWeb.defaultAddress.base58).call();
+                            mybalance = await this.walletManager.nft.methods.balanceOf(this.walletAddr).call();
                             // mybalance = (this.walletManager.tronWebGlobal.BigNumber(mybalance).toNumber());
-                            //
-                            // for (let i = 0; i < mybalance; i++) {
-                            //     let number = await this.walletManager.contract.tokenOfOwnerByIndex(this.walletManager.ttronWeb.defaultAddress.base58, i).call();
-                            //     this.myAllPunks.push(window.punks[(this.walletManager.tronWebGlobal.BigNumber(number).toNumber())]);
-                            // }
+                            
+                            for (let i = 0; i < mybalance; i++) {
+                                let number = await this.walletManager.nft.methods.tokenOfOwnerByIndex(this.walletAddr, i).call();
+                                this.myAllPunks.push(window.punks[(number)]);
+                            }
                         }
 
 
