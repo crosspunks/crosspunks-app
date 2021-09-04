@@ -30,7 +30,7 @@
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'referralLink'}" class="nav-link ">
                                     My referral link
                                 </router-link>
-                                <a target="_blank" class="nav-link" href="https://bscscan.com/address/0xD12Dd8aEb8F96D0bFF6aA9C74bDf92009741d3Aa">
+                                <a target="_blank" class="nav-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
                                     Contract
                                 </a>
 

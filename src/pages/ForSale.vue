@@ -330,8 +330,8 @@
         </div>
     </div>
 </template>
-<script>
 
+<script>
     export default {
         name: "ForSale",
         data(){
@@ -373,7 +373,6 @@
             }
         },
         mounted() {
-
             setInterval(()=>{
                 this.walletStatus = this.walletManager.walletStatus;
                 if(!this.is_load_my_punk){
@@ -381,34 +380,25 @@
                     this.getMyPunks();
                 }
             }, 100);
-
-
-
         },
         created() {
-
             window.onscroll = ()=>{
                 if(document.documentElement.scrollTop + window.innerHeight + 400 > document.documentElement.offsetHeight){
                     this.addPunks();
                 }
             }
-
         },
         methods: {
             showDetail(index){
                 this.$router.push({name: "details", params : {id : index}});
             },
-
             async getMyPunks(){
-
-                if(!this.walletManager.contractGlobal.ownerOf){
+                if (!this.walletManager.contractGlobal.ownerOf) {
                     this.is_load_my_punk = false;
-                }else {
-
+                } else {
                     this.punk_loading = true;
 
                     try {
-
                         let loadFromServer = false;
                         try {
                             let dataServer = await this.$http.get(`https://crosspunks.com/server/forSale`)
@@ -430,15 +420,16 @@
                         }
 
                         if (!loadFromServer) {
-                            let mybalance = await this.walletManager.contractGlobal.balanceOf(this.walletManager.dex_addr).call();
-                            mybalance = (this.walletManager.tronWebGlobal.BigNumber(mybalance).toNumber());
+                            let mybalance = await this.walletManager.nft.methods.balanceOf(this.walletManager.dex_addr).call();
+                            // mybalance = (this.walletManager.tronWebGlobal.BigNumber(mybalance).toNumber());
 
                             this.myAllPunks = [];
 
                             for (let i = 0; i < mybalance; i++) {
-                                let number = await this.walletManager.contractGlobal.tokenOfOwnerByIndex(this.walletManager.dex_addr, i).call();
-                                let p = window.punks[(this.walletManager.tronWebGlobal.BigNumber(number).toNumber())];
-                                p.bid = await this.walletManager.dexGlobal.punksOfferedForSale(this.walletManager.tronWebGlobal.BigNumber(number).toNumber()).call();
+                                let number = await this.walletManager.nft.methods.tokenOfOwnerByIndex(this.walletManager.dex_addr, i).call();
+                                // let p = window.punks[(this.walletManager.tronWebGlobal.BigNumber(number).toNumber())];
+                                let p = window.punks[(number)];
+                                p.bid = await this.walletManager.dexGlobal.punksOfferedForSale(number).call();
                                 this.myAllPunks.push(p);
                             }
                         }
@@ -469,41 +460,35 @@
 
                     this.punk_loading = false;
                 }
-
             },
-
             setFilterDetails(){
-
                 this.filter_data.punk_Attribute = {};
                 let attr = {};
                 this.filter_data.punk_type = {};
                 this.filter_data.attribute_count = {};
 
                 for (let i = 0; i < this.myAllPunks.length; i++) {
-
                     let _t =  this.myAllPunks[i].type;
-                    if(!this.filter_data.punk_type[_t])
+                    if (!this.filter_data.punk_type[_t])
                         this.filter_data.punk_type[_t] = 0;
 
                     this.filter_data.punk_type[_t]++;
 
-                    if(!this.filter_data.attribute_count[this.myAllPunks[i].attributes.length])
+                    if (!this.filter_data.attribute_count[this.myAllPunks[i].attributes.length])
                         this.filter_data.attribute_count[this.myAllPunks[i].attributes.length] = 0;
 
                     this.filter_data.attribute_count[this.myAllPunks[i].attributes.length]++;
 
-                    for(let key in this.myAllPunks[i].attributes){
-
+                    for (let key in this.myAllPunks[i].attributes) {
                         let _key = this.myAllPunks[i].attributes[key];
                         _key = _key.replace('"', '');
 
-                        if(!attr[_key])
+                        if (!attr[_key])
                             attr[_key] = 0;
 
                         attr[_key]++;
                     }
                 }
-
 
                 attr = Object.keys(attr).sort().reduce(
                     (obj, key) => {
@@ -513,20 +498,15 @@
                     {}
                 );
 
-                for(let a in attr){
-
+                for (let a in attr) {
                     let key = a.replace(/\s/g, '');
                     key = key.replace(/\d/g, '');
                     key = key.replace(/-/g, '');
 
                     this.filter_data.punk_Attribute[key] = attr[a];
-
                 }
-
             },
-
             addPunks(){
-
                 if(!this.last_add) {
                     this.last_add = setTimeout(() => {
 
@@ -542,30 +522,28 @@
                     }, 500);
                 }
             },
-
             searchByInputId(){
                 this.punks = [];
-                if(this.searchById.trim()){
-                    for(let i=0; i<this.allPunks.length; i++){
+                if (this.searchById.trim()) {
+                    for (let i=0; i<this.allPunks.length; i++) {
                         if(this.searchById.trim() > -1 && this.searchById.trim() == this.allPunks[i].idx){
                             this.punks.push(this.allPunks[i]);
                         }
                     }
-                }else{
+                } else {
                     this.filterAttr();
                 }
             },
-
             changeType(e){
                 this.searchById = '';
 
-                if(e.target.getAttribute('data-id') == "all" && this.types.all){
-                    for(let ch in this.types){
+                if (e.target.getAttribute('data-id') == "all" && this.types.all) {
+                    for (let ch in this.types) {
                         if(ch == "all")
                             continue;
                         this.types[ch] = false;
                     }
-                }else{
+                } else {
                     this.types.all = '';
                 }
 
@@ -573,17 +551,16 @@
                     this.filterAttr();
                 }, 200);
             },
-
             changeAttrCount(e){
                 this.searchById = '';
 
-                if(e.target.getAttribute('data-id') == "all" && this.attr_count.all){
-                    for(let ch in this.attr_count){
-                        if(ch == "all")
+                if (e.target.getAttribute('data-id') == "all" && this.attr_count.all) {
+                    for (let ch in this.attr_count) {
+                        if (ch == "all")
                             continue;
                         this.attr_count[ch] = false;
                     }
-                }else{
+                } else {
                     this.attr_count.all = '';
                 }
 
@@ -591,18 +568,16 @@
                     this.filterAttr();
                 }, 200);
             },
-
-            changeAttr(e){
-
+            changeAttr(e) {
                 this.searchById = '';
 
-                if(e.target.getAttribute('data-id') == "all" && this.checkbox.all){
-                    for(let ch in this.checkbox){
-                        if(ch == "all")
+                if (e.target.getAttribute('data-id') == "all" && this.checkbox.all) {
+                    for (let ch in this.checkbox) {
+                        if (ch == "all")
                             continue;
                         this.checkbox[ch] = false;
                     }
-                }else{
+                } else {
                     this.checkbox.all = '';
                 }
 
@@ -610,11 +585,10 @@
                     this.filterAttr();
                 }, 200);
             },
-
-            changeSortBy(e){
+            changeSortBy(e) {
                 this.searchById = '';
 
-                for(let ch in this.sortBy){
+                for (let ch in this.sortBy) {
                     this.sortBy[ch] = (e.target.getAttribute('data-id') == ch);
                 }
 
@@ -622,19 +596,16 @@
                     this.filterAttr();
                 }, 200);
             },
-
-            changeOnlyHaveBid(){
+            changeOnlyHaveBid() {
                 this.searchById = '';
                 setTimeout(()=>{
                     this.filterAttr();
                 }, 200);
             },
-
-            filterAttr(){
-
+            filterAttr() {
                 this.punk_loading = true;
 
-                if(this.filter_time_out)
+                if (this.filter_time_out)
                     clearTimeout(this.filter_time_out);
 
                 this.filter_time_out = setTimeout(()=> {
@@ -700,7 +671,6 @@
                         }
                     }
 
-
                     // filter price
                     let _allPunksPrice = [];
                     for (let i = 0; i < _allPunks.length; i++) {
@@ -709,7 +679,6 @@
                             _allPunksPrice.push(_allPunks[i]);
                     }
                     _allPunks = _allPunksPrice;
-
 
                     let activeType = "all";
                     this.allPunks = [];
@@ -741,8 +710,6 @@
                             sortBy = s;
                     }
 
-
-
                     if (this.only_have_bid || (sortBy == "bid_lowest" || sortBy == "bid_highest")) {
                         for (let i = 0; i < _allActive.length; i++) {
                             if (_allActive[i].real_bid && _allActive[i].real_bid.hasBid) {
@@ -752,13 +719,6 @@
                     } else {
                         this.allPunks = _allActive;
                     }
-
-
-
-
-
-
-
 
                     if (sortBy) {
                         this.allPunks.sort((a, b) => {
@@ -838,8 +798,6 @@
 
                     this.punk_loading = false;
                 }, 100);
-
-
             },
 
             changeFilterShow(){
@@ -850,26 +808,20 @@
             closeSidebar(){
                 document.getElementById("mySidebar").style.left = "-320px";
                 document.getElementById("sidebarCover").classList.add('hideCover')
-
             },
 
             changeRange(){
-
-                if(this.changeRangeTime)
+                if (this.changeRangeTime)
                     clearTimeout(this.changeRangeTime);
 
-
                 this.changeRangeTime = setTimeout(()=>{
-
                     this.filterAttr();
-
                 }, 1000);
             }
-
         },
     };
-
 </script>
+
 <style scoped>
     .form-group.form-check-inline {
         display: block;

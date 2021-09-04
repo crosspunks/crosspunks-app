@@ -28,11 +28,11 @@
                                 <div class="col-md-3"></div>
                             </div>
 
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <p class="link-primary button" style="font-size: 12px; color: blue; display: inline-block; margin: 0 auto; cursor: pointer;" @click="toggleIL">
                                     i have invite code
                                 </p>
-                            </div>
+                            </div> -->
                             <div class="form-group row" v-if="toggleInviteLink">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6">
