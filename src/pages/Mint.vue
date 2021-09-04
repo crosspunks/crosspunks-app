@@ -10,7 +10,7 @@
                                 <strong>Mint A CrossPunk</strong>
                             </h4>
                             <p class="card-text">
-                                it costs 1000 trx to mint a CrossPunk
+                                It costs 0.1 BNB to mint a CrossPunk
                             </p>
                             <p class="card-text">CrossPunks left : {{ punkLeft }}</p>
                             <div class="form-group row">

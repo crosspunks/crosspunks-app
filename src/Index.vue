@@ -35,9 +35,7 @@
         color: #054f84;
         font-weight: 400;
         font-size: 25px;
-        margin-top: 10px;
         line-height: 28px;
-        margin-bottom: 15px;
         letter-spacing: 1px;
         font-family: 'Open Sans', sans-serif;;
     }

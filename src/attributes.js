@@ -93,8 +93,7 @@ let punks_attributes = {
     "Wild Blonde": 144,
     "Wild Hair": 447,
     "Wild White Hair": 136,
-    "Wizard": 1,
-    "cigarette": 1
+    "Wizard": 1
 };
 
 export default punks_attributes

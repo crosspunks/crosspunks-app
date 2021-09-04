@@ -244,7 +244,7 @@
                         </button>
                         <div class="form-group">
                             <br />
-                            <p style="margin-bottom: 0">minimum price :
+                            <p style="margin-bottom: 0">Minimum price :
                                 <span>{{ minimum_price }}</span>
                                 <span v-if="minimum_price > 0">k</span> BNB
                             </p>
@@ -293,7 +293,7 @@
                                                 </span>
                                             </div>
                                             <p class="card-text">
-                                                rank : {{ punk.rank }}
+                                                Rank : {{ punk.rank }}
                                             </p>
                                             <p class="card-text">
                                                 <span v-for="(tag, index) in punk.attributes" v-bind:key="index" style="margin-right: 4px;" class="badge badge-primary">{{ tag }}</span>
