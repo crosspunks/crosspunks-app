@@ -125,8 +125,7 @@ export default {
                         .send({
                             from,
                             feeLimit: fee,
-                            value: new this.walletManager.web3Global.utils.BN(this.crosspunks_count)
-                                .mul(new this.walletManager.web3Global.utils.BN("1000000000000000000")),
+                            value: this.walletManager.web3Global.utils.toWei((this.crosspunks_count * 100).toString(), 'finney'),
                             shouldPollResponse: false,
                         });
 

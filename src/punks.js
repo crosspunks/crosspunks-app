@@ -285,8 +285,8 @@ let punks = [{
     "rank": 4180
 }, {
     "idx": 57,
-    "type": "John McAfee",
-    "attributes": ["Smile"],
+    "type": "Crypto",
+    "attributes": ["John McAfee"],
     "rank": 37
 }, {
     "idx": 58,
@@ -405,8 +405,8 @@ let punks = [{
     "rank": 6507
 }, {
     "idx": 81,
-    "type": "Satoshi Nakamoto",
-    "attributes": ["3D Glasses"],
+    "type": "Crypto",
+    "attributes": ["Satoshi Nakamoto"],
     "rank": 11
 }, {
     "idx": 82,
@@ -1100,8 +1100,8 @@ let punks = [{
     "rank": 1125
 }, {
     "idx": 220,
-    "type": "Gemini",
-    "attributes": ["White Hat"],
+    "type": "Crypto",
+    "attributes": ["Pavel Durov"],
     "rank": 42
 }, {
     "idx": 221,
@@ -1120,8 +1120,8 @@ let punks = [{
     "rank": 6924
 }, {
     "idx": 224,
-    "type": "CZ",
-    "attributes": ["Scared"],
+    "type": "Crypto",
+    "attributes": ["CZ"],
     "rank": 28
 }, {
     "idx": 225,
@@ -1500,8 +1500,8 @@ let punks = [{
     "rank": 7305
 }, {
     "idx": 300,
-    "type": "Gavin Wood",
-    "attributes": ["Sleep"],
+    "type": "Crypto",
+    "attributes": ["Gavin Wood"],
     "rank": 31
 }, {
     "idx": 301,
@@ -1865,8 +1865,8 @@ let punks = [{
     "rank": 35
 }, {
     "idx": 373,
-    "type": "Pavel Durov",
-    "attributes": ["Wizard"],
+    "type": "Crypto",
+    "attributes": ["Beeple"],
     "rank": 36
 }, {
     "idx": 374,
@@ -1885,8 +1885,8 @@ let punks = [{
     "rank": 2393
 }, {
     "idx": 377,
-    "type": "Elon Musk",
-    "attributes": ["China Flag"],
+    "type": "Crypto",
+    "attributes": ["Elon Musk"],
     "rank": 22
 }, {
     "idx": 378,
@@ -3970,8 +3970,8 @@ let punks = [{
     "rank": 3270
 }, {
     "idx": 794,
-    "type": "Jack Dorsey",
-    "attributes": ["cigarette"],
+    "type": "Crypto",
+    "attributes": ["Jack Dorsey"],
     "rank": 23
 }, {
     "idx": 795,
@@ -4230,8 +4230,8 @@ let punks = [{
     "rank": 8286
 }, {
     "idx": 846,
-    "type": "Justin Sun",
-    "attributes": ["Thug Life"],
+    "type": "Crypto",
+    "attributes": ["Justin Sun"],
     "rank": 26
 }, {
     "idx": 847,
@@ -4550,8 +4550,8 @@ let punks = [{
     "rank": 9780
 }, {
     "idx": 910,
-    "type": "Vitalik Buterin",
-    "attributes": ["Two Face"],
+    "type": "Crypto",
+    "attributes": ["Vitalik Buterin"],
     "rank": 17
 }, {
     "idx": 911,
@@ -17210,8 +17210,8 @@ let punks = [{
     "rank": 1997
 }, {
     "idx": 3442,
-    "type": "Anonymous",
-    "attributes": ["Joker"],
+    "type": "Crypto",
+    "attributes": ["Doge"],
     "rank": 9
 }, {
     "idx": 3443,
