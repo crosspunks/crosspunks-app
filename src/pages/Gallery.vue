@@ -245,342 +245,251 @@
     </div>
   </div>
 </template>
+
 <script>
-
-export default {
-  name: "Home",
-  data(){
-    return {
-        searchById : '',
-        punks : [],
-        allPunks : [],
-        showFilter : false,
-        checkbox : {
-            all: true
-        },
-        types : {
-            all : true
-        },
-        attr_count : {
-            all : true
-        },
-        sortBy : {
-            token_id_lowest : true
-        },
-        last_add : false,
-        crypto_Punks : [3442, 910, 846, 794, 377, 373, 300, 224, 220, 81, 57]
-    }
-  },
-  mounted() {
-      this.filterAttr();
-
-      // let attr = {};
-      // let type = {};
-      // let attr_count = {};
-      //
-      // for (let i = 0; i < 10000; i++) {
-      //
-      //     let _t = window.punks[i].type;
-      //     if(!type[_t])
-      //         type[_t] = 0;
-      //
-      //     type[_t]++;
-      //
-      //     if(!attr_count[window.punks[i].attributes.length])
-      //         attr_count[window.punks[i].attributes.length] = 0;
-      //
-      //     attr_count[window.punks[i].attributes.length]++;
-      //
-      //     for(let key in window.punks[i].attributes){
-      //
-      //         let _key = window.punks[i].attributes[key];
-      //         _key = _key.replace('"', '');
-      //
-      //         if(!attr[_key])
-      //             attr[_key] = 0;
-      //
-      //         attr[_key]++;
-      //     }
-      // }
-
-      // console.log(attr_count);
-
-
-      // let _thtml = '';
-      // for(let key in type){
-      //     let num = type[key];
-      //     _thtml += '<div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_type_'+ key +'" @change="changeType($event)" v-model="types.'+ key +'" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_type_'+ key +'" class="form-check-label chLabel">'+ key +' ('+ num +')</label> </div>';
-      //     // _thtml += '<div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_type_'+ key +'" @change="changeType($event)" v-model="types.'+ key +'" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_type_'+ key +'" class="form-check-label chLabel">'+ key +' ({{ filter_data.punk_type["'+ key +'"] || 0 }})</label> </div>';
-      // }
-
-      // console.log(_thtml);
-
-
-      // attr = Object.keys(attr).sort().reduce(
-      //     (obj, key) => {
-      //         obj[key] = attr[key];
-      //         return obj;
-      //     },
-      //     {}
-      // );
-      //
-      // console.log(JSON.stringify(attr));
-
-      // let _html = '';
-      // for(let a in attr){
-      //
-      //     let key = a.replace(/\s/g, '');
-      //     key = key.replace(/\d/g, '');
-      //     key = key.replace(/-/g, '');
-      //
-      //     _html += '<div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_attr_'+ key +'" @change="changeAttr($event)" v-model="checkbox.'+ key +'" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_attr_'+ key +'" class="form-check-label chLabel">'+ a +' ('+ attr[a] +')</label> </div>';
-      //     // _html += '<div class="form-group form-check-inline"> <div class="chContainer" > <input id="filter_id_attr_'+ key +'" @change="changeAttr($event)" v-model="checkbox.'+ key +'" type="checkbox" ><span class="checkmark"></span> </div> <label for="filter_id_attr_'+ key +'" class="form-check-label chLabel">'+ a +' ({{ filter_data.punk_Attribute["'+ key +'"] || 0 }})</label> </div>';
-      //
-      // }
-      //
-      // console.log(_html);
-
-
-
-  },
-    created() {
-        window.onscroll = ()=>{
-            if(document.documentElement.scrollTop + window.innerHeight + 400 > document.documentElement.offsetHeight){
-                this.addPunks();
-                // console.log(this.punks.length);
+    export default {
+        name: "Home",
+        data() {
+            return {
+                searchById : '',
+                punks : [],
+                allPunks : [],
+                showFilter : false,
+                checkbox : {
+                    all: true
+                },
+                types : {
+                    all : true
+                },
+                attr_count : {
+                    all : true
+                },
+                sortBy : {
+                    token_id_lowest : true
+                },
+                last_add : false,
+                crypto_Punks : [3442, 910, 846, 794, 377, 373, 300, 224, 220, 81, 57]
             }
-        }
-    },
-    methods: {
-        addPunks(){
-          if(!this.last_add) {
-              this.last_add = setTimeout(() => {
-
-                  let l = this.punks.length;
-
-                  for (let i = l; i < l + 60 && i < this.allPunks.length; i++) {
-                      this.punks.push(this.allPunks[i]);
-                      // console.log(i);
-                  }
-
-                  clearTimeout(this.last_add);
-                  this.last_add = false;
-              }, 500);
-          }
         },
-
-        showDetail(index){
-            // console.log(index);
-            this.$router.push({name: "details", params : {id : index}});
+        mounted() {
+            this.filterAttr();
         },
-
-        searchByInputId(){
-            this.punks = [];
-          if(this.searchById.trim()){
-              for(let i=0; i<this.allPunks.length; i++){
-                  if(this.searchById.trim() > -1 && this.searchById.trim() == this.allPunks[i].idx){
-                      this.punks.push(this.allPunks[i]);
-                  }
-              }
-          }else{
-              this.filterAttr();
-          }
-        },
-
-        changeSortBy(e){
-            this.searchById = '';
-
-            for(let ch in this.sortBy){
-                this.sortBy[ch] = (e.target.getAttribute('data-id') == ch);
-            }
-
-            setTimeout(()=>{
-                this.filterAttr();
-            }, 200);
-        },
-
-        changeType(e){
-            this.searchById = '';
-
-            if(e.target.getAttribute('data-id') == "all" && this.types.all){
-                for(let ch in this.types){
-                    if(ch == "all")
-                        continue;
-                    this.types[ch] = false;
-                }
-            }else{
-                this.types.all = '';
-            }
-
-            setTimeout(()=>{
-                this.filterAttr();
-            }, 200);
-        },
-
-        changeAttrCount(e){
-            this.searchById = '';
-
-            if(e.target.getAttribute('data-id') == "all" && this.attr_count.all){
-                for(let ch in this.attr_count){
-                    if(ch == "all")
-                        continue;
-                    this.attr_count[ch] = false;
-                }
-            }else{
-                this.attr_count.all = '';
-            }
-
-            setTimeout(()=>{
-                this.filterAttr();
-            }, 200);
-        },
-
-        changeAttr(e){
-            this.searchById = '';
-
-            if(e.target.getAttribute('data-id') == "all" && this.checkbox.all){
-                for(let ch in this.checkbox){
-                    if(ch == "all")
-                        continue;
-                    this.checkbox[ch] = false;
-                }
-            }else{
-                this.checkbox.all = '';
-            }
-
-            setTimeout(()=>{
-                this.filterAttr();
-            }, 200);
-        },
-
-        filterAttr(){
-            let active_attr_count = "all";
-            let _allPunksCount = [];
-
-            if(!this.attr_count.all){
-                active_attr_count = [];
-                for(let ch in this.attr_count){
-                    if(ch == "all")
-                        continue;
-
-                    if(this.attr_count[ch])
-                        active_attr_count.push(ch);
+        created() {
+            window.onscroll = () => {
+                if (document.documentElement.scrollTop + window.innerHeight + 400 > document.documentElement.offsetHeight) {
+                    this.addPunks();
+                    // console.log(this.punks.length);
                 }
             }
+        },
+        methods: {
+            addPunks() {
+                if (!this.last_add) {
+                    this.last_add = setTimeout(() => {
+                        let l = this.punks.length;
 
+                        for (let i = l; i < l + 60 && i < this.allPunks.length; i++) {
+                            this.punks.push(this.allPunks[i]);
+                            // console.log(i);
+                        }
 
-            if(active_attr_count == "all"){
-                _allPunksCount = JSON.parse(JSON.stringify(window.punks));
-            }else{
-                for(let i=0; i<10000; i++){
-                    if(active_attr_count.indexOf(window.punks[i].attributes.length + "") > -1)
-                        _allPunksCount.push(window.punks[i]);
-
+                        clearTimeout(this.last_add);
+                        this.last_add = false;
+                    }, 500);
                 }
-            }
-
-            // console.log(_allPunksCount);
-
-            let activeAttr = "all";
-            let _allPunks = [];
-            if(!this.checkbox.all){
-                activeAttr = [];
-                for(let ch in this.checkbox){
-                    if(ch == "all")
-                        continue;
-
-                    if(this.checkbox[ch])
-                        activeAttr.push(ch);
-                }
-            }
-
-            if(activeAttr == "all"){
-                _allPunks = _allPunksCount;
-            }else{
-                for(let i=0; i<_allPunksCount.length; i++){
-                    let exists = false;
-
-
-
-                    for(let w=0; w<_allPunksCount[i].attributes.length; w++){
-
-                        let key = (_allPunksCount[i].attributes[w]).replace(/\s/g, '');
-                        key = key.replace(/\d/g, '');
-                        key = key.replace(/-/g, '');
-
-                        if(activeAttr.indexOf(key) > -1){
-                            exists = true;
+            },
+            showDetail(index) {
+                // console.log(index);
+                this.$router.push({name: "details", params : {id : index}});
+            },
+            searchByInputId() {
+                this.punks = [];
+                if (this.searchById.trim()) {
+                    for (let i=0; i<this.allPunks.length; i++) {
+                        if (this.searchById.trim() > -1 && this.searchById.trim() == this.allPunks[i].idx) {
+                            this.punks.push(this.allPunks[i]);
                         }
                     }
-                    if(exists)
-                        _allPunks.push(_allPunksCount[i]);
-
+                } else {
+                    this.filterAttr();
                 }
-            }
+            },
+            changeSortBy(e) {
+                this.searchById = '';
 
-            let activeType = "all";
-            this.allPunks = [];
-            if(!this.types.all){
-                activeType = [];
-                for(let ch in this.types){
-                    if(ch == "all")
-                        continue;
-
-                    if(this.types[ch])
-                        activeType.push(ch);
+                for (let ch in this.sortBy) {
+                    this.sortBy[ch] = (e.target.getAttribute('data-id') == ch);
                 }
-            }
 
-            if(activeType == "all"){
-                this.allPunks = _allPunks;
-            }else{
-                for(let i=0; i<_allPunks.length; i++){
-                    if(activeType.indexOf(_allPunks[i].type) > -1){
-                        this.allPunks.push(_allPunks[i]);
+                setTimeout(() => {
+                    this.filterAttr();
+                }, 200);
+            },
+            changeType(e) {
+                this.searchById = '';
+
+                if (e.target.getAttribute('data-id') == "all" && this.types.all) {
+                    for (let ch in this.types) {
+                        if (ch == "all")
+                            continue;
+                        this.types[ch] = false;
                     }
-
-
+                } else {
+                    this.types.all = '';
                 }
-            }
 
-            let sortBy = false;
-            for (let s in this.sortBy) {
-                if (this.sortBy[s])
-                    sortBy = s;
-            }
+                setTimeout(() => {
+                    this.filterAttr();
+                }, 200);
+            },
+            changeAttrCount(e) {
+                this.searchById = '';
 
-            if (sortBy) {
-                this.allPunks.sort((a, b)=>{
-                    if (sortBy === "token_id_lowest") {
-                        return a.idx - b.idx;
-                    } else if (sortBy === "token_id_highest") {
-                        return b.idx - a.idx;
-                    }else if (sortBy === "rank_lowest") {
-                        return a.rank - b.rank
-                    } else if (sortBy === "rank_highest") {
-                        return b.rank - a.rank
+                if (e.target.getAttribute('data-id') == "all" && this.attr_count.all) {
+                    for (let ch in this.attr_count) {
+                        if(ch == "all")
+                            continue;
+                        this.attr_count[ch] = false;
                     }
-                })
-            }
+                } else {
+                    this.attr_count.all = '';
+                }
 
-            this.punks = [];
+                setTimeout(() => {
+                    this.filterAttr();
+                }, 200);
+            },
+            changeAttr(e) {
+                this.searchById = '';
 
-            for(let i=0; i<60&&i<this.allPunks.length; i++){
-                this.punks.push(this.allPunks[i]);
+                if (e.target.getAttribute('data-id') == "all" && this.checkbox.all) {
+                    for (let ch in this.checkbox) {
+                        if (ch == "all")
+                            continue;
+                        this.checkbox[ch] = false;
+                    }
+                } else {
+                    this.checkbox.all = '';
+                }
+
+                setTimeout(() => {
+                    this.filterAttr();
+                }, 200);
+            },
+            filterAttr() {
+                let active_attr_count = "all";
+                let _allPunksCount = [];
+
+                if (!this.attr_count.all) {
+                    active_attr_count = [];
+                    for (let ch in this.attr_count) {
+                        if (ch == "all")
+                            continue;
+
+                        if (this.attr_count[ch])
+                            active_attr_count.push(ch);
+                    }
+                }
+
+                if (active_attr_count == "all") {
+                    _allPunksCount = JSON.parse(JSON.stringify(window.punks));
+                } else {
+                    for (let i=0; i<10000; i++) {
+                        if (active_attr_count.indexOf(window.punks[i].attributes.length + "") > -1)
+                            _allPunksCount.push(window.punks[i]);
+                    }
+                }
+
+                // console.log(_allPunksCount);
+                let activeAttr = "all";
+                let _allPunks = [];
+                if (!this.checkbox.all) {
+                    activeAttr = [];
+                    for (let ch in this.checkbox) {
+                        if (ch == "all")
+                            continue;
+
+                        if (this.checkbox[ch])
+                            activeAttr.push(ch);
+                    }
+                }
+
+                if (activeAttr == "all") {
+                    _allPunks = _allPunksCount;
+                } else {
+                    for (let i=0; i<_allPunksCount.length; i++) {
+                        let exists = false;
+                        for(let w=0; w<_allPunksCount[i].attributes.length; w++) {
+                            let key = (_allPunksCount[i].attributes[w]).replace(/\s/g, '');
+                            key = key.replace(/\d/g, '');
+                            key = key.replace(/-/g, '');
+                            if (activeAttr.indexOf(key) > -1) {
+                                exists = true;
+                            }
+                        }
+                        if (exists)
+                            _allPunks.push(_allPunksCount[i]);
+                    }
+                }
+                let activeType = "all";
+                this.allPunks = [];
+                if (!this.types.all) {
+                    activeType = [];
+                    for (let ch in this.types) {
+                        if (ch == "all")
+                            continue;
+
+                        if (this.types[ch])
+                            activeType.push(ch);
+                    }
+                }
+
+                if (activeType == "all") {
+                    this.allPunks = _allPunks;
+                } else {
+                    for (let i=0; i<_allPunks.length; i++) {
+                        if (activeType.indexOf(_allPunks[i].type) > -1) {
+                            this.allPunks.push(_allPunks[i]);
+                        }
+                    }
+                }
+
+                let sortBy = false;
+                for (let s in this.sortBy) {
+                    if (this.sortBy[s])
+                        sortBy = s;
+                }
+
+                if (sortBy) {
+                    this.allPunks.sort((a, b)=>{
+                        if (sortBy === "token_id_lowest") {
+                            return a.idx - b.idx;
+                        } else if (sortBy === "token_id_highest") {
+                            return b.idx - a.idx;
+                        } else if (sortBy === "rank_lowest") {
+                            return a.rank - b.rank
+                        } else if (sortBy === "rank_highest") {
+                            return b.rank - a.rank
+                        }
+                    })
+                }
+
+                this.punks = [];
+
+                for (let i=0; i<60&&i<this.allPunks.length; i++) {
+                    this.punks.push(this.allPunks[i]);
+                }
+            },
+            changeFilterShow(){
+                document.getElementById("mySidebar").style.left = "0px";
+                document.getElementById("sidebarCover").classList.remove('hideCover')
+            },
+            closeSidebar(){
+                document.getElementById("mySidebar").style.left = "-320px";
+                document.getElementById("sidebarCover").classList.add('hideCover')
             }
         },
-
-        changeFilterShow(){
-            document.getElementById("mySidebar").style.left = "0px";
-            document.getElementById("sidebarCover").classList.remove('hideCover')
-        },
-
-        closeSidebar(){
-            document.getElementById("mySidebar").style.left = "-320px";
-            document.getElementById("sidebarCover").classList.add('hideCover')
-        }
-    },
-};
+    };
 </script>
 
 <style scoped>

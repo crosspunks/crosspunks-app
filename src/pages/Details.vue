@@ -435,7 +435,6 @@
           //     this.myAllPunks.push(window.punks[(this.walletManager.ttronWeb.BigNumber(number).toNumber())]);
           // }
             },
-
             async checkApproved() {
                 if (this.token_owner.toLowerCase() === this.walletAddr.toLowerCase()) {
                     this.is_approved = await this.walletManager.nft.methods.isApprovedForAll(this.token_owner, this.walletManager.dexAddr).call();
@@ -448,7 +447,6 @@
                     this.offer_btn_submit2_disable = true;
                 }
             },
-
             async showOfferForSale() {
                 this.offer_error = "";
                 this.offer_msg = "";
@@ -465,7 +463,6 @@
 
                 this.modalOfferForSale = true;
             },
-
             async offerForSale() {
                 let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.offer_btn_loading) {
@@ -521,7 +518,6 @@
                     }
                 }
             },
-
             async approve() {
                 let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.offer_btn_approve_loading) {
@@ -543,7 +539,6 @@
                     }, 5000);
                 }
             },
-
             async cancelSelling() {
                 let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.cancel_btn_loading) {
@@ -566,14 +561,12 @@
                     }
                 }
             },
-
             async showBidModal() {
                 this.modal_bid = true
                 this.bid_error = "";
                 this.bid_msg = "";
                 this.bid_price = "";
             },
-
             async bid() {
                 let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.bid_btn_loading) {
@@ -619,7 +612,6 @@
                     }
                 }
             },
-
             async acceptBid() {
                 let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.accept_bid_btn_loading) {
@@ -641,8 +633,7 @@
                         this.accept_bid_btn_loading = false;
                     }
                 }
-            },
-            
+            }, 
             async cancelBid() {
                 let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.cancel_btn_loading) {
@@ -665,7 +656,6 @@
                     }
                 }
             },
-
             async buy() {
                 let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.buy_btn_loading) {
@@ -688,7 +678,6 @@
                     }
                 }
             },
-
             fixInThreeDec(str) {
                 let _s = parseFloat(str);
                 _s = +_s.toFixed(3);

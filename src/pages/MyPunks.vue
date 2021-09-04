@@ -729,7 +729,6 @@
                     this.filterAttr();
                 }, 200);
             },
-
             changeAttr(e) {
                 this.searchById = '';
 
@@ -747,7 +746,6 @@
                     this.filterAttr();
                 }, 200);
             },
-
             changeSortBy(e) {
                 this.searchById = '';
 
@@ -759,14 +757,12 @@
                     this.filterAttr();
                 }, 200);
             },
-
             changeOnlyHaveBid() {
                 this.searchById = '';
                 setTimeout(() => {
                     this.filterAttr();
                 }, 200);
             },
-
             filterAttr() {
                 let active_attr_count = "all";
                 let _allPunksCount = [];
