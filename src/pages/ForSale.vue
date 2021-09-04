@@ -281,9 +281,8 @@
                         <div v-else-if="punks.length > 0" class="row">
                             <div v-for="(punk) in punks" v-bind:key="punk.idx" style="margin-bottom: 10px;" class="col" @click="showDetail(punk.idx)">
                                 <div style="height: 100%; max-width: 300px; min-width: 210px; margin: 0 auto;" class="card">
-
-                                    <img v-if="crypto_Punks.indexOf(punk.idx) > -1" class="card-img-top pixelated" :src="('/crypto/' +punk.idx +'-CrossPunks.png')">
-                                    <img v-else class="card-img-top pixelated" :src="(`https://crosspunks.com/images/crosspunks/${punk.idx}.png`)">
+                                    <img v-if="crypto_Punks.indexOf(punk.idx) > -1" class="card-img-top pixelated" :src="(`/crypto/${punk.idx}.png`)" >
+                                    <img v-else class="card-img-top pixelated" :src="(`/crosspunks/punk${punk.idx}.png`)">
                                     <div  class="card-body">
 
                                         <div class="stretched-link card-title h5">

@@ -35,8 +35,8 @@
                 <div v-else>
                     <div class="row" >
                         <div class="col-md-6" >
-                            <img v-if="crypto_Punks.indexOf(currentPunk.idx) > -1" class="card-img-top pixelated" :src="('/crypto/' + currentPunk.idx +'-CrossPunks.png')">
-                            <img v-else class="card-img-top pixelated" :src="(`https://crosspunks.com/images/crosspunks/${currentPunk.idx}.png`)">
+                            <img v-if="crypto_Punks.indexOf(currentPunk.idx) > -1" class="card-img-top pixelated" :src="(`/crypto/${currentPunk.idx}.png`)">
+                            <img v-else class="card-img-top pixelated" :src="(`/crosspunks/punk${currentPunk.idx}.png`)">
                         </div>
                         <div class="col-md-6" >
                             <div class="pl-3">
