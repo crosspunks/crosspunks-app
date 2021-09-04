@@ -24,8 +24,8 @@
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'gallery'}" class="nav-link ">
                                     Gallery
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'forSale'}" class="nav-link ">
-                                    ForSale
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'marketplace'}" class="nav-link ">
+                                    Marketplace
                                 </router-link>
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'referralLink'}" class="nav-link ">
                                     My referral link

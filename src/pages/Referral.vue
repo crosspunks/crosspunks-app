@@ -118,10 +118,6 @@ export default {
                         this.walletAddr
                     )
                     .call();
-                // this.crossPunksBalance = this.walletManager.web3Global.utils
-                //     .BN(bf)
-                //     .toString();
-
                 this.crossPunksBalance = bf;
             })();
 

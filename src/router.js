@@ -6,7 +6,7 @@ import Marketplace from "./pages/Marketplace";
 import Details from "./pages/Details";
 import Mint from "./pages/Mint";
 import MyPunks from "./pages/MyPunks";
-import ForSale from "./pages/ForSale";
+import Gallery from "./pages/Gallery";
 import Referral from "./pages/Referral";
 
 const routes = [{
@@ -40,14 +40,14 @@ const routes = [{
     {
         path: '/gallery',
         name: 'gallery',
-        component: Marketplace,
+        component: Gallery,
         meta: { title: 'Gallery' },
     },
     {
-        path: '/forSale',
-        name: 'forSale',
-        component: ForSale,
-        meta: { title: 'ForSale' },
+        path: '/marketplace',
+        name: 'marketplace',
+        component: Marketplace,
+        meta: { title: 'Marketplace' },
     },
     {
         path: '/detail/crosspunk/:id',

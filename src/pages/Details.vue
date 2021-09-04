@@ -172,10 +172,10 @@
                                         </td>
                                         <td>
                                             <span v-if="row.methodName == 'offerPunkForSale'">
-                                                {{ walletManager.tronWebGlobal.BigNumber(row.methodParam[1].hex).toNumber() / 1000000 }} BNB ~(${{fixInThreeDec((walletManager.tronWebGlobal.BigNumber(row.methodParam[1].hex).toNumber() / 1000000) * row.trx_price)}})
+                                                {{ walletManager.web3Global.utils.fromWei(row.methodParam[1].hex) }} BNB ~(${{fixInThreeDec(walletManager.web3Global.utils.fromWei(row.methodParam[1].hex) * row.trx_price)}})
                                             </span>
                                             <span v-if="row.methodName == 'enterBidForPunk' || row.methodName == 'buyPunk'">
-                                                {{ row.amount / 1000000 }} BNB ~(${{fixInThreeDec((row.amount / 1000000) * row.trx_price)}})
+                                                {{ walletManager.web3Global.utils.fromWei(row.amount) }} BNB ~(${{fixInThreeDec(walletManager.web3Global.utils.fromWei(row.amount) * row.trx_price)}})
                                             </span>
                                         </td>
                                         <td>
