@@ -33,14 +33,6 @@
                                 <a target="_blank" class="nav-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
                                     Contract
                                 </a>
-
-                                <div class="onoffswitch">
-                                    <input v-on:change="changeThemeMode()" v-model="themeMode" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-                                        <span class="onoffswitch-inner"></span>
-                                        <span class="onoffswitch-switch"></span>
-                                    </label>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -144,13 +136,8 @@
             // setInterval(() => {
             //     this.showAirDropGift();
             // }, 10000);
-            this.themeMode = window.themeSwitchMode;
-
         },
         methods: {
-            changeThemeMode() {
-                window.changeThemeMode(this.themeMode);
-            },
             toggleCollapse() {
                 this.showMenu = !this.showMenu
             },
