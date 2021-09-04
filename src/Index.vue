@@ -66,6 +66,11 @@
         box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     }
 
+    .pixelated {
+        image-rendering:-moz-crisp-edges;
+        image-rendering:pixelated
+    }
+
     #sidebar-wrapper{
         min-height: 100vh !important;
         width: 100vw;
