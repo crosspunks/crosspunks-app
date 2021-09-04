@@ -404,7 +404,7 @@
                             let offeredForSale = await this.walletManager.dex.methods.punksOfferedForSale(this.currentPunk.idx).call();
                             this.token_owner = offeredForSale.seller;
                             this.is_for_sale = offeredForSale.isForSale
-                            this.sale_by_owner = offeredForSale.minValue / 1000000;
+                            this.sale_by_owner = this.walletManager.web3Global.utils.fromWei(offeredForSale.minValue);
                         } else {
                             this.is_for_sale = false;
                             this.sale_by_owner = false;
@@ -486,8 +486,7 @@
                     } else {
                         this.offer_btn_loading = true;
                         try {
-                            price = new this.walletManager.web3Global.utils.BN(price)
-                                .mul(new this.walletManager.web3Global.utils.BN("1000000000000000000"));
+                            price = this.walletManager.web3Global.utils.toWei(price.toString(), 'ether');
                             console.log(address, address.length);
                             if (address.length > 0) {
                                 await this.walletManager.dex.methods.offerPunkForSaleToAddress(this.currentPunk.idx, price, address).send({
@@ -497,7 +496,7 @@
                                     shouldPollResponse: false
                                 });
                             } else {
-                                await this.walletManager.dex.methods.offerPunkForSale(this.currentPunk.idx, price.toString()).send({
+                                await this.walletManager.dex.methods.offerPunkForSale(this.currentPunk.idx, price).send({
                                     from,
                                     feeLimit: 100000000,
                                     callValue: 0,
