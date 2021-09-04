@@ -120,7 +120,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-else-if="this.walletStatus && this.token_owner == walletAddr" class="row">
+                                    <div v-else-if="this.walletStatus && this.token_owner.toLowerCase() == this.walletAddr.toLowerCase()" class="row">
                                         <div class="col-md-12" >
                                             <button @click="showOfferForSale()" class="btn btn-primary btn-block">
                                                 offer for sale
@@ -129,7 +129,7 @@
                                     </div>
                                     <div v-if="!this.walletStatus" class="row">
                                         <div class="text-center" style="margin: 0 auto;">
-                                            <button v-if="this.walletStatus == null" @click="walletManager.connectToTronLInk()" type="button" class="btn btn-primary">
+                                            <button v-if="this.walletStatus == null" @click="walletManager.connectToMetamask()" type="button" class="btn btn-primary">
                                                 Connect Wallet
                                             </button>
                                             <button v-else type="button" class="btn btn-primary">
@@ -244,9 +244,9 @@
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </button>
-                                        <button type="button" class="btn btn-primary" @click="approve" style="float: right; margin-right: 4px;"  :disabled="offer_btn_approve_disable">
+                                        <button type="button" class="btn btn-primary" @click="approve()" style="float: right; margin-right: 4px;" :disabled="offer_btn_approve_disable">
                                             1-Approve
-                                            <div v-if="offer_btn_approve_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
+                                            <div v-if="offer_btn_approve_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </button>
@@ -254,7 +254,7 @@
                                     <div v-else >
                                         <button type="button" class="btn btn-primary" @click="offerForSale" style="float: right">
                                             Submit
-                                            <div v-if="offer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px"   role="status">
+                                            <div v-if="offer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </button>
@@ -355,6 +355,7 @@
             if (this.$route.params.id >= 0 && this.$route.params.id < 10000) {
                 this.currentPunk = window.punks[this.$route.params.id];
                 this.punks_attributes = window.punks_attributes;
+                this.walletStatus = this.walletManager.walletStatus;
 
                 setInterval(()=>{
                     if(this.walletStatus && !this.is_load_this_punk){
@@ -362,6 +363,7 @@
                         this.loadData();
                     } else if (!this.walletStatus) {
                         this.walletManager.connectToMetamask();
+                        this.walletStatus = this.walletManager.walletStatus
                     }
                 }, 100);
             } else {
@@ -413,8 +415,7 @@
                         this.is_approved_first_time = this.is_approved;
 
                         if (this.walletStatus) {
-                            // TODO
-                            this.balance = await this.walletManager.ttronWeb.trx.getBalance()
+                            this.balance = await this.walletManager.web3Global.eth.getBalance(this.walletAddr);
                         } else {
                             this.balance = 0;
                         }
@@ -436,7 +437,7 @@
             },
 
             async checkApproved() {
-                if (this.token_owner === this.walletAddr) {
+                if (this.token_owner.toLowerCase() === this.walletAddr.toLowerCase()) {
                     this.is_approved = await this.walletManager.nft.methods.isApprovedForAll(this.token_owner, this.walletManager.dexAddr).call();
                 }
                 if (this.is_approved) {
@@ -466,42 +467,45 @@
             },
 
             async offerForSale() {
+                let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.offer_btn_loading) {
                     this.offer_error = "";
                     this.offer_msg = "";
 
-                    let price = parseInt(this.offer_price);
+                    let price = parseFloat(this.offer_price);
                     let address = this.offer_wallet_address.trim();
 
                     if (!(price >= 0)) {
                         this.offer_error = "enter correct price (BNB)";
-                    } else if(10000 > price) {
-                        this.offer_error = "you can not enter price lower than 10K BNB";
-                    // TODO
-                    } else if((address.length > 0 && !this.walletManager.ttronWeb.isAddress(address))) {
+                    } else if(0.1 > price) {
+                        this.offer_error = "you can not enter price lower than 0.1 BNB";
+                    } else if((address.length > 0 && !this.walletManager.web3Global.utils.isAddress(address))) {
                         this.offer_error = "wallet address is not correct";
                     } else if((address.length > 0 && address === this.walletAddr)) {
                         this.offer_error = "you can not enter your wallet address";
                     } else {
                         this.offer_btn_loading = true;
                         try {
-                            price = price * 1000000;
+                            price = new this.walletManager.web3Global.utils.BN(price)
+                                .mul(new this.walletManager.web3Global.utils.BN("1000000000000000000"));
                             console.log(address, address.length);
                             if (address.length > 0) {
                                 await this.walletManager.dex.methods.offerPunkForSaleToAddress(this.currentPunk.idx, price, address).send({
+                                    from,
                                     feeLimit: 100000000,
                                     callValue: 0,
                                     shouldPollResponse: false
                                 });
                             } else {
-                                await this.walletManager.dex.methods.offerPunkForSale(this.currentPunk.idx, price).send({
+                                await this.walletManager.dex.methods.offerPunkForSale(this.currentPunk.idx, price.toString()).send({
+                                    from,
                                     feeLimit: 100000000,
                                     callValue: 0,
                                     shouldPollResponse: false
                                 });
                             }
 
-                            setTimeout(()=>{
+                            setTimeout(() => {
                                 this.offer_msg = "Your transaction has been broadcast to network!";
                                 setTimeout(async()=>{
                                     await this.loadData();
@@ -510,6 +514,7 @@
                                 }, 1500);
                             }, 1000);
                         } catch(e) {
+                            console.log(e)
                             await this.loadData();
                             this.offer_error = "failed!";
                             this.offer_btn_loading = false;
@@ -519,10 +524,12 @@
             },
 
             async approve() {
+                let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.offer_btn_approve_loading) {
                     this.offer_btn_approve_loading = true;
                     try {
-                        await this.walletManager.nft.methods.setApprovalForAll(this.walletManager.dex_addr, true).send({
+                        await this.walletManager.nft.methods.setApprovalForAll(this.walletManager.dexAddr, true).send({
+                            from,
                             feeLimit: 50000000,
                             callValue: 0,
                             shouldPollResponse: false
@@ -539,10 +546,12 @@
             },
 
             async cancelSelling() {
+                let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.cancel_btn_loading) {
                     this.cancel_btn_loading = true;
                     try {
                         await this.walletManager.dex.methods.punkNoLongerForSale(this.currentPunk.idx).send({
+                            from,
                             feeLimit: 50000000,
                             callValue: 0,
                             shouldPollResponse: false
@@ -566,11 +575,11 @@
                 this.bid_price = "";
             },
 
-            async bid(){
+            async bid() {
+                let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.bid_btn_loading) {
                     try {
-                        // TODO
-                        this.balance = await this.walletManager.ttronWeb.trx.getBalance()
+                        this.balance = await this.walletManager.web3Global.eth.getBalance(this.walletAddr);
                     } catch (e) {
                         console.log(e);
                     }
@@ -591,6 +600,7 @@
                             price = price * 1000000;
                             
                             await this.walletManager.dex.methods.enterBidForPunk(this.currentPunk.idx).send({
+                                from,
                                 feeLimit: 100000000,
                                 callValue: price,
                                 shouldPollResponse: false
@@ -614,10 +624,12 @@
             },
 
             async acceptBid() {
+                let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.accept_bid_btn_loading) {
                     this.accept_bid_btn_loading = true;
                     try {
                         await this.walletManager.dex.methods.acceptBidForPunk(this.currentPunk.idx, (this.punkBids.value * 1000000)).send({
+                            from,
                             feeLimit: 100000000,
                             callValue: 0,
                             shouldPollResponse: false
@@ -635,10 +647,12 @@
             },
             
             async cancelBid() {
+                let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.cancel_btn_loading) {
                     this.cancel_btn_loading = true;
                     try {
                         await this.walletManager.dex.methods.withdrawBidForPunk(this.currentPunk.idx).send({
+                            from,
                             feeLimit: 100000000,
                             callValue: 0,
                             shouldPollResponse: false
@@ -656,10 +670,12 @@
             },
 
             async buy() {
+                let from = await this.walletManager.web3Global.eth.getCoinbase();
                 if (!this.buy_btn_loading) {
                     this.buy_btn_loading = true;
                     try {
                         await this.walletManager.dex.methods.buyPunk(this.currentPunk.idx).send({
+                            from,
                             feeLimit: 100000000,
                             callValue: this.sale_by_owner * 1000000,
                             shouldPollResponse: false
