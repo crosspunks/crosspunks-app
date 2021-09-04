@@ -91,9 +91,11 @@ export default {
 
         setInterval(() => {
             this.walletStatus = this.walletManager.walletStatus;
-            if (!this.loadPunk) {
+            if (this.walletStatus && !this.loadPunk) {
                 this.loadPunk = true;
                 this.loadPunkLeft();
+            } else if (!this.walletStatus) {
+                this.walletManager.connectToMetamask();
             }
         }, 100);
     },

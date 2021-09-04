@@ -104,6 +104,8 @@ export default {
             if (this.walletStatus && !this.is_load_data) {
                 this.is_load_data = true;
                 this.showData();
+            } else if (!this.walletStatus) {
+                this.walletManager.connectToMetamask();
             }
         }, 100);
     },

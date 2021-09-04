@@ -505,6 +505,8 @@
                 if(this.walletStatus && !this.is_load_my_punk){
                     this.is_load_my_punk = true;
                     this.getMyPunks();
+                } else if (!this.walletStatus) {
+                    this.walletManager.connectToMetamask();
                 }
             }, 100);
         },

@@ -357,10 +357,11 @@
                 this.punks_attributes = window.punks_attributes;
 
                 setInterval(()=>{
-                    this.walletStatus = this.walletManager.walletStatus;
-                    if(!this.is_load_this_punk){
+                    if(this.walletStatus && !this.is_load_this_punk){
                         this.is_load_this_punk = true;
                         this.loadData();
+                    } else if (!this.walletStatus) {
+                        this.walletManager.connectToMetamask();
                     }
                 }, 100);
             } else {

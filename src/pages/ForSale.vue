@@ -375,9 +375,11 @@
         mounted() {
             setInterval(()=>{
                 this.walletStatus = this.walletManager.walletStatus;
-                if(!this.is_load_my_punk){
+                if(this.walletStatus && !this.is_load_my_punk){
                     this.is_load_my_punk = true;
                     this.getMyPunks();
+                } else if (!this.walletStatus) {
+                    this.walletManager.connectToMetamask();
                 }
             }, 100);
         },
@@ -393,7 +395,7 @@
                 this.$router.push({name: "details", params : {id : index}});
             },
             async getMyPunks(){
-                if (!this.walletManager.contractGlobal.ownerOf) {
+                if (!this.walletManager.nft.methods.ownerOf) {
                     this.is_load_my_punk = false;
                 } else {
                     this.punk_loading = true;
@@ -413,7 +415,6 @@
                                     p.real_bid = rows[rowId].real_bid;
                                     this.myAllPunks.push(p);
                                 }
-
                             }
                         } catch (e) {
                             console.log("can not read from server");
@@ -429,7 +430,7 @@
                                 let number = await this.walletManager.nft.methods.tokenOfOwnerByIndex(this.walletManager.dex_addr, i).call();
                                 // let p = window.punks[(this.walletManager.tronWebGlobal.BigNumber(number).toNumber())];
                                 let p = window.punks[(number)];
-                                p.bid = await this.walletManager.dexGlobal.punksOfferedForSale(number).call();
+                                p.bid = await this.walletManager.dex.methods.punksOfferedForSale(number).call();
                                 this.myAllPunks.push(p);
                             }
                         }
