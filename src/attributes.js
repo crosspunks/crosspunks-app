@@ -87,7 +87,18 @@ let punks_attributes = {
     "Wild Blonde": 144,
     "Wild Hair": 447,
     "Wild White Hair": 136,
-    "Wizard": 1
+    "Wizard": 1,
+    "John McAfee": 1,
+    "Satoshi Nakamoto": 1,
+    "Pavel Durov": 1,
+    "CZ": 1,
+    "Gavin Wood": 1,
+    "Beeple": 1,
+    "Elon Musk": 1,
+    "Jack Dorsey": 1,
+    "Justin Sun": 1,
+    "Vitalik Buterin": 1,
+    "Doge": 1
 };
 
 export default punks_attributes
