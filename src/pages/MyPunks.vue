@@ -1594,4 +1594,14 @@ input[type="number"] {
     background-color: #151515;
     border-color: #888;
 }
+
+.card {
+    background-color: #2c2c2c;
+    color: white;
+}
+
+.card-img-top {
+    background: rgb(217,61,118);
+    background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
+}
 </style>
