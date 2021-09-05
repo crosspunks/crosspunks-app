@@ -44,11 +44,17 @@
             <div class="container" style="margin-top: 20px;">
                 <div class="row mb-5 flex-row-reverse">
                     <div style="">
+                        <a target="_blank"  href="https://twitter.com/crosspunks" class="p-1">
+                            <img src="/twitter.svg" style="width: 30px; height: 30px;">
+                        </a>
                         <a target="_blank" href="https://t.me/CrossPunks" class="p-1">
                             <img src="/telegram.svg" style="width: 30px; height: 30px;">
                         </a>
-                        <a target="_blank"  href="https://twitter.com/crosspunks_official" class="p-1">
-                            <img src="/twitter.svg" style="width: 30px; height: 30px;">
+                        <a target="_blank" href="https://medium.com/@crosspunks" class="p-1">
+                            <img src="/medium.svg" style="width: 30px; height: 30px;">
+                        </a>
+                        <a target="_blank" href="https://github.com/crosspunks" class="p-1">
+                            <img src="/github.svg" style="width: 30px; height: 30px;">
                         </a>
                     </div>
                 </div>
@@ -109,7 +115,6 @@
     .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
         right: 0px;
     }
-
     .nav-link {
         font-family: 'Montserrat', sans-serif;
         font-size: 16px;
