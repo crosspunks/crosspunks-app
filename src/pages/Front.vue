@@ -47,7 +47,7 @@
                         <a target="_blank"  href="https://twitter.com/crosspunks" class="p-1">
                             <img src="/twitter.svg" style="width: 30px; height: 30px;">
                         </a>
-                        <a target="_blank" href="https://t.me/CrossPunks" class="p-1">
+                        <a target="_blank" href="https://t.me/crosspunks" class="p-1">
                             <img src="/telegram.svg" style="width: 30px; height: 30px;">
                         </a>
                         <a target="_blank" href="https://medium.com/@crosspunks" class="p-1">

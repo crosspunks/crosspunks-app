@@ -847,7 +847,7 @@
                                     <img v-else class="card-img-top pixelated" :src="(`/crosspunks/punk${punk.idx}.png`)">
                                     <div class="card-body">
                                         <div class="stretched-link card-title h5">
-                                            CrossPunks {{ punk.idx }}
+                                            CrossPunk {{ punk.idx }}
     
                                         </div>
                                         <div>

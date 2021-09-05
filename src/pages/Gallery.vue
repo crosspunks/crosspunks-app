@@ -829,7 +829,7 @@
                                     <img v-if="crypto_Punks.indexOf(punk.idx) > -1" class="card-img-top pixelated" :src="(`/crypto/${punk.idx}.png`)">
                                     <img v-else class="card-img-top pixelated" :src="(`/crosspunks/punk${punk.idx}.png`)">
                                     <div @click="showDetail(punk.idx)" class="card-body">
-                                        <div class="stretched-link card-title h5">CrossPunks {{ punk.idx }}</div>
+                                        <div class="stretched-link card-title h5">CrossPunk {{ punk.idx }}</div>
                                         <div>
                                             <div class="text-muted card-subtitle h6">{{ punk.type }}</div>
                                             <p class="card-text">
