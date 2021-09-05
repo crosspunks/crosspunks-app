@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="crosspunk-home">
         <div class="text-center" style="margin-top: -50px">
-            <div style="height: 450px" class="crosspunk-block">
+            <div style="height: 670px" class="crosspunk-block">
                 <div class="bg-mint-image"></div>
                 <div class="bg-mint-text">
                     <h1 class="crosspunk-h1">
@@ -9,18 +9,17 @@
                     </h1>
                 </div>
             </div>
-            <div style="height: 450px" class="crosspunk-block">
+            <div style="height: 800px" class="crosspunk-block">
                 <div class="bg-stats-image"></div>
                 <div class="bg-stats-text">
-                    <h1 class="crosspunk-h1">Have a quick peek at some global Punks stats!</h1>
-                    <p>The lowest selling price currently stands at 94.99 ETH ($ 358,906.43).</p>
-                    <p>The average rate over the past year was 35.89 ETH (135,620.85 USD).</p>
-                    <p>The average open bid is 4.09 ETH ($ 15,464.49).</p>
-                    <p>The total cost of all current applications is 2,717.69 ETH (10,268,420.59 USD).</p>
-                    <p>The average selling price of punk over the past year is 35.63 ETH ($ 134,615.76).</p>
-                    <p>The total value of punks sold over the last year is 472,909.33 ETH (1,786,821,759.52 USD).</p>
-                    <p>Just think about these numbers! Breathtaking, huh?</p>
-                    </h1>
+                    <h2 class="crosspunk-h1">Have a quick peek at some global Punks stats!</h2>
+                    <p>The lowest selling price currently stands at <b>94.99 ETH ($ 358,906.43).</b></p>
+                    <p>The average rate over the past year was <b>35.89 ETH (135,620.85 USD).</b></p>
+                    <p>The average open bid is <b>4.09 ETH ($ 15,464.49).</b></p>
+                    <p>The total cost of all current applications is <b>2,717.69 ETH (10,268,420.59 USD).</b></p>
+                    <p>The average selling price of punk over the past year is <b>35.63 ETH ($ 134,615.76).</b></p>
+                    <p>The total value of punks sold over the last year is <b>472,909.33 ETH (1,786,821,759.52 USD).</b></p>
+                    <p><b>Just think about these numbers! Breathtaking, huh?</b></p>
                 </div>
             </div>
         </div>
@@ -47,10 +46,13 @@ export default {
 </script>
 
 <style>
+.crosspunk-home {
+    
+}
+
 .crosspunk-h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 60pt;
-    font-weight: 700;
     text-transform: uppercase;
 }
 
@@ -60,19 +62,16 @@ export default {
 
 .bg-mint-image {
     /* The image used */
-    background-image: url("/punk_bg.jpg");
-    /* Add the blur effect */
-    filter: blur(4px);
-    -webkit-filter: blur(4px);
+    background-image: url("/img/cp_web_bg_01_punk.jpg");
     /* Full height */
     height: 100%;
     /* Center and scale the image nicely */
-    background-position: center;
+    background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
     top: 0;
-    width: 95%;
+    width: 100%;
 }
 
 .bg-mint-text {
@@ -83,8 +82,50 @@ export default {
     color: white;
     margin: 0 auto;
     position: relative;
+    top: 25%;
     z-index: 2;
     width: 80%;
+}
+
+.bg-stats-image {
+    /* The image used */
+    background-image: url("/img/cp_web_bg_02.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.bg-stats-text {
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0);
+    /* Black w/opacity/see-through */
+    color: white;
+    margin: 0 auto;
+    position: relative;
+    top: 15%;
+    z-index: 2;
+    width: 80%;
+}
+
+.bg-stats-text h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60pt;
+}
+
+.bg-stats-text p {
+    font-family: 'MontserratL', sans-serif;
+    font-size: 18pt;
+}
+
+.bg-stats-text p b {
+    font-family: 'Montserrat', sans-serif;
 }
 
 @media only screen and (max-width: 600px) {

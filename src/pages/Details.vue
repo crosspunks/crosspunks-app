@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container crosspunk-details">
         <div class="row" style="min-height: 300px;">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -66,11 +66,11 @@
                                     </div>
                                     <div v-if="is_for_sale">
                                         <div class="row text-success">
-                                            <p>Offered by owner for <span style="color: #000">{{ sale_by_owner }} BNB</span></p>
+                                            <p>Offered by owner for <span style="color: #e7e2e2">{{ sale_by_owner }} BNB</span></p>
                                         </div>
                                         <div v-if="this.walletStatus">
                                             <div v-if="punkBids.hasBid" class="row text-warning" >
-                                                <p>There is a bid of <span style="color: #000">{{ punkBids.value }} BNB</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
+                                                <p>There is a bid of <span style="color: #e7e2e2">{{ punkBids.value }} BNB</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
                                             </div>
                                             <div v-if="punkBids.bidder === walletAddr" class="row mb-2">
                                                 <div class="col-md-12" >
@@ -144,7 +144,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <!-- <div class="row mt-3">
                         <div style="margin-top: 40px; width: 100%"><h4 class="text-center">Market History</h4>
                             <table class="table table-sm table-striped table-bordered table-hover">
                                 <thead>
@@ -201,7 +201,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-md-2"></div>
@@ -703,5 +703,10 @@
     .modal-wrapper {
         display: table-cell;
         vertical-align: middle;
+    }
+
+    .crosspunk-details {
+        font-family: 'Montserrat', sans-serif;
+        color: #e7e2e2 !important;
     }
 </style>

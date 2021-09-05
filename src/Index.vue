@@ -41,9 +41,9 @@
         font-family: 'Open Sans', sans-serif;;
     }
 
-    .nav-link a{
+    /* .nav-link a{
         color: #ffbf16;
-    }
+    } */
 
     h1, h2, h3, h5{
         margin-bottom: 15px;
