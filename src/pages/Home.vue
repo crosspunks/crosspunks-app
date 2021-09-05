@@ -1,7 +1,7 @@
 <template>
     <div class="crosspunk-home">
         <div class="text-center" style="margin-top: -50px">
-            <div style="height: 670px" class="crosspunk-block">
+            <div style="height: 670px" class="crosspunk-block1">
                 <div class="bg-mint-image"></div>
                 <div class="bg-mint-text">
                     <h1 class="crosspunk-h1">
@@ -9,7 +9,7 @@
                     </h1>
                 </div>
             </div>
-            <div style="height: 800px" class="crosspunk-block">
+            <div style="height: 800px" class="crosspunk-block2">
                 <div class="bg-stats-image"></div>
                 <div class="bg-stats-text">
                     <h2 class="crosspunk-h1">Have a quick peek at some global Punks stats!</h2>
@@ -46,14 +46,57 @@ export default {
 </script>
 
 <style>
+@media only screen and (min-width: 1601px) {
+    .crosspunk-h1, .bg-stats-text h2 {
+        font-size: 60pt;
+    }
+
+    .bg-stats-text p {
+        font-size: 18pt;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    .crosspunk-h1, .bg-stats-text h2 {
+        font-size: 40pt;
+    }
+
+    .bg-stats-text p {
+        font-size: 14pt;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .crosspunk-h1, .bg-stats-text h2 {
+        font-size: 30pt;
+    }
+
+    .bg-stats-text p {
+        font-size: 12pt;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .crosspunk-block1 {
+        height: 400px !important;
+    }
+
+    .crosspunk-h1, .bg-stats-text h2 {
+        font-size: 20pt;
+    }
+
+    .bg-stats-text p {
+        font-size: 10pt;
+    }
+}
+
 .crosspunk-h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 60pt;
     text-transform: uppercase;
 }
 
-.crosspunk-block {
+.crosspunk-block1, .crosspunk-block2 {
     position: relative;
 }
 
@@ -114,24 +157,16 @@ export default {
 .bg-stats-text h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 60pt;
 }
 
 .bg-stats-text p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    font-size: 18pt;
 }
 
 .bg-stats-text p b {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-}
-
-@media only screen and (max-width: 600px) {
-    .crosspunk-block {
-        height: 400px !important;
-    }
 }
 
 .bg-pinku {

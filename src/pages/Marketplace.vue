@@ -737,7 +737,7 @@
                                         <div class="stretched-link card-title h5">CrossPunk {{ punk.idx }}</div>
                                         <div>
                                             <div class="text-muted card-subtitle h6">
-                                                {{ punk.type }}
+                                                {{ punk.type == 'Crypto' ? 'Crypto Friend' : punk.type }}
                                                 <span style="float: right">
                                                             {{ walletManager.web3Global.utils.fromWei(punk.bid.minValue.hex ? punk.bid.minValue.hex : punk.bid.minValue) }}
                                                             <img height="20px" src="/bnb.svg">

@@ -831,7 +831,7 @@
                                     <div @click="showDetail(punk.idx)" class="card-body">
                                         <div class="stretched-link card-title h5">CrossPunk {{ punk.idx }}</div>
                                         <div>
-                                            <div class="text-muted card-subtitle h6">{{ punk.type }}</div>
+                                            <div class="text-muted card-subtitle h6">{{ punk.type == 'Crypto' ? 'Crypto Friend' : punk.type }}</div>
                                             <p class="card-text">
                                                 Rank : {{ punk.rank }}
                                             </p>
