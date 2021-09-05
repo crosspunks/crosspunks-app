@@ -45,19 +45,19 @@
                 <div class="row mb-5 flex-row-reverse">
                     <div style="">
                         <a target="_blank"  href="https://twitter.com/crosspunks" class="p-1">
-                            <img src="/twitter.svg" style="width: 30px; height: 30px;">
+                            <img src="/img/soc_tw.png" style="width: 30px; height: 30px;">
                         </a>
                         <a target="_blank" href="https://t.me/crosspunks" class="p-1">
-                            <img src="/telegram.svg" style="width: 30px; height: 30px;">
+                            <img src="/img/soc_tg.png" style="width: 30px; height: 30px;">
                         </a>
                         <a target="_blank" href="https://www.youtube.com/channel/UCCycMj-nlN1brjI_IhmS_sA" class="p-1">
-                            <img src="/youtube.svg" style="width: 30px; height: 30px;">
+                            <img src="/img/soc_yb.png" style="width: 30px; height: 30px;">
                         </a>
                         <a target="_blank" href="https://medium.com/@crosspunks" class="p-1">
-                            <img src="/medium.svg" style="width: 30px; height: 30px;">
+                            <img src="/img/soc_md.png" style="width: 30px; height: 30px;">
                         </a>
                         <a target="_blank" href="https://github.com/crosspunks" class="p-1">
-                            <img src="/github.svg" style="width: 30px; height: 30px;">
+                            <img src="/img/soc_gh.png" style="width: 30px; height: 30px;">
                         </a>
                     </div>
                 </div>
