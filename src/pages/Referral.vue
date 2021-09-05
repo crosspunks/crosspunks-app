@@ -22,10 +22,10 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="row">
-                                                        <p>your invite code : <b>{{ userAirDrop.id }}</b></p>
+                                                        <p>Your invite code : <b>{{ userAirDrop.id }}</b></p>
                                                     </div>
                                                     <div class="row" >
-                                                        <p>your invite link : <a v-bind:href="'https://crosspunks.com/#/i/' + userAirDrop.id">https://crosspunks.com/#/i/{{ userAirDrop.id }}</a></p>
+                                                        <p>Your invite link : <a v-bind:href="'https://crosspunks.com/#/i/' + userAirDrop.id">https://crosspunks.com/#/i/{{ userAirDrop.id }}</a></p>
                                                     </div>
                                                 </div>
                                             </div>
