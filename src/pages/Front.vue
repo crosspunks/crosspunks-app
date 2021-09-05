@@ -5,7 +5,7 @@
                 <nav style="margin-bottom: 50px;" class="navbar navbar-expand-lg navbar-light ">
                     <div class="container">
                         <a aria-current="page" style="color: black" class="nav-link active" id="logo" href="/">
-                            <img alt="CrossPunks Logo" src="/cp_logo.svg" class="d-inline-block align-top" style="margin-right: 5px;" height="60">
+                            <img alt="CrossPunks Logo" src="/cp_logo.svg" class="d-inline-block align-top" style="margin-right: 5px;" height="45">
                         </a>
                         <button @click="toggleCollapse" aria-controls="responsive-navbar-nav" type="button"
                                 aria-label="Toggle navigation"
@@ -108,6 +108,11 @@
     }
     .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
         right: 0px;
+    }
+
+    .nav-link {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
     }
 </style>
 
