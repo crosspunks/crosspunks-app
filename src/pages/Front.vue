@@ -119,7 +119,7 @@
         right: 0px;
     }
     .crosspunk-link {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'MontserratL', sans-serif;
         font-size: 16px;
         color: #e7e2e2 !important;
         padding-right: .5rem;
