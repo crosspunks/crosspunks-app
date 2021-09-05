@@ -92,9 +92,9 @@
                                                         </div>
                                                     </button>
                                                 </div>
-                                                <div class="col-md-6" >
+                                                <!-- <div class="col-md-6" >
                                                     <button class="btn btn-primary btn-block" @click="showBidModal()">Bid</button>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div v-else>
                                                 <div v-if="punkBids && punkBids.hasBid" class="row mb-2">

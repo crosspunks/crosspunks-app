@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="apple-mobile-web-app-title" content="CrossPunks">
+    <meta name="application-name" content="CrossPunks">
+    <meta name="theme-color" content="#000000">
+    <meta name="Description" content="Crosspunks one and only ticket needed to jump on NFT hype train.">
+    <meta name="yandex-verification" content="113eb040a9aef68c" />
+
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>CrossPunks</title>
+</head>
+
+<body>
+    <noscript>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong>
+    </noscript>
+
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+    <!-- Google Analytics -->
+    <script>
+        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+        ga('create', 'UA-132217917-6', { 'siteSpeedSampleRate': 100 });
+        ga('send', 'pageview');
+        window.gaSendButton = (buttonName) => {
+            console.log("googleClick");
+            ga('send', 'event', 'Knopka', 'Click', buttonName);
+        }
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(61154374, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+        window.yaSendButton = (buttonName) => {
+            console.log("yandexClick");
+            ym(61154374, 'reachGoal', buttonName);
+        }
+    </script>
+    <noscript>
+        <div><img alt="yandex" src="https://mc.yandex.ru/watch/61154374" style="position:absolute; left:-9999px;" />
+        </div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>

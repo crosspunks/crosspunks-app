@@ -47,15 +47,15 @@
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </button>
-                            <button v-else-if="this.walletStatus == null" @click="walletManager.connectToMetamask()" class="btn btn-primary">
-                                connect to wallet
+                            <button v-else @click="walletManager.connectToMetamask()" class="btn btn-primary">
+                                Connect Wallet
                             </button>
-                            <button v-else class="btn btn-primary">
+                            <!-- <button v-else class="btn btn-primary">
                                 connect to wallet
                                 <div class="spinner-border" style="width: 1rem; height: 1rem; margin-bottom: 4px;" role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
-                            </button>
+                            </button> -->
 
                             <p class="text-success">{{ box_msg }}</p>
                             <p class="text-danger">{{ box_msg_danger }}</p>

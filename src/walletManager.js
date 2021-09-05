@@ -56,20 +56,22 @@ class _walletManager {
     async connectToMetamask() {
         if (window.ethereum) {
             this.web3Global = new Web3(ethereum);
-            this.walletStatus = true;
             try {
                 ethereum.enable();
+                this.walletStatus = true;
             } catch (error) {
                 console.log(error);
             }
         } else if (window.web3) {
             this.web3Global = new Web3(web3.currentProvider);
+            this.walletStatus = true;
         } else {
             console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
         }
 
         if (window.ethereum) {
             window.ethereum.request(TESTNET).catch((error) => {
+                this.walletStatus = false;
                 console.log(error);
             });
 
@@ -78,6 +80,7 @@ class _walletManager {
                 // params: [{ chainId: '0x38' }], // BSC Mainnet
                 params: [{ chainId: '0x61' }], // BSC Testnet
             }).catch((error) => {
+                this.walletStatus = false;
                 console.log(error);
             });
         }
