@@ -46,12 +46,9 @@ export default {
 </script>
 
 <style>
-.crosspunk-home {
-    
-}
-
 .crosspunk-h1 {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
     font-size: 60pt;
     text-transform: uppercase;
 }
@@ -116,16 +113,19 @@ export default {
 
 .bg-stats-text h2 {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
     font-size: 60pt;
 }
 
 .bg-stats-text p {
-    font-family: 'MontserratL', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
     font-size: 18pt;
 }
 
 .bg-stats-text p b {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
 
 @media only screen and (max-width: 600px) {
