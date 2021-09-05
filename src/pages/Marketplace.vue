@@ -661,28 +661,27 @@
     
         </div>
         <div id="sidebarCover" @click="closeSidebar" class="hideCover"></div>
-        <div class="row">
-            <div class="col-lg-3 col-12">
-                <div class="flex-column nav">
-                    <form class="">
-                        <div class="form-group">
-                            <label class="text-center form-label" style="width: 100%;">Search by Id</label>
+        <div>
+            <div class="col-lg-12">
+                <div class="col-12">
+                    <form class="row form-group">
+                        <div class="form-group col-6">
                             <input @keyup="searchByInputId" placeholder="Search by Id" v-model="searchById" type="number" class="form-control">
                         </div>
-                        <button @click="changeFilterShow" aria-controls="example-collapse-text" aria-expanded="false" style="margin-bottom: 5px;" type="button" class="btn btn-outline-dark btn-block">
-                                    <i class="fa fa-spinner" ></i>
-                                    Filter
-                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAMAAADzN3VRAAAAAXNSR0IB2cksfwAAAAlwSFlzAAADsQAAA7EB9YPtSQAAAORQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFsLyIwAAAEx0Uk5TAAIhLCgIU+z/+ZYBPX6Az+q/goOBT43+1biS5SOfqqRKBJnUESotK2bcaBuYwlRVhodXVi8Ow7cHaXYS2dPwlVmpq+Hj/XNs9/xGEAMKfAMAAADTSURBVHicY2CgAWBkYmZhxSrDxs7BycWNLsrDy8fHL8AnyCnEx8cnDMQifHyiYBkxcQ4ODgkGIQ4kIAmzhVsKyJOGcLhBhiIMlpGVk1fA7jioIm5F7NKKSsoSYkhyKqpq6kDArK6uwaGpyaEFZKhrg2V0xBFuUleH0LoQ2/X0ocCAQ1KSw1Bf38jYBM0eUzNxcXNTHG7AELGw5LOyxqrWAGirDYaola2EhJ2mur24BALYg2UcHOWcnF305VzlEMANrs/dg8PTHLubvPRFvbE7lzoAAErNFrnJdR++AAAAAElFTkSuQmCC" />
-                                </button>
-                        <div class="form-group">
+                        <button @click="changeFilterShow" aria-controls="example-collapse-text" aria-expanded="false" style="margin-bottom: 5px;" type="button" class="btn btn-primary btn-block col-6 form-control">
+                            <img src="/img/cp_button_filter.png" />
+                            <i class="fa fa-spinner" ></i>
+                            Filter
+                        </button>
+                        <!-- <div class="form-group">
                             <br />
                             <p style="margin-bottom: 0">Minimum price :
                                 <span>{{ minimum_price }}</span>
                                 <span v-if="minimum_price > 0">k</span> BNB
                             </p>
                             <input @change="changeRange" style="width: 100%" type="range" class="form-range" value="0" min="0" max="100" step="1" id="customRange3" v-model="minimum_price">
-                        </div>
-                        <div>
+                        </div> -->
+                        <!-- <div>
                             <div class="form-group form-check-inline">
                                 <div class="chContainer">
                                     <input id="only_have_bid" v-model="only_have_bid" @change="changeOnlyHaveBid($event)" type="checkbox">
@@ -690,7 +689,7 @@
                                 </div>
                                 <label for="only_have_bid" class="form-check-label chLabel">Only Have Bid</label>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
             </div>
@@ -1359,7 +1358,7 @@ export default {
     display: block;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     cursor: pointer;
     font-size: 22px;
     -webkit-user-select: none;
@@ -1436,6 +1435,7 @@ export default {
 .chLabel {
     position: relative;
     left: 28px;
+    color: #888888;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -1470,4 +1470,9 @@ export default {
 /*    display: flex;*/
 
 /*}*/
+
+input[type="number"] {
+    background-color: #151515;
+    border-color: #888;
+}
 </style>
