@@ -1,7 +1,7 @@
 <template>
     <div class="crosspunk-home">
         <div class="text-center" style="margin-top: -50px">
-            <div style="height: 670px" class="crosspunk-block1">
+            <div style="height: 670px" class="crosspunk-mint-block">
                 <div class="bg-mint-image"></div>
                 <div class="bg-mint-text">
                     <h1 class="crosspunk-h1">
@@ -9,7 +9,7 @@
                     </h1>
                 </div>
             </div>
-            <div style="height: 800px" class="crosspunk-block2">
+            <div style="height: 800px" class="crosspunk-stats-block">
                 <div class="bg-stats-image"></div>
                 <div class="bg-stats-text">
                     <h2 class="crosspunk-h1">Have a quick peek at some global Punks stats!</h2>
@@ -20,6 +20,19 @@
                     <p>The average selling price of punk over the past year is <b>35.63 ETH ($ 134,615.76).</b></p>
                     <p>The total value of punks sold over the last year is <b>472,909.33 ETH (1,786,821,759.52 USD).</b></p>
                     <p><b>Just think about these numbers! Breathtaking, huh?</b></p>
+                </div>
+            </div>
+            <div style="height: 530px" class="crosspunk-what-block">
+                <div class="bg-what-image"></div>
+                <div class="bg-what-text">
+                    <h2 class="crosspunk-h1">What are the CrossPunks</h2>
+                    <div>
+                        <img src="/img/CP_PUNKS.png" style="float: left;">
+                        <div style="text-align: left; margin-right: 0;">
+                            <p>This is the first of its kind NFT cross-chain collection. 10,000 unique pixel characters. Including 11 the most important influencers in the Crypto World ever! 11 rare figures brought crypto and NFT future forward. Who inspired us as well!</p>
+                            <p>Each punk you buy is 1 in 10,000 steps towards realizing the newest ability to move your NFTs across all blockchain networks.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,7 +64,7 @@ export default {
         font-size: 60pt;
     }
 
-    .bg-stats-text p {
+    .bg-stats-text p, .bg-what-text p {
         font-size: 18pt;
     }
 }
@@ -61,7 +74,7 @@ export default {
         font-size: 40pt;
     }
 
-    .bg-stats-text p {
+    .bg-stats-text p, .bg-what-text p {
         font-size: 14pt;
     }
 }
@@ -71,13 +84,13 @@ export default {
         font-size: 30pt;
     }
 
-    .bg-stats-text p {
+    .bg-stats-text p, .bg-what-text p {
         font-size: 12pt;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    .crosspunk-block1 {
+    .crosspunk-mint-block {
         height: 400px !important;
     }
 
@@ -85,7 +98,7 @@ export default {
         font-size: 20pt;
     }
 
-    .bg-stats-text p {
+    .bg-stats-text p, .bg-what-text p {
         font-size: 10pt;
     }
 }
@@ -96,52 +109,40 @@ export default {
     text-transform: uppercase;
 }
 
-.crosspunk-block1, .crosspunk-block2 {
+.crosspunk-mint-block, .crosspunk-stats-block, .crosspunk-what-block {
     position: relative;
+}
+
+.bg-mint-image, .bg-stats-image, .bg-what-image, .bg-how-image {
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .bg-mint-image {
-    /* The image used */
     background-image: url("/img/cp_web_bg_01_punk.jpg");
-    /* Full height */
-    height: 100%;
-    /* Center and scale the image nicely */
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-.bg-mint-text {
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0);
-    /* Black w/opacity/see-through */
-    color: white;
-    margin: 0 auto;
-    position: relative;
-    top: 25%;
-    z-index: 2;
-    width: 80%;
 }
 
 .bg-stats-image {
-    /* The image used */
     background-image: url("/img/cp_web_bg_02.jpg");
-    /* Full height */
-    height: 100%;
-    /* Center and scale the image nicely */
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    width: 100%;
 }
 
-.bg-stats-text {
+.bg-what-image {
+    background-image: url("/img/bg_03.jpg");
+}
+
+.bg-how-image {
+    background: rgb(217,61,118);
+    background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
+}
+
+.bg-mint-text, .bg-stats-text, .bg-what-text {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0);
@@ -149,17 +150,28 @@ export default {
     color: white;
     margin: 0 auto;
     position: relative;
-    top: 15%;
     z-index: 2;
     width: 80%;
 }
 
-.bg-stats-text h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+.bg-mint-text {
+    top: 25%;
 }
 
-.bg-stats-text p {
+.bg-stats-text {
+    top: 15%;
+}
+
+.bg-what-text {
+    top: 20%;
+}
+
+.bg-what-text div {
+    width: 80%;
+    margin: auto;
+}
+
+.bg-stats-text p, .bg-what-text p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
 }
