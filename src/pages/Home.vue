@@ -28,7 +28,7 @@
                     <h2 class="crosspunk-h1">What are the CrossPunks</h2>
                     <div>
                         <img src="/img/CP_PUNKS.png" style="float: left;">
-                        <div style="text-align: left; margin-right: 0;">
+                        <div style="margin-right: 0;">
                             <p>This is the first of its kind NFT cross-chain collection. 10,000 unique pixel characters. Including 11 the most important influencers in the Crypto World ever! 11 rare figures brought crypto and NFT future forward. Who inspired us as well!</p>
                             <p>Each punk you buy is 1 in 10,000 steps towards realizing the newest ability to move your NFTs across all blockchain networks.</p>
                         </div>
@@ -60,31 +60,52 @@ export default {
 
 <style>
 @media only screen and (min-width: 1601px) {
-    .crosspunk-h1, .bg-stats-text h2 {
+    .crosspunk-h1, .bg-stats-text h2, .bg-stats-text h2 {
         font-size: 60pt;
     }
 
-    .bg-stats-text p, .bg-what-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-how-text p {
         font-size: 18pt;
     }
 }
 
 @media only screen and (max-width: 1600px) {
-    .crosspunk-h1, .bg-stats-text h2 {
+    .crosspunk-h1, .bg-stats-text h2, .bg-stats-text h2 {
         font-size: 40pt;
     }
 
-    .bg-stats-text p, .bg-what-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-how-text p {
         font-size: 14pt;
     }
 }
 
+@media only screen and (min-width: 1051px) {
+    .bg-what-text div {
+        width: 80%;
+        margin: auto;
+    }
+
+    .bg-what-text div div {
+        text-align: left;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .bg-what-text img {
+        display: none;
+    }
+
+    .crosspunk-what-block {
+        height: 600px !important;
+    }
+}
+
 @media only screen and (max-width: 700px) {
-    .crosspunk-h1, .bg-stats-text h2 {
+    .crosspunk-h1, .bg-stats-text h2, .bg-stats-text h2 {
         font-size: 30pt;
     }
 
-    .bg-stats-text p, .bg-what-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-how-text p {
         font-size: 12pt;
     }
 }
@@ -94,11 +115,11 @@ export default {
         height: 400px !important;
     }
 
-    .crosspunk-h1, .bg-stats-text h2 {
+    .crosspunk-h1, .bg-stats-text h2, .bg-stats-text h2 {
         font-size: 20pt;
     }
 
-    .bg-stats-text p, .bg-what-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-how-text p {
         font-size: 10pt;
     }
 }
@@ -109,7 +130,7 @@ export default {
     text-transform: uppercase;
 }
 
-.crosspunk-mint-block, .crosspunk-stats-block, .crosspunk-what-block {
+.crosspunk-mint-block, .crosspunk-stats-block, .crosspunk-what-block, .crosspunk-how-block {
     position: relative;
 }
 
@@ -123,6 +144,7 @@ export default {
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: 1;
 }
 
 .bg-mint-image {
@@ -137,12 +159,12 @@ export default {
     background-image: url("/img/bg_03.jpg");
 }
 
-/* .bg-how-image {
+.bg-how-image {
     background: rgb(217,61,118);
     background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
-} */
+}
 
-.bg-mint-text, .bg-stats-text, .bg-what-text {
+.bg-mint-text, .bg-stats-text, .bg-what-text, .bg-how-text {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0);
@@ -162,15 +184,6 @@ export default {
     top: 15%;
 }
 
-.bg-what-text {
-    top: 20%;
-}
-
-.bg-what-text div {
-    width: 80%;
-    margin: auto;
-}
-
 .bg-stats-text p, .bg-what-text p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
@@ -179,6 +192,18 @@ export default {
 .bg-stats-text p b {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
+}
+
+.bg-what-text {
+    top: 20%;
+}
+
+.bg-what-text div img {
+    margin-right: 20px;
+}
+
+.bg-how-text {
+    position: relative;
 }
 
 .bg-pinku {
