@@ -706,7 +706,7 @@
     }
 
     .crosspunk-details {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'MontserratL', sans-serif;
         color: #e7e2e2 !important;
     }
 </style>
