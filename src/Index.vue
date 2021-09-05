@@ -25,6 +25,7 @@
         font-family: 'Open Sans', sans-serif;;
         font-weight: 300;
         color: #2c2c2c;
+        background-color: #151515;
     }
 
     code {

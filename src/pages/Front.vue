@@ -15,22 +15,22 @@
                         <div class="ml-auto navbar-collapse" v-bind:class="{ 'collapse' : showMenu }"
                              id="responsive-navbar-nav">
                             <div class="ml-auto navbar-nav">
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'mint'}" class="nav-link ">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'mint'}" class="crosspunk-link">
                                     Mint
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'myPunks'}" class="nav-link ">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'myPunks'}" class="crosspunk-link">
                                     My Punks
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'gallery'}" class="nav-link ">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'gallery'}" class="crosspunk-link">
                                     Gallery
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'marketplace'}" class="nav-link ">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'marketplace'}" class="crosspunk-link">
                                     Marketplace
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'referralLink'}" class="nav-link ">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'referralLink'}" class="crosspunk-link">
                                     My referral link
                                 </router-link>
-                                <a target="_blank" class="nav-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
+                                <a target="_blank" class="crosspunk-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
                                     Contract
                                 </a>
                             </div>
@@ -49,6 +49,9 @@
                         </a>
                         <a target="_blank" href="https://t.me/crosspunks" class="p-1">
                             <img src="/telegram.svg" style="width: 30px; height: 30px;">
+                        </a>
+                        <a target="_blank" href="https://www.youtube.com/channel/UCCycMj-nlN1brjI_IhmS_sA" class="p-1">
+                            <img src="/youtube.svg" style="width: 30px; height: 30px;">
                         </a>
                         <a target="_blank" href="https://medium.com/@crosspunks" class="p-1">
                             <img src="/medium.svg" style="width: 30px; height: 30px;">
@@ -115,9 +118,12 @@
     .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
         right: 0px;
     }
-    .nav-link {
+    .crosspunk-link {
         font-family: 'Montserrat', sans-serif;
         font-size: 16px;
+        color: #e7e2e2 !important;
+        padding-right: .5rem;
+        padding-left: .5rem;
     }
 </style>
 
