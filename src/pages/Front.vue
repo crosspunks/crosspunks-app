@@ -9,7 +9,7 @@
                         </a>
                         <button @click="toggleCollapse" aria-controls="responsive-navbar-nav" type="button"
                                 aria-label="Toggle navigation"
-                                class="navbar-toggler collapsed">
+                                class="navbar-toggler navbar-dark collapsed">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="ml-auto navbar-collapse" v-bind:class="{ 'collapse' : showMenu }"
