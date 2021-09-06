@@ -130,4 +130,50 @@
         background-color: #d93d76;
         color: white;
     }
+
+    input[type="number"] {
+        background-color: #151515;
+        border-color: #888;
+    }
+
+    .card {
+        background-color: #2c2c2c;
+        color: white;
+    }
+
+    .card-img-top {
+        background: rgb(217,61,118);
+        background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
+    }
+
+    .modal-content {
+        background-color: #151515 !important;
+    }
+
+    .close {
+        color: white !important;
+    }
+
+    .modal-mask {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+        display: table;
+        transition: opacity .3s ease;
+    }
+
+    .modal-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .crosspunk-details {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        color: #e7e2e2 !important;
+    }
 </style>

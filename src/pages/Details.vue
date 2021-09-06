@@ -85,7 +85,7 @@
 
                                             <div v-if="this.token_owner !== walletAddr" class="row">
                                                 <div class="col-md-6" >
-                                                    <button class="btn btn-success btn-block" @click="buy">
+                                                    <button class="btn crosspunk-btn btn-block" @click="buy">
                                                         Buy
                                                         <div v-if="buy_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                             <span class="sr-only">Loading...</span>
@@ -221,14 +221,14 @@
                                 <div class="modal-body">
                                     <div class="form" >
                                         <div class="form-group">
-                                            <label>price (BNB)</label>
+                                            <label>Price (BNB)</label>
                                             <input v-model="offer_price" type="number" min="0" class="form-control" placeholder="Enter price">
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>sale to special address (optional)</label>
                                             <small class="form-text text-muted">enter wallet address, if you want to sale to special address</small>
                                             <input v-model="offer_wallet_address" type="text" class="form-control" placeholder="Enter Wallet Address">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div>
                                         <p v-if="offer_error" class="text-danger">{{ offer_error }}</p>
@@ -686,33 +686,3 @@
         },
     };
 </script>
-
-<style scoped>
-    .modal-mask {
-        position: fixed;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        display: table;
-        transition: opacity .3s ease;
-    }
-
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    .crosspunk-details {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 300;
-        color: #e7e2e2 !important;
-    }
-
-    .card-img-top {
-        background: rgb(217,61,118);
-        background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
-    }
-</style>

@@ -738,14 +738,14 @@
                                             <div class="text-muted card-subtitle h6">
                                                 {{ punk.type == 'Crypto' ? 'Crypto Friend' : punk.type }}
                                                 <span style="float: right">
-                                                            {{ walletManager.web3Global.utils.fromWei(punk.bid.minValue.hex ? punk.bid.minValue.hex : punk.bid.minValue) }}
-                                                            <img height="20px" src="/bnb.svg">
-                                                        </span>
+                                                    {{ walletManager.web3Global.utils.fromWei(punk.bid.minValue.hex ? punk.bid.minValue.hex : punk.bid.minValue) }}
+                                                    <img style="margin-left: 5px;" height="20px" src="/bnb.svg">
+                                                </span>
                                                 <div class="clearfix"></div>
-                                                <span v-if="punk.real_bid && punk.real_bid.hasBid" style="float: right; margin-top: 5px;">
-                                                            {{ walletManager.web3Global.utils.fromWei(punk.real_bid.value.hex ? punk.real_bid.value.hex : punk.real_bid.value) }}
-                                                            <img height="20px;" src="/auction-bid.svg" />
-                                                        </span>
+                                                <!-- <span v-if="punk.real_bid && punk.real_bid.hasBid" style="float: right; margin-top: 5px;">
+                                                    {{ walletManager.web3Global.utils.fromWei(punk.real_bid.value.hex ? punk.real_bid.value.hex : punk.real_bid.value) }}
+                                                    <img height="20px;" src="/auction-bid.svg" />
+                                                </span> -->
                                             </div>
                                             <p class="card-text">
                                                 Rank : {{ punk.rank }}
@@ -1470,19 +1470,4 @@ export default {
 /*    display: flex;*/
 
 /*}*/
-
-input[type="number"] {
-    background-color: #151515;
-    border-color: #888;
-}
-
-.card {
-    background-color: #2c2c2c;
-    color: white;
-}
-
-.card-img-top {
-    background: rgb(217,61,118);
-    background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
-}
 </style>
