@@ -127,6 +127,15 @@
         color: #e7e2e2 !important;
     }
 
+    .crosspunk-a {
+        color: #d93d76 !important;
+        text-shadow: #d93d76 0 0 10px;
+    }
+
+    .crosspunk-a:hover {
+        text-decoration: none;
+    }
+
     input[type="number"], input[type="number"]:focus {
         background-color: #151515;
         border-color: #888;

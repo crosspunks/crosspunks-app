@@ -47,7 +47,7 @@
                                     <h5>{{ currentPunk.type == 'Crypto' ? 'Crypto Friend' : currentPunk.type }}</h5>
                                 </div>
                                 <div class="row" >
-                                    <p v-if="this.token_owner">owned by : <a target="_blank" :href="'https://bscscan.com/address/'+ this.token_owner">{{ this.token_owner.substr(0, 8)}}</a></p>
+                                    <p v-if="this.token_owner">owned by : <a class="crosspunk-a" target="_blank" :href="'https://bscscan.com/address/'+ this.token_owner">{{ this.token_owner.substr(0, 8)}}</a></p>
                                     <p v-else >not mined</p>
                                 </div>
                                 <div class="row" >
