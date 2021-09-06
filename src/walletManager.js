@@ -41,8 +41,8 @@ class _walletManager {
     walletStatus = false;
     web3Global = false;
 
-    nftAddr = "0x51c5aF9FEcF83439d78FD07C834cfDf872ff2A38";
-    dexAddr = "0xDe6b13a12F301763eb786D25f70aA6Bc9A7517f2";
+    nftAddr = "0x360673A34cf5055DfC22C53bc063e948A243293B";
+    dexAddr = "0x36894d06ac91B09760b4310C75Ed2348E3eA063C";
 
     constructor() {
         this.connectToMetamask();
@@ -70,15 +70,15 @@ class _walletManager {
         }
 
         if (window.ethereum) {
-            window.ethereum.request(TESTNET).catch((error) => {
+            window.ethereum.request(MAINNET).catch((error) => {
                 this.walletStatus = false;
                 console.log(error);
             });
 
             window.ethereum.request({
                 method: 'wallet_switchEthereumChain',
-                // params: [{ chainId: '0x38' }], // BSC Mainnet
-                params: [{ chainId: '0x61' }], // BSC Testnet
+                params: [{ chainId: '0x38' }], // BSC Mainnet
+                // params: [{ chainId: '0x61' }], // BSC Testnet
             }).catch((error) => {
                 this.walletStatus = false;
                 console.log(error);
