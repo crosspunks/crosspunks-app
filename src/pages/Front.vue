@@ -2,7 +2,7 @@
     <div>
         <div id="root">
             <div class="App">
-                <nav style="margin-bottom: 50px;" class="navbar navbar-expand-lg navbar-light ">
+                <nav style="background-color: #151515; margin-bottom: 50px;" class="navbar navbar-expand-lg sticky-top navbar-light">
                     <div class="container">
                         <a aria-current="page" style="color: black" class="nav-link active" id="logo" href="/">
                             <img alt="CrossPunks Logo" src="/cp_logo.svg" class="d-inline-block align-top" style="margin-right: 5px;" height="45">
@@ -16,7 +16,7 @@
                              id="responsive-navbar-nav">
                             <div class="ml-auto navbar-nav">
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'mint'}" class="crosspunk-link">
-                                    Mint
+                                    <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Mint</b>
                                 </router-link>
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'myPunks'}" class="crosspunk-link">
                                     My Punks
