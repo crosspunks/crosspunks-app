@@ -48,11 +48,11 @@
                 <div class="bg-how-image"></div>
                 <div class="bg-how-text">
                     <h2 class="crosspunk-h1">How to mint</h2>
-                    <p>1) Install Metamask Extension to your favourite browser <a target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Chrome</a> or <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/">Firefox</a>.</p>
-                    <p>2) <a target="_blank" href="https://docs.binance.org/smart-chain/wallet/metamask.html">Create your Metamask wallet</a>.</p>
-                    <p>3) Go to <a href="/#/">CrossPunks.com</a> and your Metamask will ask you to connect to Binance Smart Chain network. Approve it.</p>
+                    <p>1) Install Metamask Extension to your favourite browser <a target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Chrome</a> or <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/">Firefox</a></p>
+                    <p>2) <a target="_blank" href="https://docs.binance.org/smart-chain/wallet/metamask.html">Create your Metamask wallet</a></p>
+                    <p>3) Go to <a href="/#/">CrossPunks.com</a> and your Metamask will ask you to connect to Binance Smart Chain network. Approve it</p>
                     <p>4) Copy your BNB wallet adress from Metamask. Go to <a target="_blank" href="https://binance.com/">Binance.com</a> (make sure you're on a real site with an SSL certificate)</p>
-                    <p>5) Top-Up your account (using crypto or fiat methods). Here you may find a guidline <a target="_blank" href="https://www.binance.com/en/buy-BNB">how to buy BNB</a>.</p>
+                    <p>5) Top-Up your account (using crypto or fiat methods). Here you may find a guidline <a target="_blank" href="https://www.binance.com/en/buy-BNB">how to buy BNB</a></p>
                     <p>6) Send BNB from your Binance account to your Metamask wallet. (check twice you're entering the right wallet) and take into account a small fee Binance Smart Chain will take (around 1c)</p>
                     <p>7) Press the Mint button</p>
                     <p>8) Wait an enjoy your freshly-baked CrossPunk</p>
