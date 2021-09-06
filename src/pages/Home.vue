@@ -44,6 +44,20 @@
                     <p>Stay tuned for good news and share your success stories on our social networks!</p>
                 </div>
             </div>
+            <div style="height: 800px" class="crosspunk-how-block">
+                <div class="bg-how-image"></div>
+                <div class="bg-how-text">
+                    <h2 class="crosspunk-h1">How to mint</h2>
+                    <p>1) Install Metamask Extension to your favourite browser <a target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Chrome</a> or <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/">Firefox</a>.</p>
+                    <p>2) <a target="_blank" href="https://docs.binance.org/smart-chain/wallet/metamask.html">Create your Metamask wallet</a>.</p>
+                    <p>3) Go to <a href="/#/">CrossPunks.com</a> and your Metamask will ask you to connect to Binance Smart Chain network. Approve it.</p>
+                    <p>4) Copy your BNB wallet adress from Metamask. Go to <a target="_blank" href="https://binance.com/">Binance.com</a> (make sure you're on a real site with an SSL certificate)</p>
+                    <p>5) Top-Up your account (using crypto or fiat methods). Here you may find a guidline <a target="_blank" href="https://www.binance.com/en/buy-BNB">how to buy BNB</a>.</p>
+                    <p>6) Send BNB from your Binance account to your Metamask wallet. (check twice you're entering the right wallet) and take into account a small fee Binance Smart Chain will take (around 1c)</p>
+                    <p>7) Press the Mint button</p>
+                    <p>8) Wait an enjoy your freshly-baked CrossPunk</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -73,7 +87,7 @@ export default {
         font-size: 60pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-why-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
         font-size: 18pt;
     }
 }
@@ -83,7 +97,7 @@ export default {
         font-size: 40pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-why-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
         font-size: 14pt;
     }
 }
@@ -107,6 +121,10 @@ export default {
     .crosspunk-what-block {
         height: 600px !important;
     }
+
+    .crosspunk-how-block {
+        height: 900px !important;
+    }
 }
 
 @media only screen and (max-width: 700px) {
@@ -114,7 +132,7 @@ export default {
         font-size: 30pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-why-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
         font-size: 12pt;
     }
 }
@@ -128,7 +146,7 @@ export default {
         font-size: 20pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-why-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
         font-size: 10pt;
     }
 }
@@ -139,11 +157,11 @@ export default {
     text-transform: uppercase;
 }
 
-.crosspunk-mint-block, .crosspunk-stats-block, .crosspunk-what-block, .crosspunk-why-block {
+.crosspunk-mint-block, .crosspunk-stats-block, .crosspunk-what-block, .crosspunk-why-block, .crosspunk-how-block {
     position: relative;
 }
 
-.bg-mint-image, .bg-stats-image, .bg-what-image, .bg-why-image {
+.bg-mint-image, .bg-stats-image, .bg-what-image, .bg-why-image, .bg-how-image {
     /* Full height */
     height: 100%;
     /* Center and scale the image nicely */
@@ -173,7 +191,7 @@ export default {
     background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
 }
 
-.bg-mint-text, .bg-stats-text, .bg-what-text, .bg-why-text {
+.bg-mint-text, .bg-stats-text, .bg-what-text, .bg-why-text, .bg-how-text {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0);
@@ -212,7 +230,24 @@ export default {
 }
 
 .bg-why-text {
-    top: 10%;
+    top: 15%;
+}
+
+.bg-how-text {
+    top: 15%;
+}
+
+.bg-how-text p {
+    text-align: left;
+}
+
+.bg-how-text a {
+    color: #d93d76 !important;
+    text-shadow: #d93d76 0 0 10px;
+}
+
+.bg-how-text a:hover {
+    text-decoration: none;
 }
 
 .bg-pinku {

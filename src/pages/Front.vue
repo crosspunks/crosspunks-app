@@ -15,19 +15,19 @@
                         <div class="ml-auto navbar-collapse" v-bind:class="{ 'collapse' : showMenu }"
                              id="responsive-navbar-nav">
                             <div class="ml-auto navbar-nav">
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'mint'}" class="crosspunk-link">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'mint' }" class="crosspunk-link">
                                     <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Mint</b>
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'myPunks'}" class="crosspunk-link">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'myPunks' }" class="crosspunk-link">
                                     My Punks
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'gallery'}" class="crosspunk-link">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'gallery' }" class="crosspunk-link">
                                     Gallery
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'marketplace'}" class="crosspunk-link">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'marketplace' }" class="crosspunk-link">
                                     Marketplace
                                 </router-link>
-                                <router-link @click.native="toggleCollapse" :to="{ name : 'referralLink'}" class="crosspunk-link">
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'referralLink' }" class="crosspunk-link">
                                     My referral link
                                 </router-link>
                                 <a target="_blank" class="crosspunk-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
@@ -43,13 +43,12 @@
         <div class="container" >
             <div class="container" style="margin-top: 20px;">
                 <div class="row mb-5 flex-row">
-                    <div class="col-4">
-                        <router-link @click.native="toggleCollapse" :to="{ name : 'limitationOfLiability'}">
+                    <div class="col-6">
+                        <router-link :to="{ name : 'limitationOfLiability' }">
                             <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Limitation of Liability</b>
                         </router-link>
                     </div>
-                    <div class="col-4"></div>
-                    <div class="col-4" style="text-align: end;">
+                    <div class="col-6" style="text-align: end;">
                         <a target="_blank"  href="https://twitter.com/crosspunks" class="p-1">
                             <img src="/img/soc_tw.png" style="width: 30px; height: 30px;">
                         </a>
