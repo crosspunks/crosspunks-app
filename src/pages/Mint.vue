@@ -50,8 +50,8 @@
                             <button v-else @click="walletManager.connectToMetamask()" class="btn crosspunk-btn">
                                 Connect Wallet
                             </button>
-                            <!-- <button v-else class="btn btn-primary">
-                                connect to wallet
+                            <!-- <button v-else class="btn crosspunk-btn">
+                                Connect to wallet
                                 <div class="spinner-border" style="width: 1rem; height: 1rem; margin-bottom: 4px;" role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>

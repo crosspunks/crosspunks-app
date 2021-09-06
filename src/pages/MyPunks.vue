@@ -826,7 +826,7 @@
                                 <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
                                         Connect Wallet
                                     </button>
-                                <!-- <button v-else type="button" class="btn btn-primary">
+                                <!-- <button v-else type="button" class="btn crosspunk-btn">
                                         Connect Wallet
                                         <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                             <span class="sr-only">Loading...</span>

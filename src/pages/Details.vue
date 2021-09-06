@@ -14,10 +14,10 @@
                     <div class="text-center" style="margin: 0 auto;">
                         <h1> Connect your Metamask</h1>
                         <div class="text-center" style="margin-bottom: 20px;"></div>
-                        <button @click="walletManager.connectToMetamask()" type="button" class="btn btn-primary">
+                        <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
                             Connect Wallet
                         </button>
-                        <!-- <button v-else type="button" class="btn btn-primary">
+                        <!-- <button v-else type="button" class="btn crosspunk-btn">
                             Connect Wallet
                             <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -93,7 +93,7 @@
                                                     </button>
                                                 </div>
                                                 <!-- <div class="col-md-6" >
-                                                    <button class="btn btn-primary btn-block" @click="showBidModal()">Bid</button>
+                                                    <button class="btn crosspunk-btn btn-block" @click="showBidModal()">Bid</button>
                                                 </div> -->
                                             </div>
                                             <div v-else>
@@ -122,17 +122,17 @@
                                     </div>
                                     <div v-else-if="this.walletStatus && this.token_owner.toLowerCase() == this.walletAddr.toLowerCase()" class="row">
                                         <div class="col-md-12" >
-                                            <button @click="showOfferForSale()" class="btn btn-primary btn-block">
-                                                offer for sale
+                                            <button @click="showOfferForSale()" class="btn crosspunk-btn btn-block">
+                                                Offer for sale
                                             </button>
                                         </div>
                                     </div>
                                     <div v-if="!this.walletStatus" class="row">
                                         <div class="text-center" style="margin: 0 auto;">
-                                            <button @click="walletManager.connectToMetamask()" type="button" class="btn btn-primary">
+                                            <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
                                                 Connect Wallet
                                             </button>
-                                            <!-- <button v-else type="button" class="btn btn-primary">
+                                            <!-- <button v-else type="button" class="btn crosspunk-btn">
                                                 Connect Wallet
                                                 <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                     <span class="sr-only">Loading...</span>
@@ -238,13 +238,13 @@
                                 <div class="modal-footer" style="display: block">
                                     <button type="button" class="btn btn-secondary " style="float: left" @click="modalOfferForSale = false">Close</button>
                                     <div v-if="is_approved_first_time === false">
-                                        <button type="button" class="btn btn-primary" @click="offerForSale" style="float: right" :disabled="offer_btn_submit2_disable">
+                                        <button type="button" class="btn crosspunk-btn" @click="offerForSale" style="float: right" :disabled="offer_btn_submit2_disable">
                                             2-Submit
                                             <div v-if="offer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </button>
-                                        <button type="button" class="btn btn-primary" @click="approve()" style="float: right; margin-right: 4px;" :disabled="offer_btn_approve_disable">
+                                        <button type="button" class="btn crosspunk-btn" @click="approve()" style="float: right; margin-right: 4px;" :disabled="offer_btn_approve_disable">
                                             1-Approve
                                             <div v-if="offer_btn_approve_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                 <span class="sr-only">Loading...</span>
@@ -252,7 +252,7 @@
                                         </button>
                                     </div>
                                     <div v-else >
-                                        <button type="button" class="btn btn-primary" @click="offerForSale" style="float: right">
+                                        <button type="button" class="btn crosspunk-btn" @click="offerForSale" style="float: right">
                                             Submit
                                             <div v-if="offer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                 <span class="sr-only">Loading...</span>
@@ -293,7 +293,7 @@
                                 <div class="modal-footer" style="display: block">
                                     <button type="button" class="btn btn-secondary " style="float: left" @click="modal_bid = false">Close</button>
                                     <div>
-                                        <button type="button" class="btn btn-primary" @click="bid" style="float: right">
+                                        <button type="button" class="btn crosspunk-btn" @click="bid" style="float: right">
                                             Submit
                                             <div v-if="bid_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                 <span class="sr-only">Loading...</span>
