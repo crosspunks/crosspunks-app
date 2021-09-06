@@ -43,8 +43,8 @@
                                 <div class="row" >
                                     <h3>CrossPunk #{{ currentPunk.idx }}</h3>
                                 </div>
-                                <div class="row" >
-                                    <h5>{{ currentPunk.type }}</h5>
+                                <div class="row">
+                                    <h5>{{ currentPunk.type == 'Crypto' ? 'Crypto Friend' : currentPunk.type }}</h5>
                                 </div>
                                 <div class="row" >
                                     <p v-if="this.token_owner">owned by : <a target="_blank" :href="'https://bscscan.com/address/'+ this.token_owner">{{ this.token_owner.substr(0, 8)}}</a></p>
@@ -61,13 +61,13 @@
                                     <div class="row" >
                                         <h5>Market Summary</h5>
                                     </div>
-                                    <div v-if="!is_for_sale" class="row text-danger">
+                                    <!-- <div v-if="!is_for_sale" class="row text-danger">
                                         <p>it's not for sale</p>
-                                    </div>
+                                    </div> -->
                                     <div v-if="is_for_sale">
-                                        <div class="row text-success">
+                                        <!-- <div class="row text-success">
                                             <p>Offered by owner for <span style="color: #e7e2e2">{{ sale_by_owner }} BNB</span></p>
-                                        </div>
+                                        </div> -->
                                         <div v-if="this.walletStatus">
                                             <div v-if="punkBids.hasBid" class="row text-warning" >
                                                 <p>There is a bid of <span style="color: #e7e2e2">{{ punkBids.value }} BNB</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
@@ -86,7 +86,7 @@
                                             <div v-if="this.token_owner !== walletAddr" class="row">
                                                 <div class="col-md-6" >
                                                     <button class="btn crosspunk-btn btn-block" @click="buy">
-                                                        Buy
+                                                        Buy {{ sale_by_owner }} BNB
                                                         <div v-if="buy_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                             <span class="sr-only">Loading...</span>
                                                         </div>

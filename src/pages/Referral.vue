@@ -4,13 +4,11 @@
             <div class="col">
                 <div class="">
                     <div class="">
-                        <div v-if="this.walletStatus" class="container-fluid">
-                            <div class="row">
+                        <div v-if="this.walletStatus" class="container-fluid crosspunk-card">
+                            <div class="col">
                                 <div class="col">
-                                    <div class="row"><h1>Your Wallet</h1></div>
-                                    <div class="row">
-                                        <p>{{ walletAddr }}</p>
-                                    </div>
+                                    <div class="row justify-content-center"><h1>Your Wallet</h1></div>
+                                    <div class="row justify-content-center"><p>{{ walletAddr }}</p></div>
                                 </div>
                                 <div class="col">
                                     <div v-if="userAirDrop.isExists == null" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
@@ -18,20 +16,20 @@
                                     </div>
                                     <div v-else>
                                         <div v-if="userAirDrop.isExists">
-                                            <div style="margin-top: 20px;" class="row"><p><b>You Invited To Buy</b> {{ userAirDrop.referral_buy_index }} <b>CrossPunks</b></p></div>
+                                            <div style="margin-top: 20px;" class="row justify-content-center"><p><b>You Invited To Buy</b> {{ userAirDrop.referral_buy_index }} <b>CrossPunks</b></p></div>
                                             <div class="row">
                                                 <div class="col">
-                                                    <div class="row">
+                                                    <div class="row justify-content-center">
                                                         <p>Your invite code : <b>{{ userAirDrop.id }}</b></p>
                                                     </div>
-                                                    <div class="row" >
+                                                    <div class="row justify-content-center">
                                                         <p>Your invite link : <a v-bind:href="'https://crosspunks.com/#/i/' + userAirDrop.id">https://crosspunks.com/#/i/{{ userAirDrop.id }}</a></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div v-else >
-                                            <div class="row">
+                                            <div class="row justify-content-center">
                                                 <button type="button" class="btn crosspunk-btn" @click="getAirDropLink">Generate Invite Link
                                                     <div v-if="airDropLoading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                         <span class="sr-only">Loading...</span>
@@ -45,12 +43,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <h3>
                                     Owned CrossPunks
                                     <b>({{ crossPunksBalance }})</b>
                                 </h3>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div v-if="!this.walletStatus" class="row">
@@ -75,7 +73,6 @@
                                 </button> -->
                             </div>
                         </div>
-                        <h4></h4>
                     </div>
                 </div>
             </div>

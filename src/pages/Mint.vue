@@ -4,7 +4,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col-md-4"></div>
-                    <div class="col-md-4 card">
+                    <div class="col-md-4 crosspunk-card">
                         <div class="card-body" style="text-align: center">
                             <h4 class="card-title pb-2">
                                 <strong>Mint A CrossPunk</strong>

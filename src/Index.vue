@@ -5,6 +5,7 @@
         </div>
     </div>
 </template>
+
 <script>
     export default {
         name: 'Index'
@@ -13,23 +14,12 @@
 
 <style>
     @import'~bootstrap/dist/css/bootstrap.css';
-    
-    @font-face {
-        font-family: myFirstFont;
-        src: url("/font/CharriotDeluxe.ttf");
-        font-weight: bold;
-    }
 
     body {
         margin: 0;
-        font-family: 'Open Sans', sans-serif;;
+        font-family: 'Montserrat', sans-serif;
         font-weight: 300;
-        color: #2c2c2c;
         background-color: #151515;
-    }
-
-    code {
-        font-family: 'Open Sans', sans-serif;;
     }
 
     #logo {
@@ -38,12 +28,8 @@
         font-size: 25px;
         line-height: 28px;
         letter-spacing: 1px;
-        font-family: 'Open Sans', sans-serif;;
+        font-family: 'Montserrat', sans-serif;
     }
-
-    /* .nav-link a{
-        color: #ffbf16;
-    } */
 
     h1, h2, h3, h5{
         margin-bottom: 15px;
@@ -131,9 +117,26 @@
         color: white;
     }
 
-    input[type="number"] {
+    .crosspunk-card {
+        color: white;
+    }
+
+    .crosspunk-details {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        color: #e7e2e2 !important;
+    }
+
+    input[type="number"], input[type="number"]:focus {
         background-color: #151515;
         border-color: #888;
+        color: white;
+    }
+
+    select, select:focus {
+        background-color: #2c2c2c !important;
+        border-color: #888 !important;
+        color: white !important;
     }
 
     .card {
@@ -144,10 +147,6 @@
     .card-img-top {
         background: rgb(217,61,118);
         background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
-    }
-
-    .modal-content {
-        background-color: #151515 !important;
     }
 
     .close {
@@ -171,9 +170,15 @@
         vertical-align: middle;
     }
 
-    .crosspunk-details {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 300;
-        color: #e7e2e2 !important;
+    .modal-content {
+        background-color: #151515 !important;
+    }
+
+    .modal-header {
+        border-bottom: 0px !important;
+    }
+
+    .modal-footer {
+        border-top: 0px !important;
     }
 </style>
