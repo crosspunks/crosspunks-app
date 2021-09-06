@@ -1,5 +1,5 @@
 <template>
-    <div class="crosspunk-limitation">
+    <div class="crosspunk-limitation container">
         <h1>Disclaimer!</h1>
         <p>We would like to draw the attention of our esteemed community that our project has nothing to do with Larva Labs or any Punks created. But we would like to sincerely thank Larva Labs for the inspiration thus we decided to launch CrossPunks and bring NFT cross-chaining closer.</p>
         <p>Thanks to everyone who also believed in us!</p>
