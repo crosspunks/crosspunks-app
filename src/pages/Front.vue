@@ -42,8 +42,14 @@
         </div>
         <div class="container" >
             <div class="container" style="margin-top: 20px;">
-                <div class="row mb-5 flex-row-reverse">
-                    <div style="">
+                <div class="row mb-5 flex-row">
+                    <div class="col-4">
+                        <a target="_blank"  href="https://crosspunks.com/limitation_of_liability.html" class="p-1">
+                            <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Limitation of Liability</b>
+                        </a>
+                    </div>
+                    <div class="col-4"></div>
+                    <div class="col-4" style="text-align: end;">
                         <a target="_blank"  href="https://twitter.com/crosspunks" class="p-1">
                             <img src="/img/soc_tw.png" style="width: 30px; height: 30px;">
                         </a>
