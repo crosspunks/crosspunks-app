@@ -41,7 +41,7 @@
                             <label for="price_highest" class="form-check-label chLabel">Highest price</label>
                         </div>
                     </div>
-                    <div>
+                    <!-- <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer">
                                 <input id="bid_lowest" v-model="sortBy.bid_lowest" @change="changeSortBy($event)" data-id="bid_lowest" type="checkbox">
@@ -58,7 +58,7 @@
                             </div>
                             <label for="bid_highest" class="form-check-label chLabel">Highest bid</label>
                         </div>
-                    </div>
+                    </div> -->
                     <div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer">
