@@ -32,7 +32,7 @@
                                         </div>
                                         <div v-else >
                                             <div class="row">
-                                                <button type="button" class="btn btn-primary" @click="getAirDropLink">Generate Invite Link
+                                                <button type="button" class="btn crosspunk-btn" @click="getAirDropLink">Generate Invite Link
                                                     <div v-if="airDropLoading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                         <span class="sr-only">Loading...</span>
                                                     </div>
@@ -64,7 +64,7 @@
                             <div v-else class="text-center" style="margin: 0 auto">
                                 <h1>Connect your Metamask</h1>
                                 <div class="text-center" style="margin-bottom: 20px"></div>
-                                <button @click="walletManager.connectToMetamask()" type="button" class="btn btn-primary">
+                                <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
                                     Connect Wallet
                                 </button>
                                 <!-- <button v-else type="button" class="btn btn-primary">

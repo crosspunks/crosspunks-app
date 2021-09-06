@@ -89,4 +89,45 @@
         min-width: 0;
         width: 100%;
     }
+
+    @media only screen and (min-width: 1601px) {
+        h1 {
+            font-size: 60pt;
+        }
+    }
+
+    @media only screen and (max-width: 1600px) {
+        h1 {
+            font-size: 40pt;
+        }
+    }
+
+    @media only screen and (max-width: 700px) {
+        h1 {
+            font-size: 30pt;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        h1 {
+            font-size: 20pt;
+        }
+    }
+
+    h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: white;
+    }
+
+    .crosspunk-btn {
+        background-color: #7c40dc;
+        color: white;
+    }
+
+    .crosspunk-btn:hover {
+        background-color: #d93d76;
+        color: white;
+    }
 </style>

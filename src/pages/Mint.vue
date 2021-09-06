@@ -41,13 +41,13 @@
                                 <div class="col-md-3"></div>
                             </div>
 
-                            <button v-if="this.walletStatus" class="btn btn-primary" @click="getPunk">
+                            <button v-if="this.walletStatus" class="btn crosspunk-btn" @click="getPunk">
                                 Mint a CrossPunks
                                 <div v-if="btn_loading" class="spinner-border" style=" width: 1rem; height: 1rem; margin-bottom: 4px;" role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </button>
-                            <button v-else @click="walletManager.connectToMetamask()" class="btn btn-primary">
+                            <button v-else @click="walletManager.connectToMetamask()" class="btn crosspunk-btn">
                                 Connect Wallet
                             </button>
                             <!-- <button v-else class="btn btn-primary">

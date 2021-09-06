@@ -708,7 +708,7 @@
                                 <h1> Connect your Metamask </h1>
                                 <div class="text-center" style="margin-bottom: 20px;">
                                 </div>
-                                <button @click="walletManager.connectToMetamask()" type="button" class="btn btn-primary">
+                                <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
                                         Connect Wallet
                                     </button>
                                 <!-- <button v-else type="button" class="btn btn-primary">
