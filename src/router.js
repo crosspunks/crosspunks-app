@@ -8,6 +8,7 @@ import Mint from "./pages/Mint";
 import MyPunks from "./pages/MyPunks";
 import Gallery from "./pages/Gallery";
 import Referral from "./pages/Referral";
+import Limitation from "./pages/Limitation.vue";
 
 const routes = [{
     path: '/',
@@ -60,6 +61,12 @@ const routes = [{
         name: 'referralLink',
         component: Referral,
         meta: { title: 'My referral link' },
+    },
+    {
+        path: '/limitation_of_liability',
+        name: 'limitationOfLiability',
+        component: Limitation,
+        meta: { title: 'Limitation of Liability' },
     },
     ]
 }];

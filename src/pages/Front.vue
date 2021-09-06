@@ -44,9 +44,9 @@
             <div class="container" style="margin-top: 20px;">
                 <div class="row mb-5 flex-row">
                     <div class="col-4">
-                        <a target="_blank"  href="https://crosspunks.com/limitation_of_liability.html" class="p-1">
+                        <router-link @click.native="toggleCollapse" :to="{ name : 'limitationOfLiability'}">
                             <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Limitation of Liability</b>
-                        </a>
+                        </router-link>
                     </div>
                     <div class="col-4"></div>
                     <div class="col-4" style="text-align: end;">
