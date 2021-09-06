@@ -35,6 +35,15 @@
                     </div>
                 </div>
             </div>
+            <div style="height: 630px" class="crosspunk-why-block">
+                <div class="bg-why-image"></div>
+                <div class="bg-why-text">
+                    <h2 class="crosspunk-h1">Why now</h2>
+                    <p>Hey, wanderer! Pretty sure, you’re familiar with a feeling of a missed train. A wideass train fully stocked with explosive profit juice, and it runs near you just in a blink. Bang, you never had a moment to do something. What exactly do you feel at this point, perhaps you want to get back in time and buy first Punk for $30 or Bitcoin for $5 in 2012? Well, we don’t have a spare time machine, but, here we are to give you a precious possibility to be on time on a “profit platform”. We’ll have you covered, here’s your ticket!</p>
+                    <p>We start with one of the most popular Binance networks, but very soon you will be able to buy and sell our punks in any network, without limiting yourself to anything and not being tied to a particular blockchain.</p>
+                    <p>Stay tuned for good news and share your success stories on our social networks!</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -64,7 +73,7 @@ export default {
         font-size: 60pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-how-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-why-text p {
         font-size: 18pt;
     }
 }
@@ -74,7 +83,7 @@ export default {
         font-size: 40pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-how-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-why-text p {
         font-size: 14pt;
     }
 }
@@ -105,7 +114,7 @@ export default {
         font-size: 30pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-how-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-why-text p {
         font-size: 12pt;
     }
 }
@@ -119,7 +128,7 @@ export default {
         font-size: 20pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-how-text p {
+    .bg-stats-text p, .bg-what-text p, .bg-why-text p {
         font-size: 10pt;
     }
 }
@@ -130,11 +139,11 @@ export default {
     text-transform: uppercase;
 }
 
-.crosspunk-mint-block, .crosspunk-stats-block, .crosspunk-what-block, .crosspunk-how-block {
+.crosspunk-mint-block, .crosspunk-stats-block, .crosspunk-what-block, .crosspunk-why-block {
     position: relative;
 }
 
-.bg-mint-image, .bg-stats-image, .bg-what-image, .bg-how-image {
+.bg-mint-image, .bg-stats-image, .bg-what-image, .bg-why-image {
     /* Full height */
     height: 100%;
     /* Center and scale the image nicely */
@@ -159,12 +168,12 @@ export default {
     background-image: url("/img/bg_03.jpg");
 }
 
-.bg-how-image {
+.bg-why-image {
     background: rgb(217,61,118);
     background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
 }
 
-.bg-mint-text, .bg-stats-text, .bg-what-text, .bg-how-text {
+.bg-mint-text, .bg-stats-text, .bg-what-text, .bg-why-text {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0);
@@ -202,8 +211,8 @@ export default {
     margin-right: 20px;
 }
 
-.bg-how-text {
-    position: relative;
+.bg-why-text {
+    top: 10%;
 }
 
 .bg-pinku {
