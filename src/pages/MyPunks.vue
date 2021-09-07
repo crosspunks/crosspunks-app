@@ -773,7 +773,7 @@
                         <div class="form-group col-6">
                             <input @keyup="searchByInputId" placeholder="Search by Id" v-model="searchById" type="number" class="form-control">
                         </div>
-                        <button @click="changeFilterShow" aria-controls="example-collapse-text" aria-expanded="false" style="margin-bottom: 5px;" type="button" class="btn btn-primary btn-block col-6 form-control">
+                        <button @click="changeFilterShow" aria-controls="example-collapse-text" aria-expanded="false" style="margin-bottom: 5px;" type="button" class="btn crosspunk-btn btn-block col-6 form-control">
                             <img src="/img/cp_button_filter.png" />
                             <i class="fa fa-spinner"></i>
                             Filter

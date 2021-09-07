@@ -97,6 +97,10 @@
         width: 100%;
     }
 
+    .badge-primary {
+        background-color: rgb(124, 64, 220) !important;
+    }
+
     /* SIDEBAR */
 
     #mySidebar {
