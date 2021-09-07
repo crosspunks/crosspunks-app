@@ -705,12 +705,6 @@
                         </div>
                         <div class="form-group form-check-inline">
                             <div class="chContainer">
-                                <input id="filter_id_attr_TwoFace" @change="changeAttr($event)" v-model="checkbox.TwoFace" type="checkbox"><span class="checkmark"></span>
-                            </div>
-                            <label for="filter_id_attr_TwoFace" class="form-check-label chLabel">Two Face ({{ filter_data.punk_Attribute["TwoFace"] || 0 }})</label>
-                        </div>
-                        <div class="form-group form-check-inline">
-                            <div class="chContainer">
                                 <input id="filter_id_attr_VR" @change="changeAttr($event)" v-model="checkbox.VR" type="checkbox"><span class="checkmark"></span>
                             </div>
                             <label for="filter_id_attr_VR" class="form-check-label chLabel">VR ({{ filter_data.punk_Attribute["VR"] || 0 }})</label>
@@ -750,18 +744,6 @@
                                 <input id="filter_id_attr_WildWhiteHair" @change="changeAttr($event)" v-model="checkbox.WildWhiteHair" type="checkbox"><span class="checkmark"></span>
                             </div>
                             <label for="filter_id_attr_WildWhiteHair" class="form-check-label chLabel">Wild White Hair ({{ filter_data.punk_Attribute["WildWhiteHair"] || 0 }})</label>
-                        </div>
-                        <div class="form-group form-check-inline">
-                            <div class="chContainer">
-                                <input id="filter_id_attr_Wizard" @change="changeAttr($event)" v-model="checkbox.Wizard" type="checkbox"><span class="checkmark"></span>
-                            </div>
-                            <label for="filter_id_attr_Wizard" class="form-check-label chLabel">Wizard ({{ filter_data.punk_Attribute["Wizard"] || 0 }})</label>
-                        </div>
-                        <div class="form-group form-check-inline">
-                            <div class="chContainer">
-                                <input id="filter_id_attr_cigarette" @change="changeAttr($event)" v-model="checkbox.cigarette" type="checkbox"><span class="checkmark"></span>
-                            </div>
-                            <label for="filter_id_attr_cigarette" class="form-check-label chLabel">cigarette ({{ filter_data.punk_Attribute["cigarette"] || 0 }})</label>
                         </div>
                     </div>
                 </div>
@@ -833,7 +815,6 @@
                                         </div>
                                     </button> -->
                             </div>
-    
                         </div>
                         <div v-else-if="punks.length > 0" class="row">
                             <div v-for="(punk) in punks" v-bind:key="punk.idx" style="margin-bottom: 10px;" class="col" @click="showDetail(punk.idx)">
@@ -841,10 +822,7 @@
                                     <img v-if="crypto_Punks.indexOf(punk.idx) > -1" class="card-img-top pixelated" :src="(`/crypto/${punk.idx}.png`)">
                                     <img v-else class="card-img-top pixelated" :src="(`/crosspunks/punk${punk.idx}.png`)">
                                     <div class="card-body">
-                                        <div class="stretched-link card-title h5">
-                                            CrossPunk {{ punk.idx }}
-    
-                                        </div>
+                                        <div class="stretched-link card-title h5">CrossPunk {{ punk.idx }}</div>
                                         <div>
                                             <div class="text-muted card-subtitle h6">
                                                 {{ punk.type == 'Crypto' ? 'Crypto Friend' : punk.type }}
@@ -903,7 +881,6 @@ export default {
             is_load_my_punk: false,
             punks: [],
             crypto_Punks: [3442, 910, 846, 794, 377, 373, 300, 224, 220, 81, 57],
-
             searchById: '',
             allPunks: [],
             myAllPunks: [],
@@ -1025,8 +1002,6 @@ export default {
                             this.myAllPunks.push(window.punks[(number)]);
                         }
                     }
-
-
 
                     // for(let i=0; i<100; i++){
                     //     this.myAllPunks.push(window.punks[i]);
@@ -1374,215 +1349,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.form-group.form-check-inline {
-    display: block;
-}
-
-/* The sidebar menu */
-
-.sidebar {
-    height: 100%;
-    /* 100% Full-height */
-    width: 300px;
-    /* 0 width - change this with JavaScript */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Stay on top */
-    top: 0;
-    left: -320px;
-    background-color: #fdfdfe;
-    /* Black*/
-    overflow-x: hidden;
-    /* Disable horizontal scroll */
-    padding-top: 60px;
-    /* Place content 60px from the top */
-    transition: 0.5s;
-    /* 0.5 second transition effect to slide in the sidebar */
-}
-
-/* The sidebar links */
-
-.sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-/* When you mouse over the navigation links, change their color */
-
-.sidebar a:hover {
-    color: #f1f1f1;
-}
-
-/* Position and style the close button (top right corner) */
-
-.sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-/* The button used to open the sidebar */
-
-.openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #111;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-}
-
-.openbtn:hover {
-    background-color: #444;
-}
-
-#sidebarCover {
-    position: fixed;
-    background-color: rgba(82, 68, 68, 0.5);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 99;
-}
-
-.hideCover {
-    display: none;
-}
-
-.sidebarWrapper {
-    padding-left: 20px;
-    margin-bottom: 100px;
-}
-
-.sidebarHeader {
-    font-size: 23px;
-    font-weight: bold;
-}
-
-.chContainer {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 8px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-
-.chContainer input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-    left: 0;
-    z-index: 9999;
-}
-
-/* Create a custom checkbox */
-
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 22px;
-    width: 22px;
-    background-color: #fbfcfd;
-    border-radius: 3px;
-    border: 1px solid #7f7f7f;
-}
-
-/* On mouse-over, add a grey background color */
-
-.chContainer:hover input~.checkmark {
-    background-color: #d9d8e8;
-}
-
-/* When the checkbox is checked, add a blue background */
-
-.chContainer input:checked~.checkmark {
-    background-color: #d9d8e8;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-
-.chContainer input:checked~.checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-
-.chContainer .checkmark:after {
-    left: 8px;
-    top: 1px;
-    width: 6px;
-    height: 16px;
-    border: solid #3d3d3d;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.chLabel {
-    position: relative;
-    left: 28px;
-    color: #888888;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-
-@media screen and (max-height: 450px) {
-    .sidebar {
-        padding-top: 15px;
-    }
-    .sidebar a {
-        font-size: 18px;
-    }
-}
-
-#sidebarBtn {
-    position: fixed;
-    height: 50px;
-    bottom: 10px;
-    left: 30px;
-    width: 260px;
-    background-color: #fff
-}
-
-#sidebarBtn button {
-    font-size: 15px;
-    width: 40%;
-    margin-top: 0;
-    margin-left: 5%;
-}
-
-/*#sidebarBtn > div > div > div{*/
-
-/*    display: flex;*/
-
-/*}*/
-</style>
