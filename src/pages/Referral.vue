@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid" style="min-height: 500px">
+    <div class="container-fluid" style="min-height: calc(100vh - 225px)">
         <div class="row">
             <div class="col">
                 <div class="">

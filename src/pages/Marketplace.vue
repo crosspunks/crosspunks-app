@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid" style="min-height: 500px">
+    <div class="container-fluid" style="min-height: calc(100vh - 225px)">
         <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" @click="closeSidebar">&times;</a>
             <div class="sidebarWrapper">

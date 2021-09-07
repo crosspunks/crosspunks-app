@@ -1,6 +1,6 @@
 <template>
     <div class="container crosspunk-details">
-        <div class="row" style="min-height: 300px;">
+        <div class="row" style="min-height: calc(100vh - 225px);">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div v-if="!this.walletStatus" class="row">
