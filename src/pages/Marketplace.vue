@@ -950,7 +950,6 @@ export default {
         addPunks() {
             if (!this.last_add) {
                 this.last_add = setTimeout(() => {
-
                     let l = this.punks.length;
 
                     for (let i = l; i < l + 60 && i < this.allPunks.length; i++) {

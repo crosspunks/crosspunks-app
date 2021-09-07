@@ -125,26 +125,6 @@ export default {
                 this.airDropLoading = false;
             })();
         },
-
-        async withdrawCrossPunksBNB() {
-            let from = await this.walletManager.web3Global.eth.getCoinbase();
-            if (this.userBalanceOf > 0) {
-                this.withdraw_msg = "";
-                try {
-                    await this.walletManager.nft.methods.withdraw().send({
-                        from,
-                        feeLimit: 300000000,
-                        shouldPollResponse: false,
-                    });
-
-                    this.withdraw_msg =
-                        "Your transaction has been broadcast to network!";
-                } catch (e) {
-                    console.log(e.message);
-                }
-            }
-        },
-
         async getAirDropLink() {
             if (!this.airDropLoading) {
                 this.airDropLoading = true;

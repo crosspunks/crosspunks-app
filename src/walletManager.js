@@ -83,6 +83,16 @@ class _walletManager {
                 this.walletStatus = false;
                 console.log(error);
             });
+
+            await window.ethereum.request({
+                method: 'wallet_requestPermissions',
+                params: [{
+                  'eth_accounts': {},
+                }]
+            }).catch((error) => {
+                this.walletStatus = false;
+                console.log(error);
+            })
         }
     }
 
