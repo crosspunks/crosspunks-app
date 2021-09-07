@@ -7,6 +7,9 @@
                     <h1 class="crosspunk-h1">
                         Mint your CrossPunk now or watch your friends become millionaires later!
                     </h1>
+                    <router-link :to="{ name : 'mint' }" class="btn crosspunk-btn-rev">
+                        Get one of {{ punkLeft }}
+                    </router-link>
                 </div>
             </div>
             <div style="height: 800px" class="crosspunk-stats-block">
@@ -54,7 +57,7 @@
                     <p>4) Copy your BNB wallet adress from Metamask. Go to <a target="_blank" href="https://binance.com/">Binance.com</a> (make sure you're on a real site with an SSL certificate)</p>
                     <p>5) Top-Up your account (using crypto or fiat methods). Here you may find a guidline <a target="_blank" href="https://www.binance.com/en/buy-BNB">how to buy BNB</a></p>
                     <p>6) Send BNB from your Binance account to your Metamask wallet. (check twice you're entering the right wallet) and take into account a small fee Binance Smart Chain will take (around 1c)</p>
-                    <p>7) Press the Mint button</p>
+                    <p>7) Press the <router-link :to="{ name : 'mint' }">Mint</router-link> button</p>
                     <p>8) Wait an enjoy your freshly-baked CrossPunk</p>
                 </div>
             </div>
@@ -69,6 +72,8 @@ export default {
         return {
             searchById: "",
             punks: [],
+            walletStatus: false,
+            punkLeft: "0",
         };
     },
     mounted() {
@@ -76,8 +81,26 @@ export default {
         if (params > 0) {
             window.localStorage.setItem("inviteKey", params);
         }
+
+        setInterval(() => {
+            this.walletStatus = this.walletManager.walletStatus;
+            if (this.walletStatus && !this.loadPunk) {
+                this.loadPunk = true;
+                this.loadPunkLeft();
+            }
+        }, 100);
     },
-    methods: {},
+    methods: {
+        async loadPunkLeft() {
+            await this.walletManager.checkId();
+            setTimeout(async () => {
+                let number = await this.walletManager.nft.methods
+                    .totalSupply()
+                    .call();
+                this.punkLeft = 10000 - number;
+            }, 1000);
+        },
+    },
 };
 </script>
 
@@ -87,7 +110,7 @@ export default {
         font-size: 60pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
+    .bg-mint-text a, .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
         font-size: 18pt;
     }
 }
@@ -97,7 +120,7 @@ export default {
         font-size: 40pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
+    .bg-mint-text a, .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
         font-size: 14pt;
     }
 }
@@ -132,7 +155,7 @@ export default {
         font-size: 30pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
+    .bg-mint-text a, .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
         font-size: 12pt;
     }
 }
@@ -146,7 +169,7 @@ export default {
         font-size: 20pt;
     }
 
-    .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
+    .bg-mint-text a, .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
         font-size: 10pt;
     }
 }
@@ -204,7 +227,17 @@ export default {
 }
 
 .bg-mint-text {
-    top: 25%;
+    height: 100%;
+}
+
+.bg-mint-text h1 {
+    top: 20%;
+    position: relative;
+}
+
+.bg-mint-text a {
+    position: relative;
+    top: 30%;
 }
 
 .bg-stats-text {

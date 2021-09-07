@@ -344,6 +344,18 @@
         color: white;
     }
 
+    .crosspunk-btn-rev {
+        background-color: #d93d76;
+        box-shadow: 0 0 10px #d93d76;
+        color: white;
+    }
+
+    .crosspunk-btn-rev:hover {
+        background-color: #7c40dc;
+        box-shadow: 0 0 10px #7c40dc;
+        color: white;
+    }
+
     .crosspunk-card {
         color: white;
     }
