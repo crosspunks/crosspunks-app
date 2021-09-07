@@ -100,13 +100,12 @@ export default {
             if (this.walletStatus && !this.is_load_data) {
                 this.is_load_data = true;
                 this.showData();
-            } else if (!this.walletStatus) {
-                this.walletManager.connectToMetamask();
             }
         }, 100);
     },
     methods: {
         async showData() {
+            await this.walletManager.checkId();
             this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
             (async () => {
                 let bf = await this.walletManager.nft.methods

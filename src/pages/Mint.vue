@@ -94,8 +94,6 @@ export default {
             if (this.walletStatus && !this.loadPunk) {
                 this.loadPunk = true;
                 this.loadPunkLeft();
-            } else if (!this.walletStatus) {
-                this.walletManager.connectToMetamask();
             }
         }, 100);
     },
@@ -144,6 +142,7 @@ export default {
             }
         },
         async loadPunkLeft() {
+            await this.walletManager.checkId();
             setTimeout(async () => {
                 let number = await this.walletManager.nft.methods
                     .totalSupply()

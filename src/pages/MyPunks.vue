@@ -915,8 +915,6 @@ export default {
             if (this.walletStatus && !this.is_load_my_punk) {
                 this.is_load_my_punk = true;
                 this.getMyPunks();
-            } else if (!this.walletStatus) {
-                this.walletManager.connectToMetamask();
             }
         }, 100);
     },
@@ -932,6 +930,7 @@ export default {
             this.$router.push({ name: "details", params: { id: index } });
         },
         async getMyPunks() {
+            await this.walletManager.checkId();
             this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
             if (!this.punk_loading) {
                 this.punk_loading = true;

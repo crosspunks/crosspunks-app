@@ -70,12 +70,12 @@ class _walletManager {
         }
 
         if (window.ethereum) {
-            window.ethereum.request(MAINNET).catch((error) => {
+            await window.ethereum.request(MAINNET).catch((error) => {
                 this.walletStatus = false;
                 console.log(error);
             });
 
-            window.ethereum.request({
+            await window.ethereum.request({
                 method: 'wallet_switchEthereumChain',
                 params: [{ chainId: '0x38' }], // BSC Mainnet
                 // params: [{ chainId: '0x61' }], // BSC Testnet
@@ -93,6 +93,13 @@ class _walletManager {
 
         if (!this.dex) {
             this.dex = new this.web3Global.eth.Contract(dexAbi.abi, this.dexAddr);
+        }
+    }
+
+    async checkId() {
+        let ID = await this.web3Global.eth.net.getId();
+        if (ID != MAINNET.params[0].chainIdchainId) {
+            await this.connectToMetamask();
         }
     }
 

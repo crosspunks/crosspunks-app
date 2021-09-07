@@ -358,12 +358,10 @@
                 this.walletStatus = this.walletManager.walletStatus;
 
                 setInterval(()=>{
+                    this.walletStatus = this.walletManager.walletStatus
                     if(this.walletStatus && !this.is_load_this_punk){
                         this.is_load_this_punk = true;
                         this.loadData();
-                    } else if (!this.walletStatus) {
-                        this.walletManager.connectToMetamask();
-                        this.walletStatus = this.walletManager.walletStatus
                     }
                 }, 100);
             } else {
@@ -372,8 +370,8 @@
         },
         methods: {
             async loadData() {
+                await this.walletManager.checkId();
                 this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
-
                 if (!this.walletManager.nft.methods.ownerOf) {
                     this.is_load_this_punk = false;
                 } else {
