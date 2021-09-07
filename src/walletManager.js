@@ -84,15 +84,17 @@ class _walletManager {
                 console.log(error);
             });
 
-            await window.ethereum.request({
-                method: 'wallet_requestPermissions',
-                params: [{
-                  'eth_accounts': {},
-                }]
-            }).catch((error) => {
-                this.walletStatus = false;
-                console.log(error);
-            })
+            if (!await this.web3Global.eth.getCoinbase()) {
+                await window.ethereum.request({
+                    method: 'wallet_requestPermissions',
+                    params: [{
+                      'eth_accounts': {},
+                    }]
+                }).catch((error) => {
+                    this.walletStatus = false;
+                    console.log(error);
+                });
+            }
         }
     }
 

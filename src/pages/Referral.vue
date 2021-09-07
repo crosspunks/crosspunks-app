@@ -52,14 +52,14 @@
                         </div>
 
                         <div v-if="!this.walletStatus" class="row">
-                            <div v-if="this.walletManager.web3Global !== false" style="margin: 0 auto">
+                            <!-- <div v-if="this.walletManager.web3Global !== false" style="margin: 0 auto">
                                 <button type="button" class="btn">
                                     <div class="spinner-border" style="width: 3rem; height: 3rem; margin-bottom: 4px;" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
                                 </button>
-                            </div>
-                            <div v-else class="text-center" style="margin: 0 auto">
+                            </div> -->
+                            <div class="text-center" style="margin: 0 auto">
                                 <h1>Connect your Metamask</h1>
                                 <div class="text-center" style="margin-bottom: 20px"></div>
                                 <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
