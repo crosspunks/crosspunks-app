@@ -1326,10 +1326,6 @@ export default {
     background-color: #444;
 }
 
-#mySidebar {
-    z-index: 999;
-}
-
 #sidebarCover {
     position: fixed;
     background-color: rgba(82, 68, 68, 0.5);
