@@ -661,9 +661,9 @@
     
         </div>
         <div id="sidebarCover" @click="closeSidebar" class="hideCover"></div>
-        <div>
+        <div class="container">
             <div class="col-lg-12">
-                <div class="col-12">
+                <div>
                     <form class="row form-group">
                         <div class="form-group col-6">
                             <input @keyup="searchByInputId" placeholder="Search by Id" v-model="searchById" type="number" class="form-control">
