@@ -73,7 +73,7 @@ export default {
     data() {
         return {
             walletStatus: false,
-            punkLeft: "",
+            punkLeft: "0",
             loadPunk: false,
             box_msg: "",
             box_msg_danger: "",

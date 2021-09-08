@@ -83,7 +83,7 @@
                                                 </div>
                                             </div>
 
-                                            <div v-if="this.token_owner !== walletAddr" class="row">
+                                            <div v-if="this.token_owner.toLowerCase() !== walletAddr.toLowerCase()" class="row">
                                                 <div class="col-md-6" >
                                                     <button class="btn crosspunk-btn btn-block" @click="buy">
                                                         Buy {{ sale_by_owner }} BNB
@@ -97,7 +97,7 @@
                                                 </div> -->
                                             </div>
                                             <div v-else>
-                                                <div v-if="punkBids && punkBids.hasBid" class="row mb-2">
+                                                <!-- <div v-if="punkBids && punkBids.hasBid" class="row mb-2">
                                                     <div class="col-md-12">
                                                         <button @click="acceptBid" class="btn btn-info btn-block" >
                                                             Accept Bid
@@ -106,10 +106,10 @@
                                                             </div>
                                                         </button>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div  class="row">
                                                     <div class="col-md-12">
-                                                        <button @click="cancelSelling" class="btn btn-warning btn-block">
+                                                        <button @click="cancelSelling" class="btn crosspunk-btn btn-block">
                                                             Cancel Selling
                                                             <div v-if="cancel_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                                                 <span class="sr-only">Loading...</span>
