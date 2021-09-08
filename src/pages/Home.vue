@@ -1,20 +1,20 @@
 <template>
     <div class="crosspunk-home">
         <div class="text-center" style="margin-top: -50px">
-            <div style="height: 670px" class="crosspunk-mint-block">
-                <div class="bg-mint-image"></div>
-                <div class="bg-mint-text">
+            <div style="height: 670px" class="crosspunk-block crosspunk-mint-block">
+                <div class="crosspunk-image bg-mint-image"></div>
+                <div class="crosspunk-text container bg-mint-text">
                     <h1 class="crosspunk-h1">
-                        Mint your CrossPunk now or watch your friends become millionaires later!
+                        Mint&nbsp;your&nbsp;CrossPunk&nbsp;now or&nbsp;watch&nbsp;your&nbsp;friends become&nbsp;millionaires&nbsp;later!
                     </h1>
                     <router-link :to="{ name : 'mint' }" class="btn crosspunk-btn-rev">
                         Get one of {{ punkLeft }}
                     </router-link>
                 </div>
             </div>
-            <div style="height: 800px" class="crosspunk-stats-block">
-                <div class="bg-stats-image"></div>
-                <div class="bg-stats-text">
+            <div style="height: 800px" class="crosspunk-block crosspunk-stats-block">
+                <div class="crosspunk-image bg-stats-image"></div>
+                <div class="crosspunk-text container bg-stats-text">
                     <h2 class="crosspunk-h1">Have a quick peek at some global Punks stats!</h2>
                     <p>The lowest selling price currently stands at <b>94.99 ETH ($ 358,906.43).</b></p>
                     <p>The average rate over the past year was <b>35.89 ETH (135,620.85 USD).</b></p>
@@ -25,9 +25,9 @@
                     <p><b>Just think about these numbers! Breathtaking, huh?</b></p>
                 </div>
             </div>
-            <div style="height: 530px" class="crosspunk-what-block">
-                <div class="bg-what-image"></div>
-                <div class="bg-what-text">
+            <div style="height: 530px" class="crosspunk-block crosspunk-what-block">
+                <div class="crosspunk-image bg-what-image"></div>
+                <div class="crosspunk-text container bg-what-text">
                     <h2 class="crosspunk-h1">What are the CrossPunks</h2>
                     <div>
                         <img src="/img/CP_PUNKS.png" style="float: left;">
@@ -38,18 +38,18 @@
                     </div>
                 </div>
             </div>
-            <div style="height: 630px" class="crosspunk-why-block">
-                <div class="bg-why-image"></div>
-                <div class="bg-why-text">
+            <div style="height: 630px" class="crosspunk-block crosspunk-why-block">
+                <div class="crosspunk-image bg-why-image"></div>
+                <div class="crosspunk-text container bg-why-text">
                     <h2 class="crosspunk-h1">Why now</h2>
                     <p>Hey, wanderer! Pretty sure, you’re familiar with a feeling of a missed train. A wideass train fully stocked with explosive profit juice, and it runs near you just in a blink. Bang, you never had a moment to do something. What exactly do you feel at this point, perhaps you want to get back in time and buy first Punk for $30 or Bitcoin for $5 in 2012? Well, we don’t have a spare time machine, but, here we are to give you a precious possibility to be on time on a “profit platform”. We’ll have you covered, here’s your ticket!</p>
                     <p>We start with one of the most popular Binance networks, but very soon you will be able to buy and sell our punks in any network, without limiting yourself to anything and not being tied to a particular blockchain.</p>
                     <p>Stay tuned for good news and share your success stories on our social networks!</p>
                 </div>
             </div>
-            <div style="height: 800px" class="crosspunk-how-block">
-                <div class="bg-how-image"></div>
-                <div class="bg-how-text">
+            <div style="height: 800px" class="crosspunk-block crosspunk-how-block">
+                <div class="crosspunk-image bg-how-image"></div>
+                <div class="crosspunk-text container bg-how-text">
                     <h2 class="crosspunk-h1">How to mint</h2>
                     <p>1) Install Metamask Extension to your favourite browser <a target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Chrome</a> or <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/">Firefox</a></p>
                     <p>2) <a target="_blank" href="https://docs.binance.org/smart-chain/wallet/metamask.html">Create your Metamask wallet</a></p>
@@ -73,7 +73,7 @@ export default {
             searchById: "",
             punks: [],
             walletStatus: false,
-            punkLeft: "0",
+            punkLeft: "10000",
         };
     },
     mounted() {
@@ -105,72 +105,113 @@ export default {
 </script>
 
 <style>
-@media only screen and (min-width: 1601px) {
-    .crosspunk-h1, .bg-stats-text h2, .bg-stats-text h2 {
-        font-size: 60pt;
+@media only screen and (min-width: 1200px) {
+    .crosspunk-h1 {
+        font-size: 50pt;
     }
 
-    .bg-mint-text a, .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
+    .crosspunk-text a, .crosspunk-text p {
         font-size: 18pt;
     }
 }
 
-@media only screen and (max-width: 1600px) {
-    .crosspunk-h1, .bg-stats-text h2, .bg-stats-text h2 {
+@media only screen and (max-width: 1199px) {
+    .crosspunk-h1 {
         font-size: 40pt;
     }
 
-    .bg-mint-text a, .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
+    .crosspunk-text a, .crosspunk-text p {
         font-size: 14pt;
     }
-}
 
-@media only screen and (min-width: 1051px) {
-    .bg-what-text div {
-        width: 80%;
-        margin: auto;
+    .crosspunk-mint-block {
+        height: 530px !important;
     }
 
-    .bg-what-text div div {
-        text-align: left;
-    }
-}
-
-@media only screen and (max-width: 1050px) {
-    .bg-what-text img {
-        display: none;
+    .crosspunk-stats-block {
+        height: 700px !important;
     }
 
-    .crosspunk-what-block {
-        height: 600px !important;
+    .crosspunk-why-block {
+        height: 530px !important;
     }
 
     .crosspunk-how-block {
-        height: 900px !important;
+        height: 600px !important;
     }
 }
 
-@media only screen and (max-width: 700px) {
-    .crosspunk-h1, .bg-stats-text h2, .bg-stats-text h2 {
+@media only screen and (max-width: 991px) {
+    .crosspunk-h1 {
         font-size: 30pt;
     }
 
-    .bg-mint-text a, .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
-        font-size: 12pt;
-    }
-}
-
-@media only screen and (max-width: 600px) {
     .crosspunk-mint-block {
         height: 400px !important;
     }
 
-    .crosspunk-h1, .bg-stats-text h2, .bg-stats-text h2 {
+    .crosspunk-text a, .crosspunk-text p {
+        font-size: 12pt;
+    }
+
+    .crosspunk-stats-block {
+        height: 600px !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .crosspunk-h1 {
         font-size: 20pt;
     }
 
-    .bg-mint-text a, .bg-stats-text p, .bg-what-text p, .bg-why-text p, .bg-how-text p {
+    .crosspunk-text a, .crosspunk-text p {
         font-size: 10pt;
+    }
+
+    .crosspunk-mint-block {
+        height: 430px !important;
+    }
+
+    .crosspunk-stats-block {
+        height: 500px !important;
+    }
+
+    .crosspunk-what-block {
+        height: 430px !important;
+    }
+
+    .bg-what-text img {
+        display: none;
+    }
+
+    .crosspunk-why-block {
+        height: 430px !important;
+    }
+
+    .crosspunk-how-block {
+        height: 500px !important;
+    }
+}
+
+@media only screen and (max-width: 499px) {
+    .crosspunk-h1 {
+        font-size: 14pt;
+    }
+
+    .crosspunk-mint-block {
+        height: 300px !important;
+    }
+
+    .crosspunk-stats-block {
+        height: 600px !important;
+    }
+
+    .crosspunk-why-block {
+        height: 600px !important;
+    }
+
+    .crosspunk-how-block {
+        height: 650px !important;
     }
 }
 
@@ -180,11 +221,11 @@ export default {
     text-transform: uppercase;
 }
 
-.crosspunk-mint-block, .crosspunk-stats-block, .crosspunk-what-block, .crosspunk-why-block, .crosspunk-how-block {
+.crosspunk-block {
     position: relative;
 }
 
-.bg-mint-image, .bg-stats-image, .bg-what-image, .bg-why-image, .bg-how-image {
+.crosspunk-image {
     /* Full height */
     height: 100%;
     /* Center and scale the image nicely */
@@ -201,7 +242,7 @@ export default {
     background-image: url("/img/cp_web_bg_01_punk.jpg");
 }
 
-.bg-stats-image {
+.bg-our-image {
     background-image: url("/img/cp_web_bg_02.jpg");
 }
 
@@ -214,7 +255,7 @@ export default {
     background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
 }
 
-.bg-mint-text, .bg-stats-text, .bg-what-text, .bg-why-text, .bg-how-text {
+.crosspunk-text {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0);
@@ -224,6 +265,11 @@ export default {
     position: relative;
     z-index: 2;
     width: 80%;
+}
+
+.crosspunk-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
 }
 
 .bg-mint-text {
@@ -244,11 +290,6 @@ export default {
     top: 15%;
 }
 
-.bg-stats-text p, .bg-what-text p {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-}
-
 .bg-stats-text p b {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -258,16 +299,20 @@ export default {
     top: 20%;
 }
 
+.bg-what-text div div {
+    text-align: left;
+}
+
 .bg-what-text div img {
     margin-right: 20px;
 }
 
 .bg-why-text {
-    top: 15%;
+    top: 10%;
 }
 
 .bg-how-text {
-    top: 15%;
+    top: 10%;
 }
 
 .bg-how-text p {
