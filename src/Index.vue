@@ -382,9 +382,10 @@
         color: white;
     }
 
-    .card-img-top {
+    .card-img-top, .crosspunks-card-img-top {
         background: rgb(217,61,118);
         background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
+        width: 100%;
     }
 
     .close {

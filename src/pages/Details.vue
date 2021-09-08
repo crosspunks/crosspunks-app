@@ -34,13 +34,13 @@
                 </div>
                 <div v-else>
                     <div class="row" >
-                        <div class="col-md-6" >
-                            <img v-if="crypto_Punks.indexOf(currentPunk.idx) > -1" class="card-img-top pixelated" :src="(`/crypto/${currentPunk.idx}.png`)">
-                            <img v-else class="card-img-top pixelated" :src="(`/crosspunks/punk${currentPunk.idx}.png`)">
+                        <div class="col-md-6">
+                            <img v-if="crypto_Punks.indexOf(currentPunk.idx) > -1" class="crosspunks-card-img-top pixelated" :src="(`/crypto/${currentPunk.idx}.png`)" id="punkAvatar">
+                            <img v-else class="crosspunks-card-img-top pixelated" :src="(`/crosspunks/punk${currentPunk.idx}.png`)" id="punkAvatar">
                         </div>
                         <div class="col-md-6" >
                             <div class="pl-3">
-                                <div class="row" >
+                                <div class="row">
                                     <h3>CrossPunk #{{ currentPunk.idx }}</h3>
                                 </div>
                                 <div class="row">
@@ -55,6 +55,9 @@
                                 </div>
                                 <div class="row" >
                                     <p style="font-size: 18px">Rank {{ currentPunk.rank }}</p>
+                                </div>
+                                <div class="row">
+                                    <button class="btn crosspunk-btn" @click="getAvatar(currentPunk.idx)">Get avatar</button>
                                 </div>
                                 <hr />
                                 <div v-if="this.token_owner">
@@ -311,6 +314,8 @@
 </template>
 
 <script>
+    import domtoimage from 'dom-to-image';
+
     export default {
         name: "Details",
         data(){
@@ -369,6 +374,20 @@
             }
         },
         methods: {
+            getAvatar(id) {
+                const node = document.getElementById('punkAvatar');
+                domtoimage.toPng(node).then(function (dataUrl) {
+                        // window.open(dataUrl, '_blank');
+                        var link = document.createElement("a");
+                        document.body.appendChild(link); // Firefox requires the link to be in the body :(
+                        link.href = dataUrl;
+                        link.download = "crosspunk_" + id + ".png";
+                        link.click();
+	                    document.body.removeChild(link);
+                }).catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+            },
             async loadData() {
                 await this.walletManager.checkId();
                 this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
