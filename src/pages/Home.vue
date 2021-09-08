@@ -159,6 +159,12 @@ export default {
     }
 }
 
+@media only screen and (min-width: 768px) {
+    .bg-what-text div div {
+        text-align: left;
+    }
+}
+
 @media only screen and (max-width: 767px) {
     .crosspunk-h1 {
         font-size: 20pt;
@@ -297,10 +303,6 @@ export default {
 
 .bg-what-text {
     top: 20%;
-}
-
-.bg-what-text div div {
-    text-align: left;
 }
 
 .bg-what-text div img {
