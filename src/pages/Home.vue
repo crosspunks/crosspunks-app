@@ -317,6 +317,10 @@ export default {
     .crosspunk-how-block {
         height: 500px !important;
     }
+
+    .crosspunk-roadmap-block {
+        height: 250px !important;
+    }
 }
 
 .crosspunk-h1 {
@@ -373,7 +377,7 @@ export default {
     margin: 0 auto;
     position: relative;
     z-index: 2;
-    width: 80%;
+    width: 100%;
 }
 
 .crosspunk-text p {
