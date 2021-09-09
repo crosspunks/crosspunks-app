@@ -44,7 +44,7 @@
             <div class="container" style="margin-top: 20px;">
                 <div class="row mb-5 flex-row">
                     <div class="col-6">
-                        <router-link :to="{ name : 'limitationOfLiability' }">
+                        <router-link :to="{ name : 'limitationOfLiability' }" class="crosspunk-limitation">
                             <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Limitation of Liability</b>
                         </router-link>
                     </div>
@@ -72,6 +72,14 @@
 </template>
 
 <style scoped >
+    @media only screen and (max-width: 767px) {
+        #logo img {
+            height: 35px;
+        }
+        .crosspunk-limitation {
+            font-size: 10pt !important;
+        }
+    }
     .onoffswitch {
         position: relative; width: 90px;
         -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;

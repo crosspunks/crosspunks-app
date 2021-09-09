@@ -12,6 +12,19 @@
                     </router-link>
                 </div>
             </div>
+            <!-- <div style="height: 800px" class="crosspunk-block">
+                <div class="crosspunk-image bg-our-image"></div>
+                <div class="crosspunk-text container bg-our-text">
+                    <h2 class="crosspunk-h1">Have a quick peek at some global Punks stats!</h2>
+                    <p>The lowest selling price currently stands at <b>94.99 ETH ($ 358,906.43).</b></p>
+                    <p>The average rate over the past year was <b>35.89 ETH (135,620.85 USD).</b></p>
+                    <p>The average open bid is <b>4.09 ETH ($ 15,464.49).</b></p>
+                    <p>The total cost of all current applications is <b>2,717.69 ETH (10,268,420.59 USD).</b></p>
+                    <p>The average selling price of punk over the past year is <b>35.63 ETH ($ 134,615.76).</b></p>
+                    <p>The total value of punks sold over the last year is <b>472,909.33 ETH (1,786,821,759.52 USD).</b></p>
+                    <p><b>Just think about these numbers! Breathtaking, huh?</b></p>
+                </div>
+            </div> -->
             <div style="height: 800px" class="crosspunk-block crosspunk-stats-block">
                 <div class="crosspunk-image bg-stats-image"></div>
                 <div class="crosspunk-text container bg-stats-text">
@@ -204,6 +217,10 @@ export default {
         font-size: 14pt;
     }
 
+    .crosspunk-text a, .crosspunk-text p {
+        font-size: 8pt;
+    }
+
     .crosspunk-mint-block {
         height: 300px !important;
     }
@@ -218,6 +235,32 @@ export default {
 
     .crosspunk-how-block {
         height: 650px !important;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .crosspunk-h1 {
+        font-size: 12pt;
+    }
+
+    .crosspunk-text a, .crosspunk-text p {
+        font-size: 8pt;
+    }
+
+    .crosspunk-stats-block {
+        height: 500px !important;
+    }
+
+    .crosspunk-what-block {
+        height: 330px !important;
+    }
+
+    .crosspunk-why-block {
+        height: 450px !important;
+    }
+
+    .crosspunk-how-block {
+        height: 500px !important;
     }
 }
 
