@@ -12,19 +12,26 @@
                     </router-link>
                 </div>
             </div>
-            <!-- <div style="height: 800px" class="crosspunk-block">
+            <div style="height: 800px" class="crosspunk-block">
                 <div class="crosspunk-image bg-our-image"></div>
                 <div class="crosspunk-text container bg-our-text">
-                    <h2 class="crosspunk-h1">Have a quick peek at some global Punks stats!</h2>
-                    <p>The lowest selling price currently stands at <b>94.99 ETH ($ 358,906.43).</b></p>
-                    <p>The average rate over the past year was <b>35.89 ETH (135,620.85 USD).</b></p>
-                    <p>The average open bid is <b>4.09 ETH ($ 15,464.49).</b></p>
-                    <p>The total cost of all current applications is <b>2,717.69 ETH (10,268,420.59 USD).</b></p>
-                    <p>The average selling price of punk over the past year is <b>35.63 ETH ($ 134,615.76).</b></p>
-                    <p>The total value of punks sold over the last year is <b>472,909.33 ETH (1,786,821,759.52 USD).</b></p>
-                    <p><b>Just think about these numbers! Breathtaking, huh?</b></p>
+                    <h2 class="crosspunk-h1">Unique approach</h2>
+                    <div>
+                        <div class="row">
+                            <img src="/img/01.png" />
+                            <p class="col-9"><b>11 distinguished figures in the crypto field awaiting your Mint. Don't miss your turn to win!</b></p>
+                        </div>
+                        <div class="row">
+                            <img src="/img/02.png" />
+                            <p class="col-9"><b>We're on the Binance chain - closer to you.</b></p>
+                        </div>
+                        <div class="row">
+                            <img src="/img/03.png" />
+                            <p class="col-9"><b>Crypto enthusiasts team taking up the great challenge to make Crosschain NFT available for everyone.</b></p>
+                        </div>
+                    </div>
                 </div>
-            </div> -->
+            </div>
             <div style="height: 800px" class="crosspunk-block crosspunk-stats-block">
                 <div class="crosspunk-image bg-stats-image"></div>
                 <div class="crosspunk-text container bg-stats-text">
@@ -124,13 +131,23 @@ export default {
 </script>
 
 <style>
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1300px) {
     .crosspunk-h1 {
         font-size: 50pt;
     }
 
     .crosspunk-text a, .crosspunk-text p {
         font-size: 18pt;
+    }
+}
+
+@media only screen and (max-width: 1299px) {
+    .crosspunk-h1 {
+        font-size: 45pt;
+    }
+
+    .crosspunk-text a, .crosspunk-text p {
+        font-size: 16pt;
     }
 }
 
@@ -164,6 +181,13 @@ export default {
     }
 }
 
+@media only screen and (min-width: 992px) {
+    .bg-our-text > div > .row:nth-child(2) > img {
+        position: relative;
+        right: -85%;
+    }
+}
+
 @media only screen and (max-width: 991px) {
     .crosspunk-h1 {
         font-size: 30pt;
@@ -187,6 +211,10 @@ export default {
 }
 
 @media only screen and (min-width: 768px) {
+    .bg-our-text .row p {
+        text-align: left;
+    }
+
     .bg-what-text div div {
         text-align: left;
     }
@@ -203,6 +231,15 @@ export default {
 
     .crosspunk-mint-block {
         height: 430px !important;
+    }
+
+    .bg-our-text {
+        top: 5% !important;
+    }
+
+    .bg-our-text .row img {
+        margin: auto;
+        margin-bottom: 15px;
     }
 
     .crosspunk-stats-block {
@@ -256,7 +293,7 @@ export default {
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 420px) {
     .crosspunk-h1 {
         font-size: 12pt;
     }
@@ -345,17 +382,20 @@ export default {
 }
 
 .bg-mint-text {
-    height: 100%;
-}
-
-.bg-mint-text h1 {
     top: 20%;
-    position: relative;
 }
 
-.bg-mint-text a {
-    position: relative;
-    top: 30%;
+.bg-our-text {
+    top: 15%;
+}
+
+.bg-our-text .row {
+    margin: 15px 0;
+}
+
+.bg-our-text .row p {
+    height: min-content;
+    margin: auto;
 }
 
 .bg-stats-text {
