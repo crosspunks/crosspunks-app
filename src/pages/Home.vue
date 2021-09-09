@@ -84,7 +84,7 @@
             <div style="height: 800px" class="crosspunk-block crosspunk-roadmap-block">
                 <div class="crosspunk-image bg-roadmap-image"></div>
                 <div class="crosspunk-text container bg-roadmap-text">
-                    <img src="/img/cp_roadmap_02.svg" />
+                    <img src="/img/cp_roadmap_03.svg" />
                 </div>
             </div>
         </div>
@@ -343,7 +343,7 @@ export default {
 }
 
 .bg-mint-image {
-    background-image: url("/img/cp_web_bg_01_punk.jpg");
+    background-image: url("/img/cp_web_bg_03_punk.jpg");
 }
 
 .bg-our-image {
