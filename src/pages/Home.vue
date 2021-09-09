@@ -74,6 +74,12 @@
                     <p>8) Wait an enjoy your freshly-baked CrossPunk</p>
                 </div>
             </div>
+            <div style="height: 800px" class="crosspunk-block crosspunk-roadmap-block">
+                <div class="crosspunk-image bg-roadmap-image"></div>
+                <div class="crosspunk-text container bg-roadmap-text">
+                    <img src="/img/cp_roadmap_02.svg" />
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -152,6 +158,10 @@ export default {
     .crosspunk-how-block {
         height: 600px !important;
     }
+
+    .crosspunk-roadmap-block {
+        height: 700px !important;
+    }
 }
 
 @media only screen and (max-width: 991px) {
@@ -168,6 +178,10 @@ export default {
     }
 
     .crosspunk-stats-block {
+        height: 600px !important;
+    }
+
+    .crosspunk-roadmap-block {
         height: 600px !important;
     }
 }
@@ -210,6 +224,10 @@ export default {
     .crosspunk-how-block {
         height: 500px !important;
     }
+
+    .crosspunk-roadmap-block {
+        height: 400px !important;
+    }
 }
 
 @media only screen and (max-width: 499px) {
@@ -225,16 +243,16 @@ export default {
         height: 300px !important;
     }
 
-    .crosspunk-stats-block {
-        height: 600px !important;
+    .crosspunk-what-block {
+        height: 330px !important;
     }
 
     .crosspunk-why-block {
-        height: 600px !important;
+        height: 330px !important;
     }
 
-    .crosspunk-how-block {
-        height: 650px !important;
+    .crosspunk-roadmap-block {
+        height: 300px !important;
     }
 }
 
@@ -304,6 +322,11 @@ export default {
     background: linear-gradient(180deg, rgba(217,61,118,1) 0%, rgba(124,64,220,1) 50%);
 }
 
+.bg-roadmap-image{
+    background: rgb(84,35,124);
+    background: linear-gradient(180deg, rgba(84,35,124,1) 0%, rgba(23,33,58,1) 50%);
+}
+
 .crosspunk-text {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
@@ -371,6 +394,14 @@ export default {
 
 .bg-how-text a:hover {
     text-decoration: none;
+}
+
+.bg-roadmap-text {
+    top: 10%;
+}
+
+.bg-roadmap-text img {
+    width: 100%;
 }
 
 .bg-pinku {
