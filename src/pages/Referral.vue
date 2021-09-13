@@ -8,7 +8,9 @@
                             <div class="col">
                                 <div class="col">
                                     <div class="row justify-content-center"><h1>Your Wallet</h1></div>
-                                    <div class="row justify-content-center"><p>{{ walletAddr }}</p></div>
+                                    <div class="row justify-content-center">
+                                        <p style="text-overflow: ellipsis; width: 100%; overflow: hidden;">{{ walletAddr }}</p>
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <div v-if="userAirDrop.isExists == null" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
@@ -28,7 +30,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div v-else >
+                                        <div v-else>
                                             <div class="row justify-content-center">
                                                 <button type="button" class="btn crosspunk-btn" @click="getAirDropLink">Generate Invite Link
                                                     <div v-if="airDropLoading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
@@ -36,6 +38,12 @@
                                                     </div>
                                                 </button>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-md-center">
+                                        <div class="crosspunk-reward">
+                                            <p>CrossPunks has a decentralized reward system for inviting users! 10% of the purchase amount will be sent directly to your BNB wallet! No worries the price for your friend won't change.</p>
+                                            <p>Click on the button above to generate a referral link!</p>
                                         </div>
                                     </div>
                                     <div class="row" >
@@ -79,6 +87,23 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+@media only screen and (min-width: 992px) {
+    .crosspunk-reward {
+        width: 50%;
+    }
+}
+
+p {
+    text-align: center;
+}
+
+.crosspunk-reward {
+    margin-top: 15px;
+}
+</style>
+
 <script>
 export default {
     name: "Wallet",

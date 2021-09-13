@@ -59,6 +59,14 @@
 
                             <p class="text-success">{{ box_msg }}</p>
                             <p class="text-danger">{{ box_msg_danger }}</p>
+
+                            <div style="text-align: left;">
+                                <p>1) Choose CrossPunk amout you want to buy, click the Mint button</p>
+                                <p>2) Click on Metamask pop-up and change network to Binance Smart Chain (if needed)</p>
+                                <p>3) Click the Mint button another time to initiate the process</p>
+                                <p>4) Wait till the end of Minting</p>
+                                <p>5) Create your referal link to share with your friends!</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4"></div>
