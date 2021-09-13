@@ -84,7 +84,7 @@
             <div style="height: 800px" class="crosspunk-block crosspunk-roadmap-block">
                 <div class="crosspunk-image bg-roadmap-image"></div>
                 <div class="crosspunk-text container bg-roadmap-text">
-                    <img src="/img/cp_roadmap_03.svg" />
+                    <img src="/img/cp_roadmap_04.svg" />
                 </div>
             </div>
         </div>
