@@ -175,10 +175,10 @@
                                         </td>
                                         <td>
                                             <span v-if="row.methodName == 'offerPunkForSale'">
-                                                {{ walletManager.web3Global.utils.fromWei(row.methodParam[1].hex) }} BNB ~(${{fixInThreeDec(walletManager.web3Global.utils.fromWei(row.methodParam[1].hex) * row.trx_price)}})
+                                                {{ walletManager.ethers.utils.formatEther(row.methodParam[1].hex) }} BNB ~(${{fixInThreeDec(walletManager.ethers.utils.formatEther(row.methodParam[1].hex) * row.trx_price)}})
                                             </span>
                                             <span v-if="row.methodName == 'enterBidForPunk' || row.methodName == 'buyPunk'">
-                                                {{ walletManager.web3Global.utils.fromWei(row.amount) }} BNB ~(${{fixInThreeDec(walletManager.web3Global.utils.fromWei(row.amount) * row.trx_price)}})
+                                                {{ walletManager.ethers.utils.formatEther(row.amount) }} BNB ~(${{fixInThreeDec(walletManager.ethers.utils.formatEther(row.amount) * row.trx_price)}})
                                             </span>
                                         </td>
                                         <td>
@@ -390,8 +390,9 @@
             },
             async loadData() {
                 await this.walletManager.checkId();
-                this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
-                if (!this.walletManager.nft.methods.ownerOf) {
+                let signer = await this.walletManager.web3Global.getSigner();
+                this.walletAddr = await signer.getAddress();
+                if (!this.walletManager.nft.ownerOf) {
                     this.is_load_this_punk = false;
                 } else {
                     try {
@@ -409,19 +410,19 @@
 
                         // console.log(this.marketHistory);
 
-                        this.token_owner = await this.walletManager.nft.methods.ownerOf(this.currentPunk.idx).call();
+                        this.token_owner = await this.walletManager.nft.ownerOf(this.currentPunk.idx);
 
-                        this.punkBids = await this.walletManager.dex.methods.punkBids(this.currentPunk.idx).call();
+                        this.punkBids = await this.walletManager.dex.punkBids(this.currentPunk.idx);
                         if (this.punkBids && this.punkBids.hasBid) {
                             this.punkBids.value = this.punkBids.value / 1000000;
                         }
 
                         if (this.token_owner == this.walletManager.dexAddr) {
                             this.token_owner = false;
-                            let offeredForSale = await this.walletManager.dex.methods.punksOfferedForSale(this.currentPunk.idx).call();
+                            let offeredForSale = await this.walletManager.dex.punksOfferedForSale(this.currentPunk.idx);
                             this.token_owner = offeredForSale.seller;
                             this.is_for_sale = offeredForSale.isForSale
-                            this.sale_by_owner = this.walletManager.web3Global.utils.fromWei(offeredForSale.minValue);
+                            this.sale_by_owner = this.walletManager.ethers.utils.formatEther(offeredForSale.minValue);
                         } else {
                             this.is_for_sale = false;
                             this.sale_by_owner = false;
@@ -432,7 +433,7 @@
                         this.is_approved_first_time = this.is_approved;
 
                         if (this.walletStatus) {
-                            this.balance = await this.walletManager.web3Global.eth.getBalance(this.walletAddr);
+                            this.balance = await signer.getBalance();
                         } else {
                             this.balance = 0;
                         }
@@ -454,7 +455,7 @@
             },
             async checkApproved() {
                 if (this.token_owner.toLowerCase() === this.walletAddr.toLowerCase()) {
-                    this.is_approved = await this.walletManager.nft.methods.isApprovedForAll(this.token_owner, this.walletManager.dexAddr).call();
+                    this.is_approved = await this.walletManager.nft.isApprovedForAll(this.token_owner, this.walletManager.dexAddr);
                 }
                 if (this.is_approved) {
                     this.offer_btn_approve_disable = true;
@@ -481,7 +482,8 @@
                 this.modalOfferForSale = true;
             },
             async offerForSale() {
-                let from = await this.walletManager.web3Global.eth.getCoinbase();
+                let signer = await this.walletManager.web3Global.getSigner();
+                let dexSigner = this.walletManager.dex.connect(signer);
                 if (!this.offer_btn_loading) {
                     this.offer_error = "";
                     this.offer_msg = "";
@@ -500,22 +502,12 @@
                     } else {
                         this.offer_btn_loading = true;
                         try {
-                            price = this.walletManager.web3Global.utils.toWei(price.toString(), 'ether');
+                            price = this.walletManager.ethers.utils.parseUnits(price.toString(), 'ether');
                             console.log(address, address.length);
                             if (address.length > 0) {
-                                await this.walletManager.dex.methods.offerPunkForSaleToAddress(this.currentPunk.idx, price, address).send({
-                                    from,
-                                    feeLimit: 100000000,
-                                    callValue: 0,
-                                    shouldPollResponse: false
-                                });
+                                await dexSigner.offerPunkForSaleToAddress(this.currentPunk.idx, price, address);
                             } else {
-                                await this.walletManager.dex.methods.offerPunkForSale(this.currentPunk.idx, price).send({
-                                    from,
-                                    feeLimit: 100000000,
-                                    callValue: 0,
-                                    shouldPollResponse: false
-                                });
+                                await dexSigner.offerPunkForSale(this.currentPunk.idx, price);
                             }
 
                             setTimeout(() => {
@@ -525,7 +517,7 @@
                                     this.offer_btn_loading = false;
                                     this.modalOfferForSale = false;
                                 }, 1500);
-                            }, 1000);
+                            }, 10000);
                         } catch(e) {
                             console.log(e)
                             await this.loadData();
@@ -536,16 +528,12 @@
                 }
             },
             async approve() {
-                let from = await this.walletManager.web3Global.eth.getCoinbase();
+                let signer = await this.walletManager.web3Global.getSigner();
+                let nftSigner = this.walletManager.nft.connect(signer);
                 if (!this.offer_btn_approve_loading) {
                     this.offer_btn_approve_loading = true;
                     try {
-                        await this.walletManager.nft.methods.setApprovalForAll(this.walletManager.dexAddr, true).send({
-                            from,
-                            feeLimit: 50000000,
-                            callValue: 0,
-                            shouldPollResponse: false
-                        });
+                        await nftSigner.setApprovalForAll(this.walletManager.dexAddr, true);
                     } catch (e) {
                         this.offer_btn_approve_loading = false;
                     }
@@ -553,25 +541,21 @@
                     setTimeout(async () => {
                         await this.checkApproved();
                         this.offer_btn_approve_loading = false;
-                    }, 5000);
+                    }, 10000);
                 }
             },
             async cancelSelling() {
-                let from = await this.walletManager.web3Global.eth.getCoinbase();
+                let signer = await this.walletManager.web3Global.getSigner();
+                let dexSigner = this.walletManager.dex.connect(signer);
                 if (!this.cancel_btn_loading) {
                     this.cancel_btn_loading = true;
                     try {
-                        await this.walletManager.dex.methods.punkNoLongerForSale(this.currentPunk.idx).send({
-                            from,
-                            feeLimit: 50000000,
-                            callValue: 0,
-                            shouldPollResponse: false
-                        });
+                        await dexSigner.punkNoLongerForSale(this.currentPunk.idx);
 
                         setTimeout(async () => {
                             await this.loadData();
                             this.cancel_btn_loading = false;
-                        }, 4500)
+                        }, 10000)
                     } catch (e) {
                         await this.loadData();
                         this.cancel_btn_loading = false;
@@ -584,111 +568,109 @@
                 this.bid_msg = "";
                 this.bid_price = "";
             },
-            async bid() {
-                let from = await this.walletManager.web3Global.eth.getCoinbase();
-                if (!this.bid_btn_loading) {
-                    try {
-                        this.balance = await this.walletManager.web3Global.eth.getBalance(this.walletAddr);
-                    } catch (e) {
-                        console.log(e);
-                    }
-                    this.bid_error = "";
-                    this.bid_msg = "";
-                    let price = parseInt(this.bid_price);
-                    if (!(price >= 0)) {
-                        this.bid_error = "enter correct price (BNB)";
-                    } else if(this.punkBids && this.punkBids.hasBid && this.punkBids.value && this.punkBids.value >= price) {
-                        this.bid_error = "you can not bid lower than last bid";
-                    } else if(10000 > price) {
-                        this.bid_error = "you can not bid lower than 10K BNB";
-                    } else if(this.balance < (price * 1000000)) {
-                        this.bid_error = "you don't have enough BNB";
-                    } else {
-                        this.bid_btn_loading = true;
-                        try {
-                            await this.walletManager.dex.methods.enterBidForPunk(this.currentPunk.idx).send({
-                                from,
-                                feeLimit: 100000000,
-                                value: this.walletManager.web3Global.utils.toWei(price, 'ether'),
-                                shouldPollResponse: false
-                            });
+            // async bid() {
+            //     let from = await this.walletManager.web3Global.eth.getCoinbase();
+            //     if (!this.bid_btn_loading) {
+            //         try {
+            //             this.balance = await this.walletManager.web3Global.eth.getBalance(this.walletAddr);
+            //         } catch (e) {
+            //             console.log(e);
+            //         }
+            //         this.bid_error = "";
+            //         this.bid_msg = "";
+            //         let price = parseInt(this.bid_price);
+            //         if (!(price >= 0)) {
+            //             this.bid_error = "enter correct price (BNB)";
+            //         } else if(this.punkBids && this.punkBids.hasBid && this.punkBids.value && this.punkBids.value >= price) {
+            //             this.bid_error = "you can not bid lower than last bid";
+            //         } else if(10000 > price) {
+            //             this.bid_error = "you can not bid lower than 10K BNB";
+            //         } else if(this.balance < (price * 1000000)) {
+            //             this.bid_error = "you don't have enough BNB";
+            //         } else {
+            //             this.bid_btn_loading = true;
+            //             try {
+            //                 await this.walletManager.dex.methods.enterBidForPunk(this.currentPunk.idx).send({
+            //                     from,
+            //                     feeLimit: 100000000,
+            //                     value: this.walletManager.web3Global.utils.toWei(price, 'ether'),
+            //                     shouldPollResponse: false
+            //                 });
 
-                            setTimeout(() => {
-                                this.bid_msg = "Your transaction has been broadcast to network!";
-                                setTimeout(async () => {
-                                    await this.loadData();
-                                    this.bid_btn_loading = false;
-                                    this.modal_bid = false;
-                                }, 1500);
-                            }, 1000);
-                        } catch(e) {
-                            await this.loadData();
-                            this.bid_error = "failed!";
-                            this.bid_btn_loading = false;
-                        }
-                    }
-                }
-            },
-            async acceptBid() {
-                let from = await this.walletManager.web3Global.eth.getCoinbase();
-                if (!this.accept_bid_btn_loading) {
-                    this.accept_bid_btn_loading = true;
-                    try {
-                        await this.walletManager.dex.methods.acceptBidForPunk(this.currentPunk.idx, (this.punkBids.value * 1000000)).send({
-                            from,
-                            feeLimit: 100000000,
-                            callValue: 0,
-                            shouldPollResponse: false
-                        });
+            //                 setTimeout(() => {
+            //                     this.bid_msg = "Your transaction has been broadcast to network!";
+            //                     setTimeout(async () => {
+            //                         await this.loadData();
+            //                         this.bid_btn_loading = false;
+            //                         this.modal_bid = false;
+            //                     }, 1500);
+            //                 }, 1000);
+            //             } catch(e) {
+            //                 await this.loadData();
+            //                 this.bid_error = "failed!";
+            //                 this.bid_btn_loading = false;
+            //             }
+            //         }
+            //     }
+            // },
+            // async acceptBid() {
+            //     let from = await this.walletManager.web3Global.eth.getCoinbase();
+            //     if (!this.accept_bid_btn_loading) {
+            //         this.accept_bid_btn_loading = true;
+            //         try {
+            //             await this.walletManager.dex.methods.acceptBidForPunk(this.currentPunk.idx, (this.punkBids.value * 1000000)).send({
+            //                 from,
+            //                 feeLimit: 100000000,
+            //                 callValue: 0,
+            //                 shouldPollResponse: false
+            //             });
 
-                        setTimeout(async () => {
-                            await this.loadData();
-                            this.accept_bid_btn_loading = false;
-                        }, 2500);
+            //             setTimeout(async () => {
+            //                 await this.loadData();
+            //                 this.accept_bid_btn_loading = false;
+            //             }, 2500);
 
-                    } catch (e) {
-                        this.accept_bid_btn_loading = false;
-                    }
-                }
-            }, 
-            async cancelBid() {
-                let from = await this.walletManager.web3Global.eth.getCoinbase();
-                if (!this.cancel_btn_loading) {
-                    this.cancel_btn_loading = true;
-                    try {
-                        await this.walletManager.dex.methods.withdrawBidForPunk(this.currentPunk.idx).send({
-                            from,
-                            feeLimit: 100000000,
-                            callValue: 0,
-                            shouldPollResponse: false
-                        });
+            //         } catch (e) {
+            //             this.accept_bid_btn_loading = false;
+            //         }
+            //     }
+            // }, 
+            // async cancelBid() {
+            //     let from = await this.walletManager.web3Global.eth.getCoinbase();
+            //     if (!this.cancel_btn_loading) {
+            //         this.cancel_btn_loading = true;
+            //         try {
+            //             await this.walletManager.dex.methods.withdrawBidForPunk(this.currentPunk.idx).send({
+            //                 from,
+            //                 feeLimit: 100000000,
+            //                 callValue: 0,
+            //                 shouldPollResponse: false
+            //             });
 
-                        setTimeout(async () => {
-                            await this.loadData();
-                            this.cancel_btn_loading = false;
-                        }, 2500);
-                    } catch(e) {
-                        await this.loadData();
-                        this.cancel_btn_loading = false;
-                    }
-                }
-            },
+            //             setTimeout(async () => {
+            //                 await this.loadData();
+            //                 this.cancel_btn_loading = false;
+            //             }, 2500);
+            //         } catch(e) {
+            //             await this.loadData();
+            //             this.cancel_btn_loading = false;
+            //         }
+            //     }
+            // },
             async buy() {
-                let from = await this.walletManager.web3Global.eth.getCoinbase();
+                let signer = await this.walletManager.web3Global.getSigner();
+                let dexSigner = this.walletManager.dex.connect(signer);
                 if (!this.buy_btn_loading) {
                     this.buy_btn_loading = true;
                     try {
-                        await this.walletManager.dex.methods.buyPunk(this.currentPunk.idx).send({
-                            from,
-                            feeLimit: 100000000,
-                            value: this.walletManager.web3Global.utils.toWei(this.sale_by_owner, 'ether'),
-                            shouldPollResponse: false
-                        });
+                        await dexSigner.buyPunk(
+                            this.currentPunk.idx,
+                            { value: this.walletManager.ethers.utils.parseUnits(this.sale_by_owner, 'ether') });
 
                         setTimeout(async () => {
                             await this.loadData();
                             this.buy_btn_loading = false;
-                        }, 2500);
+                        }, 10000);
                     } catch(e) {
                         await this.loadData();
                         this.buy_btn_loading = false;

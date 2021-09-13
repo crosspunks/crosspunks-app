@@ -1,4 +1,4 @@
-const Web3 = require('web3');
+const ethers = require('ethers');
 const nftAbi = require('./abi/CrossPunks.json');
 const dexAbi = require('./abi/CrossPunksDex.json');
 
@@ -40,6 +40,7 @@ class _walletManager {
 
     walletStatus = false;
     web3Global = false;
+    ethers = ethers;
 
     nftAddr = "0x360673A34cf5055DfC22C53bc063e948A243293B";
     dexAddr = "0x36894d06ac91B09760b4310C75Ed2348E3eA063C";
@@ -48,23 +49,20 @@ class _walletManager {
         this.connectToMetamask();
 
         if (this.walletStatus) {
-            this.nft = new this.web3Global.eth.Contract(nftAbi.abi, this.nftAddr);
-            this.dex = new this.web3Global.eth.Contract(dexAbi.abi, this.dexAddr);
+            this.nft = new ethers.Contract(this.nftAddr, nftAbi.abi, this.web3Global);
+            this.dex = new ethers.Contract(this.dexAddr, dexAbi.abi, this.web3Global);
         }
     }
 
     async connectToMetamask() {
         if (window.ethereum) {
-            this.web3Global = new Web3(ethereum);
+            this.web3Global = new ethers.providers.Web3Provider(window.ethereum);
             try {
                 ethereum.enable();
                 this.walletStatus = true;
             } catch (error) {
                 console.log(error);
             }
-        } else if (window.web3) {
-            this.web3Global = new Web3(web3.currentProvider);
-            this.walletStatus = true;
         } else {
             console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
         }
@@ -84,33 +82,33 @@ class _walletManager {
                 console.log(error);
             });
 
-            if (!await this.web3Global.eth.getCoinbase()) {
-                await window.ethereum.request({
-                    method: 'wallet_requestPermissions',
-                    params: [{
-                      'eth_accounts': {},
-                    }]
-                }).catch((error) => {
-                    this.walletStatus = false;
-                    console.log(error);
-                });
-            }
+            // if (!await this.web3Global.getAddress()) {
+            //     await window.ethereum.request({
+            //         method: 'wallet_requestPermissions',
+            //         params: [{
+            //           'eth_accounts': {},
+            //         }]
+            //     }).catch((error) => {
+            //         this.walletStatus = false;
+            //         console.log(error);
+            //     });
+            // }
         }
     }
 
     async connectToContract() {
         if (!this.nft) {
-            this.nft = new this.web3Global.eth.Contract(nftAbi.abi, this.nftAddr);
+            this.nft = new ethers.Contract(this.nftAddr, nftAbi.abi, this.web3Global);
         }
 
         if (!this.dex) {
-            this.dex = new this.web3Global.eth.Contract(dexAbi.abi, this.dexAddr);
+            this.dex = new ethers.Contract(this.dexAddr, dexAbi.abi, this.web3Global);
         }
     }
 
     async checkId() {
-        let ID = await this.web3Global.eth.net.getId();
-        if (ID != MAINNET.params[0].chainIdchainId) {
+        let network = await this.web3Global.getNetwork();
+        if (network.chainId != MAINNET.params[0].chainId) {
             await this.connectToMetamask();
         }
     }

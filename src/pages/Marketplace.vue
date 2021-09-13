@@ -738,12 +738,12 @@
                                             <div class="text-muted card-subtitle h6">
                                                 {{ punk.type == 'Crypto' ? 'Crypto Friend' : punk.type }}
                                                 <span style="float: right">
-                                                    {{ walletManager.web3Global.utils.fromWei(punk.bid.minValue.hex ? punk.bid.minValue.hex : punk.bid.minValue) }}
+                                                    {{ walletManager.ethers.utils.formatEther(punk.bid.minValue.hex ? punk.bid.minValue.hex : punk.bid.minValue) }}
                                                     <img style="margin-left: 5px;" height="20px" src="/bnb.svg">
                                                 </span>
                                                 <div class="clearfix"></div>
                                                 <!-- <span v-if="punk.real_bid && punk.real_bid.hasBid" style="float: right; margin-top: 5px;">
-                                                    {{ walletManager.web3Global.utils.fromWei(punk.real_bid.value.hex ? punk.real_bid.value.hex : punk.real_bid.value) }}
+                                                    {{ walletManager.ethers.utils.formatEther(punk.real_bid.value.hex ? punk.real_bid.value.hex : punk.real_bid.value) }}
                                                     <img height="20px;" src="/auction-bid.svg" />
                                                 </span> -->
                                             </div>
@@ -838,7 +838,7 @@ export default {
         },
         async getMyPunks() {
             await this.walletManager.checkId();
-            if (!this.walletManager.nft.methods.ownerOf) {
+            if (!this.walletManager.nft.ownerOf) {
                 this.is_load_my_punk = false;
             } else {
                 this.punk_loading = true;
@@ -864,14 +864,14 @@ export default {
                     }
 
                     if (!loadFromServer) {
-                        let mybalance = await this.walletManager.nft.methods.balanceOf(this.walletManager.dexAddr).call();
+                        let mybalance = await this.walletManager.nft.balanceOf(this.walletManager.dexAddr);
 
                         this.myAllPunks = [];
 
                         for (let i = 0; i < mybalance; i++) {
-                            let number = await this.walletManager.nft.methods.tokenOfOwnerByIndex(this.walletManager.dexAddr, i).call();
+                            let number = await this.walletManager.nft.tokenOfOwnerByIndex(this.walletManager.dexAddr, i);
                             let p = window.punks[(number)];
-                            p.bid = await this.walletManager.dex.methods.punksOfferedForSale(number).call();
+                            p.bid = await this.walletManager.dex.punksOfferedForSale(number);
                             this.myAllPunks.push(p);
                         }
                     }
@@ -1116,8 +1116,8 @@ export default {
                 for (let i = 0; i < _allPunks.length; i++) {
                     // TODO
                     if (
-                        new this.walletManager.web3Global.utils.BN(_allPunks[i].bid.minValue.hex ? _allPunks[i].bid.minValue.hex : _allPunks[i].bid.minValue)
-                        .gte(new this.walletManager.web3Global.utils.BN(parseInt(this.minimum_price) * 1000000000))
+                        this.walletManager.ethers.BigNumber.from(_allPunks[i].bid.minValue.hex ? _allPunks[i].bid.minValue.hex : _allPunks[i].bid.minValue)
+                        .gte(this.walletManager.ethers.BigNumber.from(parseInt(this.minimum_price) * 1000000000))
                     )
                         _allPunksPrice.push(_allPunks[i]);
                 }
@@ -1175,48 +1175,48 @@ export default {
                             return b.rank - a.rank;
                         } else if (sortBy === "price_lowest") {
                             if (!this.price_idx[a.idx])
-                                this.price_idx[a.idx] = this.walletManager.web3Global.utils.fromWei(a.bid.minValue.hex ? a.bid.minValue.hex : a.bid.minValue);
+                                this.price_idx[a.idx] = this.walletManager.ethers.utils.formatEther(a.bid.minValue.hex ? a.bid.minValue.hex : a.bid.minValue);
 
                             let first = this.price_idx[a.idx];
 
                             if (!this.price_idx[b.idx])
-                                this.price_idx[b.idx] = this.walletManager.web3Global.utils.fromWei(b.bid.minValue.hex ? b.bid.minValue.hex : b.bid.minValue);
+                                this.price_idx[b.idx] = this.walletManager.ethers.utils.formatEther(b.bid.minValue.hex ? b.bid.minValue.hex : b.bid.minValue);
 
                             let second = this.price_idx[b.idx];
 
                             return (first - second);
                         } else if (sortBy === "price_highest") {
                             if (!this.price_idx[a.idx])
-                                this.price_idx[a.idx] = this.walletManager.web3Global.utils.fromWei(a.bid.minValue.hex ? a.bid.minValue.hex : a.bid.minValue);
+                                this.price_idx[a.idx] = this.walletManager.ethers.utils.formatEther(a.bid.minValue.hex ? a.bid.minValue.hex : a.bid.minValue);
 
                             let first = this.price_idx[a.idx];
 
                             if (!this.price_idx[b.idx])
-                                this.price_idx[b.idx] = this.walletManager.web3Global.utils.fromWei(b.bid.minValue.hex ? b.bid.minValue.hex : b.bid.minValue);
+                                this.price_idx[b.idx] = this.walletManager.ethers.utils.formatEther(b.bid.minValue.hex ? b.bid.minValue.hex : b.bid.minValue);
 
                             let second = this.price_idx[b.idx];
 
                             return (second - first);
                         } else if (sortBy === "bid_lowest") {
                             if (!this.price_bid_idx[a.idx])
-                                this.price_bid_idx[a.idx] = this.walletManager.web3Global.utils.fromWei(a.real_bid.value.hex ? a.real_bid.value.hex : a.real_bid.value);
+                                this.price_bid_idx[a.idx] = this.walletManager.ethers.utils.formatEther(a.real_bid.value.hex ? a.real_bid.value.hex : a.real_bid.value);
 
                             let first = this.price_bid_idx[a.idx];
 
                             if (!this.price_bid_idx[b.idx])
-                                this.price_bid_idx[b.idx] = this.walletManager.web3Global.utils.fromWei(b.real_bid.value.hex ? b.real_bid.value.hex : b.real_bid.value);
+                                this.price_bid_idx[b.idx] = this.walletManager.ethers.utils.formatEther(b.real_bid.value.hex ? b.real_bid.value.hex : b.real_bid.value);
 
                             let second = this.price_bid_idx[b.idx];
 
                             return (first - second);
                         } else if (sortBy === "bid_highest") {
                             if (!this.price_bid_idx[a.idx])
-                                this.price_bid_idx[a.idx] = this.walletManager.web3Global.utils.fromWei(a.real_bid.value.hex ? a.real_bid.value.hex : a.real_bid.value);
+                                this.price_bid_idx[a.idx] = this.walletManager.ethers.utils.formatEther(a.real_bid.value.hex ? a.real_bid.value.hex : a.real_bid.value);
 
                             let first = this.price_bid_idx[a.idx];
 
                             if (!this.price_bid_idx[b.idx])
-                                this.price_bid_idx[b.idx] = this.walletManager.web3Global.utils.fromWei(b.real_bid.value.hex ? b.real_bid.value.hex : b.real_bid.value);
+                                this.price_bid_idx[b.idx] = this.walletManager.ethers.utils.formatEther(b.real_bid.value.hex ? b.real_bid.value.hex : b.real_bid.value);
 
                             let second = this.price_bid_idx[b.idx];
 

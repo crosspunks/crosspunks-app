@@ -106,42 +106,32 @@ export default {
     methods: {
         async showData() {
             await this.walletManager.checkId();
-            this.walletAddr = await this.walletManager.web3Global.eth.getCoinbase();
+            let signer = await this.walletManager.web3Global.getSigner();
+            this.walletAddr = await signer.getAddress();
             (async () => {
-                let bf = await this.walletManager.nft.methods
-                    .balanceOf(
-                        this.walletAddr
-                    )
-                    .call();
+                let bf = await this.walletManager.nft.balanceOf(this.walletAddr);
                 this.crossPunksBalance = bf;
             })();
 
             (async () => {
-                this.userAirDrop = await this.walletManager.nft.methods
-                    .usersAirdrop(
-                        this.walletAddr
-                    )
-                    .call();
+                this.userAirDrop = await this.walletManager.nft.usersAirdrop(this.walletAddr);
                 this.airDropLoading = false;
             })();
         },
         async getAirDropLink() {
             if (!this.airDropLoading) {
                 this.airDropLoading = true;
-                let from = await this.walletManager.web3Global.eth.getCoinbase();
+                let signer = await this.walletManager.web3Global.getSigner();
+                let nftSigner = this.walletManager.nft.connect(signer);
                 try {
-                    await this.walletManager.nft.methods.startAirDrop().send({
-                        from,
-                        feeLimit: 300000000,
-                        shouldPollResponse: false,
-                    });
+                    await nftSigner.startAirDrop();
                 } catch (e) {
                     console.log(e.message);
                 }
 
                 setTimeout(() => {
                     this.showData();
-                }, 5000);
+                }, 10000);
             }
         },
     },

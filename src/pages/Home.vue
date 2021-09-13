@@ -120,9 +120,7 @@ export default {
         async loadPunkLeft() {
             await this.walletManager.checkId();
             setTimeout(async () => {
-                let number = await this.walletManager.nft.methods
-                    .totalSupply()
-                    .call();
+                let number = await this.walletManager.nft.totalSupply();
                 this.punkLeft = 10000 - number;
             }, 1000);
         },

@@ -99,33 +99,21 @@ export default {
     },
     methods: {
         async getPunk() {
-            let from = await this.walletManager.web3Global.eth.getCoinbase();
+            let signer = await this.walletManager.web3Global.getSigner();
+            let nftSigner = this.walletManager.nft.connect(signer);
             if (!this.btn_loading) {
                 this.btn_loading = true;
                 this.box_msg = "";
                 this.box_msg_danger = "";
                 try {
                     let invite_code = this.invite_code_input.trim();
-                    let fee = 0;
-                    if (this.crosspunks_count <= 3) {
-                        fee = 300000000;
-                    } else if (this.crosspunks_count <= 10) {
-                        fee = 600000000;
-                    } else {
-                        fee = 1000000000;
-                    }
                     // await this.walletManager.contract.mintNFT(this.crosspunks_count).send({
-                    await this.walletManager.nft.methods
+                    await nftSigner
                         .mintNFTAirDrop(
                             this.crosspunks_count,
-                            invite_code > 0 ? invite_code : 0
-                        )
-                        .send({
-                            from,
-                            feeLimit: fee,
-                            value: this.walletManager.web3Global.utils.toWei((this.crosspunks_count * 100).toString(), 'finney'),
-                            shouldPollResponse: false,
-                        });
+                            invite_code > 0 ? invite_code : 0,
+                            { value: this.walletManager.ethers.utils.parseUnits((this.crosspunks_count * 100).toString(), 'finney') }
+                        );
 
                     this.box_msg =
                         "Your transaction has been broadcast to network!";
@@ -144,9 +132,7 @@ export default {
         async loadPunkLeft() {
             await this.walletManager.checkId();
             setTimeout(async () => {
-                let number = await this.walletManager.nft.methods
-                    .totalSupply()
-                    .call();
+                let number = await this.walletManager.nft.totalSupply();
                 this.punkLeft = 10000 - number;
             }, 1000);
         },
