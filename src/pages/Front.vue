@@ -55,9 +55,9 @@
                         <a target="_blank" href="https://t.me/crosspunks" class="p-1">
                             <img src="/img/soc_tg.png" style="width: 30px; height: 30px;">
                         </a>
-                        <a target="_blank" href="https://www.youtube.com/channel/UCCycMj-nlN1brjI_IhmS_sA" class="p-1">
+                        <!-- <a target="_blank" href="https://www.youtube.com/channel/UCCycMj-nlN1brjI_IhmS_sA" class="p-1">
                             <img src="/img/soc_yb.png" style="width: 30px; height: 30px;">
-                        </a>
+                        </a> -->
                         <a target="_blank" href="https://medium.com/@crosspunks" class="p-1">
                             <img src="/img/soc_md.png" style="width: 30px; height: 30px;">
                         </a>
