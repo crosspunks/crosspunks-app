@@ -56,9 +56,9 @@
                                 <div class="row" >
                                     <p style="font-size: 18px">Rank {{ currentPunk.rank }}</p>
                                 </div>
-                                <div class="row justify-content-around">
+                                <div class="row justify-content-between">
                                     <button class="btn crosspunk-btn" @click="getAvatar(currentPunk.idx)">Get avatar</button>
-                                    <button class="btn crosspunk-btn" @click="showTransfer()" v-if="walletStatus">
+                                    <button class="btn crosspunk-btn" @click="showTransfer()" v-if="this.walletStatus && this.token_owner.toLowerCase() == this.walletAddr.toLowerCase()">
                                         Transfer punk
                                     </button>
                                 </div>
