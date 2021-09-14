@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="row justify-content-around">
                                     <button class="btn crosspunk-btn" @click="getAvatar(currentPunk.idx)">Get avatar</button>
-                                    <button class="btn crosspunk-btn btn-block" @click="showTransfer()">
+                                    <button class="btn crosspunk-btn" @click="showTransfer()">
                                         Transfer punk
                                     </button>
                                 </div>
