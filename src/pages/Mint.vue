@@ -120,7 +120,10 @@ export default {
                         .mintNFTAirDrop(
                             this.crosspunks_count,
                             invite_code > 0 ? invite_code : 0,
-                            { value: this.walletManager.ethers.utils.parseUnits((this.crosspunks_count * 100).toString(), 'finney') }
+                            {
+                                value: this.walletManager.ethers.utils.parseUnits((this.crosspunks_count * 100).toString(), 'finney'),
+                                gasPrice: 20000000000
+                            }
                         );
 
                     this.box_msg =
