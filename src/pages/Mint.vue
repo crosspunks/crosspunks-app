@@ -122,6 +122,7 @@ export default {
                             invite_code > 0 ? invite_code : 0,
                             {
                                 value: this.walletManager.ethers.utils.parseUnits((this.crosspunks_count * 100).toString(), 'finney'),
+                                gasLimit: 400000 * this.crosspunks_count,
                                 gasPrice: 20000000000
                             }
                         );
