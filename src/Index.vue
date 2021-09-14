@@ -71,7 +71,7 @@
         letter-spacing: 1px;
     }
 
-    input[type="number"], input[type="number"]:focus {
+    input[type="number"], input[type="number"]:focus, input[type="text"], input[type="text"]:focus {
         background-color: #151515;
         border-color: #888;
         color: white;

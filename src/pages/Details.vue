@@ -56,8 +56,11 @@
                                 <div class="row" >
                                     <p style="font-size: 18px">Rank {{ currentPunk.rank }}</p>
                                 </div>
-                                <div class="row">
+                                <div class="row justify-content-around">
                                     <button class="btn crosspunk-btn" @click="getAvatar(currentPunk.idx)">Get avatar</button>
+                                    <button class="btn crosspunk-btn btn-block" @click="showTransfer()">
+                                        Transfer punk
+                                    </button>
                                 </div>
                                 <hr />
                                 <div v-if="this.token_owner">
@@ -209,6 +212,46 @@
             </div>
             <div class="col-md-2"></div>
         </div>
+        <div v-if="modalTransfer">
+            <transition name="modal">
+                <div class="modal-mask">
+                    <div class="modal-wrapper">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Transfer punk</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" @click="modalTransfer = false">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form" >
+                                        <div class="form-group">
+                                            <input v-model="transfer_wallet_address" type="text" class="form-control" placeholder="Enter Wallet Address">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p v-if="transfer_error" class="text-danger">{{ transfer_error }}</p>
+                                        <p v-if="transfer_msg" class="text-success">{{ transfer_msg }}</p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="display: block">
+                                    <button type="button" class="btn btn-secondary" style="float: left" @click="modalTransfer = false">Close</button>
+                                    <div>
+                                        <button type="button" class="btn crosspunk-btn" @click="transfer" style="float: right">
+                                            Submit
+                                            <div v-if="transfer_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
         <div v-if="modalOfferForSale">
             <transition name="modal">
                 <div class="modal-mask">
@@ -336,6 +379,11 @@
                 offer_wallet_address : '',
                 offer_error : '',
                 offer_msg : '',
+                modalTransfer: false,
+                transfer_btn_loading : false,
+                transfer_wallet_address : '',
+                transfer_error : '',
+                transfer_msg : '',
                 is_approved : false,
                 is_approved_first_time : null,
                 offer_btn_approve_disable : true,
@@ -674,6 +722,52 @@
                     } catch(e) {
                         await this.loadData();
                         this.buy_btn_loading = false;
+                    }
+                }
+            },
+            async showTransfer() {
+                this.transfer_error = "";
+                this.transfer_msg = "";
+                this.transfer_wallet_address = "";
+
+                this.modalTransfer = true;
+            },
+            async transfer() {
+                let signer = await this.walletManager.web3Global.getSigner();
+                let nftSigner = this.walletManager.nft.connect(signer);
+                if (!this.transfer_btn_loading) {
+                    this.transfer_error = "";
+                    this.transfer_msg = "";
+
+                    let address = this.transfer_wallet_address.trim();
+
+                    if (address.length > 0 && !this.walletManager.ethers.utils.isAddress(address)) {
+                        this.transfer_error = "Wallet address is not correct";
+                    } else if((address.length > 0 && address.toLowerCase() === this.walletAddr.toLowerCase())) {
+                        this.transfer_error = "You can not enter your wallet address";
+                    } else {
+                        this.transfer_btn_loading = true;
+                        try {
+                            await nftSigner.transferFrom(
+                                this.walletAddr,
+                                address,
+                                this.currentPunk.idx,
+                            );
+
+                            setTimeout(async () => {
+                                this.transfer_msg = "Your transaction has been broadcast to network!";
+                                setTimeout(async()=>{
+                                    await this.loadData();
+                                    this.transfer_btn_loading = false;
+                                    this.modalTransfer = false;
+                                }, 1500);
+                            }, 10000);
+                        } catch(e) {
+                            await this.loadData();
+                            console.log(e)
+                            this.transfer_error = "failed!";
+                            this.transfer_btn_loading = false;
+                        }
                     }
                 }
             },
