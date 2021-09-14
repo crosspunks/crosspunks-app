@@ -696,31 +696,30 @@
             <div class="col">
                 <div class="">
                     <div class="">
-                        <div v-if="!this.walletStatus" class="row">
-                            <!-- <div v-if="this.walletStatus==false" style="margin: 0 auto;">
+                        <!-- <div v-if="!this.walletStatus" class="row">
+                            <div v-if="this.walletStatus==false" style="margin: 0 auto;">
                                 <button type="button" class="btn">
-                                        <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
-                                    </button>
-                            </div> -->
+                                    <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </button>
+                            </div>
                             <div class="text-center" style="margin: 0 auto;">
                                 <h1> Connect your Metamask </h1>
                                 <div class="text-center" style="margin-bottom: 20px;">
                                 </div>
                                 <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
-                                        Connect Wallet
-                                    </button>
-                                <!-- <button v-else type="button" class="btn crosspunk-btn">
-                                        Connect Wallet
-                                        <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
-                                    </button> -->
+                                    Connect Wallet
+                                </button>
+                                <button v-else type="button" class="btn crosspunk-btn">
+                                    Connect Wallet
+                                    <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </button>
                             </div>
-    
-                        </div>
-                        <div v-else-if="punk_loading" class="row">
+                        </div> -->
+                        <div v-if="punk_loading" class="row">
                             <button type="button" class="btn" style="margin: 0 auto;">
                                         <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
                                             <span class="sr-only">Loading...</span>
@@ -819,7 +818,7 @@ export default {
     mounted() {
         setInterval(() => {
             this.walletStatus = this.walletManager.walletStatus;
-            if (this.walletStatus && !this.is_load_my_punk) {
+            if (!this.is_load_my_punk) {
                 this.is_load_my_punk = true;
                 this.getMyPunks();
             }

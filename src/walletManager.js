@@ -48,24 +48,20 @@ class _walletManager {
     constructor() {
         this.connectToMetamask();
 
-        if (this.walletStatus) {
-            this.nft = new ethers.Contract(this.nftAddr, nftAbi.abi, this.web3Global);
-            this.dex = new ethers.Contract(this.dexAddr, dexAbi.abi, this.web3Global);
-        }
+        this.connectToContract();
     }
 
     async connectToMetamask() {
         if (window.ethereum) {
             this.web3Global = new ethers.providers.Web3Provider(window.ethereum);
             try {
-                ethereum.enable();
+                await window.ethereum.enable();
                 this.walletStatus = true;
             } catch (error) {
                 console.log(error);
             }
         } else {
             this.web3Global = new ethers.providers.JsonRpcProvider(MAINNET.params[0].rpcUrls[0]);
-            this.walletStatus = true;
             console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
         }
 
@@ -83,18 +79,6 @@ class _walletManager {
                 this.walletStatus = false;
                 console.log(error);
             });
-
-            // if (!await this.web3Global.getAddress()) {
-            //     await window.ethereum.request({
-            //         method: 'wallet_requestPermissions',
-            //         params: [{
-            //           'eth_accounts': {},
-            //         }]
-            //     }).catch((error) => {
-            //         this.walletStatus = false;
-            //         console.log(error);
-            //     });
-            // }
         }
     }
 

@@ -99,7 +99,7 @@ export default {
 
         setInterval(() => {
             this.walletStatus = this.walletManager.walletStatus;
-            if (this.walletStatus && !this.loadPunk) {
+            if (!this.loadPunk) {
                 this.loadPunk = true;
                 this.loadPunkLeft();
             }

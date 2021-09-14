@@ -3,28 +3,28 @@
         <div class="row" style="min-height: calc(100vh - 225px);">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div v-if="!this.walletStatus" class="row">
-                    <!-- <div v-if="this.walletStatus==false" style="margin: 0 auto;">
+                <!-- <div v-if="!this.walletStatus" class="row">
+                    <div v-if="this.walletStatus==false" style="margin: 0 auto;">
                         <button type="button" class="btn">
                             <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
                         </button>
-                    </div> -->
+                    </div>
                     <div class="text-center" style="margin: 0 auto;">
                         <h1> Connect your Metamask</h1>
                         <div class="text-center" style="margin-bottom: 20px;"></div>
                         <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
                             Connect Wallet
                         </button>
-                        <!-- <button v-else type="button" class="btn crosspunk-btn">
+                        <button v-else type="button" class="btn crosspunk-btn">
                             Connect Wallet
                             <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
-                        </button> -->
+                        </button>
                     </div>
-                </div>
+                </div> -->
                 <div v-if="punk_loading" class="text-center">
                     <button  type="button" class="btn" style="margin: 0 auto;">
                         <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="row justify-content-around">
                                     <button class="btn crosspunk-btn" @click="getAvatar(currentPunk.idx)">Get avatar</button>
-                                    <button class="btn crosspunk-btn" @click="showTransfer()">
+                                    <button class="btn crosspunk-btn" @click="showTransfer()" v-if="walletStatus">
                                         Transfer punk
                                     </button>
                                 </div>
@@ -412,7 +412,7 @@
 
                 setInterval(()=>{
                     this.walletStatus = this.walletManager.walletStatus
-                    if(this.walletStatus && !this.is_load_this_punk){
+                    if(!this.is_load_this_punk){
                         this.is_load_this_punk = true;
                         this.loadData();
                     }
@@ -439,7 +439,9 @@
             async loadData() {
                 await this.walletManager.checkId();
                 let signer = await this.walletManager.web3Global.getSigner();
-                this.walletAddr = await signer.getAddress();
+                if (this.walletStatus) {
+                    this.walletAddr = await signer.getAddress();
+                }
                 if (!this.walletManager.nft.ownerOf) {
                     this.is_load_this_punk = false;
                 } else {
