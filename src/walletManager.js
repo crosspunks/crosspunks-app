@@ -64,6 +64,8 @@ class _walletManager {
                 console.log(error);
             }
         } else {
+            this.web3Global = new ethers.providers.JsonRpcProvider(MAINNET.params[0].rpcUrls[0]);
+            this.walletStatus = true;
             console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
         }
 
