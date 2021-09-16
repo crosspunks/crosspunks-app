@@ -130,8 +130,12 @@ export default {
                     this.box_msg =
                         "Your transaction has been broadcast to network!";
                 } catch (e) {
-                    this.box_msg_danger = e.data.message;
-                    console.log(e.data.message);
+                    if (e.data) {
+                        this.box_msg_danger = e.data.message;
+                    } else {
+                        this.box_msg_danger = e.message;
+                    }
+                    this.btn_loading = false;
                 }
 
                 setTimeout(() => {

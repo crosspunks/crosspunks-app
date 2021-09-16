@@ -75,10 +75,10 @@
                                             <p>Offered by owner for <span style="color: #e7e2e2">{{ sale_by_owner }} BNB</span></p>
                                         </div> -->
                                         <div v-if="this.walletStatus">
-                                            <div v-if="punkBids.hasBid" class="row text-warning" >
+                                            <!-- <div v-if="punkBids.hasBid" class="row text-warning" >
                                                 <p>There is a bid of <span style="color: #e7e2e2">{{ punkBids.value }} BNB</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
-                                            </div>
-                                            <div v-if="punkBids.bidder === walletAddr" class="row mb-2">
+                                            </div> -->
+                                            <!-- <div v-if="punkBids.bidder === walletAddr" class="row mb-2">
                                                 <div class="col-md-12" >
                                                     <button class="btn btn-warning btn-block" @click="cancelBid">
                                                         Cancel Bid
@@ -87,7 +87,7 @@
                                                         </div>
                                                     </button>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div v-if="this.token_owner.toLowerCase() !== walletAddr.toLowerCase()" class="row">
                                                 <div class="col-md-6" >
@@ -146,6 +146,7 @@
                                             </button> -->
                                         </div>
                                     </div>
+                                    <p v-if="tx_error" class="text-danger">{{ tx_error }}</p>
                                 </div>
                             </div>
                         </div>
@@ -402,6 +403,7 @@
                 marketHistory : [],
                 birthday : false,
                 walletAddr: '',
+                tx_error: '',
             }
         },
         mounted() {
@@ -597,6 +599,9 @@
             async cancelSelling() {
                 let signer = await this.walletManager.web3Global.getSigner();
                 let dexSigner = this.walletManager.dex.connect(signer);
+
+                this.tx_error = '';
+
                 if (!this.cancel_btn_loading) {
                     this.cancel_btn_loading = true;
                     try {
@@ -608,6 +613,11 @@
                         }, 10000)
                     } catch (e) {
                         await this.loadData();
+                        if (e.data) {
+                            this.tx_error = e.data.message;
+                        } else {
+                            this.tx_error = e.message;
+                        }
                         this.cancel_btn_loading = false;
                     }
                 }
@@ -710,6 +720,9 @@
             async buy() {
                 let signer = await this.walletManager.web3Global.getSigner();
                 let dexSigner = this.walletManager.dex.connect(signer);
+
+                this.tx_error = '';
+
                 if (!this.buy_btn_loading) {
                     this.buy_btn_loading = true;
                     try {
@@ -723,6 +736,11 @@
                         }, 10000);
                     } catch(e) {
                         await this.loadData();
+                        if (e.data) {
+                            this.tx_error = e.data.message;
+                        } else {
+                            this.tx_error = e.message;
+                        }
                         this.buy_btn_loading = false;
                     }
                 }
