@@ -28,15 +28,15 @@
                                 <div class="col-md-3"></div>
                             </div>
 
-                            <!-- <div class="row mb-3">
-                                <p class="link-primary button" style="font-size: 12px; color: blue; display: inline-block; margin: 0 auto; cursor: pointer;" @click="toggleIL">
-                                    i have invite code
+                            <div class="row mb-3">
+                                <p class="link-primary button" style="font-size: 12px; display: inline-block; margin: 0 auto; cursor: pointer;" @click="toggleIL">
+                                    I have invite code
                                 </p>
-                            </div> -->
+                            </div>
                             <div class="form-group row" v-if="toggleInviteLink">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6">
-                                    <input type="text" value="" placeholder="invite code" class="form-control" v-model="invite_code_input" />
+                                    <input type="text" value="" placeholder="Invite code" class="form-control" v-model="invite_code_input" />
                                 </div>
                                 <div class="col-md-3"></div>
                             </div>
