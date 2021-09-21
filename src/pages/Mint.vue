@@ -115,6 +115,20 @@ export default {
                 this.box_msg_danger = "";
                 try {
                     let invite_code = this.invite_code_input.trim();
+                    dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+                    dataLayer.push({
+                        event: "begin_checkout",
+                        ecommerce: {
+                            items: [{
+                                item_name: "Punk", // Name or ID is required.
+                                item_id: "0",
+                                price: 50.0,
+                                item_brand: "CrossPunks",
+                                index: 1,
+                                quantity: this.crosspunks_count
+                            }]
+                        }
+                    });
                     // await this.walletManager.contract.mintNFT(this.crosspunks_count).send({
                     await nftSigner
                         .mintNFTAirDrop(
@@ -126,6 +140,24 @@ export default {
                                 gasPrice: 20000000000
                             }
                         );
+
+                    dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+                    dataLayer.push({
+                        event: "purchase",
+                        ecommerce: {
+                            transaction_id: "T12345",
+                            affiliation: invite_code,
+                            value: "50.0",
+                            currency: "EUR",
+                            items: [{
+                                item_name: "Punk",
+                                item_id: "0",
+                                price: "50.0",
+                                item_brand: "CrossPunks",
+                                quantity: 1
+                            }]
+                        }
+                    });
 
                     this.box_msg =
                         "Your transaction has been broadcast to network!";
