@@ -30,7 +30,7 @@
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'referralLink' }" class="crosspunk-link">
                                     My referral link
                                 </router-link>
-                                <a target="_blank" class="crosspunk-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
+                                <a id="bscscan" target="_blank" class="crosspunk-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
                                     Contract
                                 </a>
                             </div>
@@ -49,19 +49,19 @@
                         </router-link>
                     </div>
                     <div class="col-6" style="text-align: end;">
-                        <a target="_blank"  href="https://twitter.com/crosspunks" class="p-1">
+                        <a id="twitter" target="_blank" href="https://twitter.com/crosspunks" class="p-1">
                             <img src="/img/soc_tw.png" style="width: 30px; height: 30px;">
                         </a>
-                        <a target="_blank" href="https://t.me/crosspunks" class="p-1">
+                        <a id="telegram" target="_blank" href="https://t.me/crosspunks" class="p-1">
                             <img src="/img/soc_tg.png" style="width: 30px; height: 30px;">
                         </a>
-                        <a target="_blank" href="https://www.youtube.com/channel/UCCycMj-nlN1brjI_IhmS_sA" class="p-1">
+                        <a id="youtube" target="_blank" href="https://www.youtube.com/channel/UCCycMj-nlN1brjI_IhmS_sA" class="p-1">
                             <img src="/img/soc_yb.png" style="width: 30px; height: 30px;">
                         </a>
-                        <a target="_blank" href="https://medium.com/@crosspunks" class="p-1">
+                        <a id="medium" target="_blank" href="https://medium.com/@crosspunks" class="p-1">
                             <img src="/img/soc_md.png" style="width: 30px; height: 30px;">
                         </a>
-                        <a target="_blank" href="https://github.com/crosspunks" class="p-1">
+                        <a id="github" target="_blank" href="https://github.com/crosspunks" class="p-1">
                             <img src="/img/soc_gh.png" style="width: 30px; height: 30px;">
                         </a>
                     </div>

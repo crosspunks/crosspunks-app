@@ -7,7 +7,7 @@
                     <h1 class="crosspunk-h1">
                         Mint&nbsp;your&nbsp;CrossPunk&nbsp;now or&nbsp;watch&nbsp;your&nbsp;friends become&nbsp;millionaires&nbsp;later!
                     </h1>
-                    <router-link :to="{ name : 'mint' }" class="btn crosspunk-btn-rev">
+                    <router-link :to="{ name : 'mint' }" id="go-to-mint" class="btn crosspunk-btn-rev">
                         Get one of {{ punkLeft }}
                     </router-link>
                 </div>
