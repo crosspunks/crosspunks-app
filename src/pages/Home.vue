@@ -139,8 +139,16 @@ export default {
             'iPod'
         ].includes(navigator.platform)
 
-        if ((ua.indexOf('safari') != -1) || ios) {
+        if (ios) {
             this.other_devices = true;
+        }
+
+        if (ua.indexOf('safari') != -1) { 
+            if (ua.indexOf('chrome') > -1) {
+                this.other_devices = false; // Chrome
+            } else {
+                this.other_devices = true; // Safari
+            }
         }
 
         setInterval(() => {
