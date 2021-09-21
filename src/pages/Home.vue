@@ -88,6 +88,27 @@
                 </div>
             </div>
         </div>
+        <div v-if="other_devices">
+            <transition name="modal">
+                <div class="modal-mask">
+                    <div class="modal-wrapper">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Other devices</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" @click="other_devices = false">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Your device is not supported on this site. Please use our site on a desktop and use Chrome or Firefox
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
     </div>
 </template>
 
@@ -99,12 +120,29 @@ export default {
             searchById: "",
             punks: [],
             punkLeft: "10000",
+            other_devices: false,
         };
     },
     mounted() {
         let params = this.$route.params["id"];
         if (params > 0) {
             window.localStorage.setItem("inviteKey", params);
+        }
+
+        let ua = navigator.userAgent.toLowerCase();
+        let ios = [
+            'iPad Simulator',
+            'iPhone Simulator',
+            'iPod Simulator',
+            'iPad',
+            'iPhone',
+            'iPod'
+        ].includes(navigator.platform)
+        // iPad on iOS 13 detection
+        || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+
+        if ((ua.indexOf('safari') != -1) || ios) {
+            this.other_devices = true;
         }
 
         setInterval(() => {
@@ -490,5 +528,9 @@ export default {
 
 .p-8 {
     padding: 2rem;
+}
+
+.modal-content {
+    color: white;
 }
 </style>
