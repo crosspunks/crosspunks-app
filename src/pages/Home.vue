@@ -12,6 +12,26 @@
                     </router-link>
                 </div>
             </div>
+            <div style="height: 800px" class="crosspunk-block crosspunk-how-block">
+                <div class="crosspunk-image bg-how-image"></div>
+                <div class="crosspunk-text container bg-how-text">
+                    <h2 class="crosspunk-h1">How to mint</h2>
+                    <p>1) Install Metamask Extension to your favourite browser <a target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Chrome</a> or <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/">Firefox</a></p>
+                    <p>2) <a target="_blank" href="https://docs.binance.org/smart-chain/wallet/metamask.html">Create your Metamask wallet</a></p>
+                    <p>3) Go to <a href="/#/">CrossPunks.com</a> and your Metamask will ask you to connect to Binance Smart Chain network. Approve it</p>
+                    <p>4) Copy your BNB wallet adress from Metamask. Go to <a target="_blank" href="https://binance.com/">Binance.com</a> (make sure you're on a real site with an SSL certificate)</p>
+                    <p>5) Top-Up your account (using crypto or fiat methods). Here you may find a guidline <a target="_blank" href="https://www.binance.com/en/buy-BNB">how to buy BNB</a></p>
+                    <p>6) Send BNB from your Binance account to your Metamask wallet. (check twice you're entering the right wallet) and take into account a small fee Binance Smart Chain will take (around 1c)</p>
+                    <p>7) Press the <router-link :to="{ name : 'mint' }">Mint</router-link> button</p>
+                    <p>8) Wait an enjoy your freshly-baked CrossPunk</p>
+                </div>
+            </div>
+            <div style="height: 800px" class="crosspunk-block crosspunk-roadmap-block">
+                <div class="crosspunk-image bg-roadmap-image"></div>
+                <div class="crosspunk-text container bg-roadmap-text">
+                    <img src="/img/cp_roadmap_04.svg" />
+                </div>
+            </div>
             <div style="height: 800px" class="crosspunk-block">
                 <div class="crosspunk-image bg-our-image"></div>
                 <div class="crosspunk-text container bg-our-text">
@@ -65,26 +85,6 @@
                     <p>Hey, wanderer! Pretty sure, you’re familiar with a feeling of a missed train. A wideass train fully stocked with explosive profit juice, and it runs near you just in a blink. Bang, you never had a moment to do something. What exactly do you feel at this point, perhaps you want to get back in time and buy first Punk for $30 or Bitcoin for $5 in 2012? Well, we don’t have a spare time machine, but, here we are to give you a precious possibility to be on time on a “profit platform”. We’ll have you covered, here’s your ticket!</p>
                     <p>We start with one of the most popular Binance networks, but very soon you will be able to buy and sell our punks in any network, without limiting yourself to anything and not being tied to a particular blockchain.</p>
                     <p>Stay tuned for good news and share your success stories on our social networks!</p>
-                </div>
-            </div>
-            <div style="height: 800px" class="crosspunk-block crosspunk-how-block">
-                <div class="crosspunk-image bg-how-image"></div>
-                <div class="crosspunk-text container bg-how-text">
-                    <h2 class="crosspunk-h1">How to mint</h2>
-                    <p>1) Install Metamask Extension to your favourite browser <a target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Chrome</a> or <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/">Firefox</a></p>
-                    <p>2) <a target="_blank" href="https://docs.binance.org/smart-chain/wallet/metamask.html">Create your Metamask wallet</a></p>
-                    <p>3) Go to <a href="/#/">CrossPunks.com</a> and your Metamask will ask you to connect to Binance Smart Chain network. Approve it</p>
-                    <p>4) Copy your BNB wallet adress from Metamask. Go to <a target="_blank" href="https://binance.com/">Binance.com</a> (make sure you're on a real site with an SSL certificate)</p>
-                    <p>5) Top-Up your account (using crypto or fiat methods). Here you may find a guidline <a target="_blank" href="https://www.binance.com/en/buy-BNB">how to buy BNB</a></p>
-                    <p>6) Send BNB from your Binance account to your Metamask wallet. (check twice you're entering the right wallet) and take into account a small fee Binance Smart Chain will take (around 1c)</p>
-                    <p>7) Press the <router-link :to="{ name : 'mint' }">Mint</router-link> button</p>
-                    <p>8) Wait an enjoy your freshly-baked CrossPunk</p>
-                </div>
-            </div>
-            <div style="height: 800px" class="crosspunk-block crosspunk-roadmap-block">
-                <div class="crosspunk-image bg-roadmap-image"></div>
-                <div class="crosspunk-text container bg-roadmap-text">
-                    <img src="/img/cp_roadmap_04.svg" />
                 </div>
             </div>
         </div>
