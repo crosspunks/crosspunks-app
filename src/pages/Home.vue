@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="other_devices">
+        <!-- <div v-if="other_devices">
             <transition name="modal">
                 <div class="modal-mask">
                     <div class="modal-wrapper">
@@ -108,7 +108,7 @@
                     </div>
                 </div>
             </transition>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -120,23 +120,12 @@ export default {
             searchById: "",
             punks: [],
             punkLeft: "10000",
-            other_devices: false,
         };
     },
     mounted() {
         let params = this.$route.params["id"];
         if (params > 0) {
             window.localStorage.setItem("inviteKey", params);
-        }
-
-        let ua = navigator.userAgent.toLowerCase();
-
-        if (ua.indexOf('safari') != -1) { 
-            if (ua.indexOf('chrome') > -1) {
-                this.other_devices = false; // Chrome
-            } else {
-                this.other_devices = true; // Safari
-            }
         }
 
         setInterval(() => {

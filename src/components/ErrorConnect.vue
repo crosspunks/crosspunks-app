@@ -14,6 +14,7 @@
                             <div class="modal-body" style="text-align: left;">
                                 <p>The site was unable to connect to your metamask wallet.</p>
                                 <p>Please use Metamask extensions for Chrome or Firefox on the desktop platform. And also Metamask for the Android or iPhone platform.</p>
+                                <p>Wait 5 seconds and you will be redirected to the Metamask application.</p>
                             </div>
                         </div>
                     </div>
@@ -32,7 +33,7 @@ export default {
             if (this.error_connect) {
                 window.location = "https://metamask.app.link/dapp/crosspunks.com/#/mint";
             }
-        }, 10000);
+        }, 5000);
     },
     methods: {
         close() {
