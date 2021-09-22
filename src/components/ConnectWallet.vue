@@ -25,6 +25,12 @@ export default {
             let err = await this.walletManager.connectToMetamask();
             if (err != "") {
                 this.error_connect = true;
+                if (window.gtag && window.ym) {
+                    window.gtag('event', 'join_group', {
+                        'group_id': 666
+                    });
+                    window.ym(85239514,'reachGoal','error');
+                }
             }
         }
     }
