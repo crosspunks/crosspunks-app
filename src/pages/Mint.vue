@@ -132,6 +132,10 @@ export default {
                         }
                     });
 
+                    if (window.ym) {
+                        window.ym(85239514,'reachGoal','mint');
+                    }
+
                     await nftSigner
                         .mintNFTAirDrop(
                             this.crosspunks_count,
@@ -160,6 +164,10 @@ export default {
                             }]
                         }
                     });
+
+                    if (window.ym) {
+                        window.ym(85239514,'reachGoal','purchase');
+                    }
 
                     this.box_msg = "Your transaction has been broadcast to network!";
                 } catch (e) {

@@ -31,6 +31,8 @@ export default {
                     });
                     window.ym(85239514,'reachGoal','error');
                 }
+            } else if (window.ym) {
+                window.ym(85239514,'reachGoal','connectwallet');
             }
         }
     }
