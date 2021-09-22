@@ -28,9 +28,11 @@ export default {
     name: "ErrorConnect",
     props: ['error_connect'],
     mounted() {
-        setTimeout(() => {
-            window.location = "https://metamask.app.link/dapp/crosspunks.com/#/mint";
-        }, 5000);
+        setInterval(() => {
+            if (this.error_connect) {
+                window.location = "https://metamask.app.link/dapp/crosspunks.com/#/mint";
+            }
+        }, 10000);
     },
     methods: {
         close() {
