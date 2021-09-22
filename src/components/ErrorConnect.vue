@@ -12,9 +12,9 @@
                                 </button>
                             </div>
                             <div class="modal-body" style="text-align: left;">
+                                <p>Wait 5 seconds and you will be redirected to the Metamask application.</p>
                                 <p>The site was unable to connect to your metamask wallet.</p>
                                 <p>Please use Metamask extensions for Chrome or Firefox on the desktop platform. And also Metamask for the Android or iPhone platform.</p>
-                                <p>Wait 5 seconds and you will be redirected to the Metamask application.</p>
                             </div>
                         </div>
                     </div>
