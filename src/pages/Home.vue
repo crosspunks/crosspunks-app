@@ -101,7 +101,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Your device is not supported on this site. Please use our site on a desktop and use Chrome or Firefox
+                                    Your device is not supported on this site. Please use our site on a desktop and use Chrome or Firefox.
                                 </div>
                             </div>
                         </div>

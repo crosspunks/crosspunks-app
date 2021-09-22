@@ -52,23 +52,24 @@ class _walletManager {
     }
 
     async connectToMetamask() {
+        let err = "";
         if (window.ethereum) {
             this.web3Global = new ethers.providers.Web3Provider(window.ethereum);
             try {
                 await window.ethereum.enable();
                 this.walletStatus = true;
             } catch (error) {
-                console.log(error);
+                err = error;
             }
         } else {
             this.web3Global = new ethers.providers.JsonRpcProvider(MAINNET.params[0].rpcUrls[0]);
-            console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            // console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
         }
 
         if (window.ethereum) {
             await window.ethereum.request(MAINNET).catch((error) => {
                 this.walletStatus = false;
-                console.log(error);
+                err = error;
             });
 
             await window.ethereum.request({
@@ -77,9 +78,11 @@ class _walletManager {
                 // params: [{ chainId: '0x61' }], // BSC Testnet
             }).catch((error) => {
                 this.walletStatus = false;
-                console.log(error);
+                err = error;
             });
         }
+
+        return err;
     }
 
     async connectToContract() {

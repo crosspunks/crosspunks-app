@@ -47,15 +47,7 @@
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </button>
-                            <button id="connect-wallet" v-else @click="walletManager.connectToMetamask()" class="btn crosspunk-btn">
-                                Connect Wallet
-                            </button>
-                            <!-- <button v-else class="btn crosspunk-btn">
-                                Connect to wallet
-                                <div class="spinner-border" style="width: 1rem; height: 1rem; margin-bottom: 4px;" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                            </button> -->
+                            <ConnectWallet v-else></ConnectWallet>
 
                             <p class="text-success">{{ box_msg }}</p>
                             <p class="text-danger">{{ box_msg_danger }}</p>
@@ -75,7 +67,10 @@
         </div>
     </div>
 </template>
+
 <script>
+import ConnectWallet from "../components/ConnectWallet.vue"
+
 export default {
     name: "Mint",
     data() {
@@ -89,7 +84,11 @@ export default {
             toggleInviteLink: false,
             invite_code_input: "",
             crosspunks_count: 1,
+            error_connect: false
         };
+    },
+    components: {
+        ConnectWallet
     },
     mounted() {
         let item = window.localStorage.getItem("inviteKey");
@@ -109,12 +108,15 @@ export default {
         async getPunk() {
             let signer = await this.walletManager.web3Global.getSigner();
             let nftSigner = this.walletManager.nft.connect(signer);
+
             if (!this.btn_loading) {
                 this.btn_loading = true;
                 this.box_msg = "";
                 this.box_msg_danger = "";
+
                 try {
                     let invite_code = this.invite_code_input.trim();
+
                     dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
                     dataLayer.push({
                         event: "begin_checkout",
@@ -129,7 +131,7 @@ export default {
                             }]
                         }
                     });
-                    // await this.walletManager.contract.mintNFT(this.crosspunks_count).send({
+
                     await nftSigner
                         .mintNFTAirDrop(
                             this.crosspunks_count,
@@ -159,8 +161,7 @@ export default {
                         }
                     });
 
-                    this.box_msg =
-                        "Your transaction has been broadcast to network!";
+                    this.box_msg = "Your transaction has been broadcast to network!";
                 } catch (e) {
                     if (e.data) {
                         this.box_msg_danger = e.data.message;
@@ -184,10 +185,9 @@ export default {
                 this.punkLeft = 10000 - number;
             }, 1000);
         },
-
         async toggleIL() {
             this.toggleInviteLink = !this.toggleInviteLink;
-        },
-    },
+        }
+    }
 };
 </script>

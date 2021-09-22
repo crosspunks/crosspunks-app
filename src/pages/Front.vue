@@ -12,8 +12,7 @@
                                 class="navbar-toggler navbar-dark collapsed">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="ml-auto navbar-collapse" v-bind:class="{ 'collapse' : showMenu }"
-                             id="responsive-navbar-nav">
+                        <div class="ml-auto navbar-collapse" v-bind:class="{ 'collapse' : showMenu }" id="responsive-navbar-nav">
                             <div class="ml-auto navbar-nav">
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'mint' }" class="crosspunk-link">
                                     <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Mint</b>
@@ -71,126 +70,136 @@
     </div>
 </template>
 
-<style scoped >
-    @media only screen and (max-width: 767px) {
-        #logo img {
-            height: 35px;
-        }
-        .crosspunk-limitation {
-            font-size: 10pt !important;
-        }
+<style scoped>
+@media only screen and (max-width: 767px) {
+    #logo img {
+        height: 35px;
     }
-    .onoffswitch {
-        position: relative; width: 90px;
-        -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    .crosspunk-limitation {
+        font-size: 10pt !important;
     }
-    .onoffswitch-checkbox {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-    }
-    .onoffswitch-label {
-        display: block; overflow: hidden; cursor: pointer;
-        border: 2px solid #999999; border-radius: 20px;
-        margin: 5px 0 0 0 !important;
-        height: 31px;
-    }
-    .onoffswitch-inner {
-        display: block; width: 200%; margin-left: -100%;
-        transition: margin 0.3s ease-in 0s;
-    }
-    .onoffswitch-inner:before, .onoffswitch-inner:after {
-        display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
-        font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-        box-sizing: border-box;
-    }
-    .onoffswitch-inner:before {
-        content: "Light";
-        padding-left: 10px;
-        background-color: #378ea3; color: #FFFFFF;
-    }
-    .onoffswitch-inner:after {
-        content: "Dark";
-        padding-right: 10px;
-        background-color: #EEEEEE; color: #999999;
-        text-align: right;
-    }
-    .onoffswitch-switch {
-        display: block; width: 18px;
-        height: 18px;
-        margin: 6px;
-        background: #FFFFFF;
-        position: absolute; top: 6px; bottom: 0;
-        right: 56px;
-        border: 2px solid #999999; border-radius: 20px;
-        transition: all 0.3s ease-in 0s;
-    }
-    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-        margin-left: 0;
-    }
-    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-        right: 0px;
-    }
-    .crosspunk-link {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 300;
-        font-size: 16px;
-        color: #e7e2e2 !important;
-        padding-right: .5rem;
-        padding-left: .5rem;
-    }
-    a:hover {
-        text-decoration: none;
-    }
+}
+
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+    margin: 5px 0 0 0 !important;
+    height: 31px;
+}
+
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "Light";
+    padding-left: 10px;
+    background-color: #378ea3; color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+    content: "Dark";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+
+.onoffswitch-switch {
+    display: block; width: 18px;
+    height: 18px;
+    margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 6px; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+.crosspunk-link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: #e7e2e2 !important;
+    padding-right: .5rem;
+    padding-left: .5rem;
+}
+
+a:hover {
+    text-decoration: none;
+}
 </style>
 
 <script>
-    // import FlipCountdown from 'vue2-flip-countdown'
-    export default {
-        // components: { FlipCountdown },
-        data() {
-            return {
-                showMenu: true,
-                winner: [],
-                win_reward: {
-                    0: '1M',
-                    1: '500K',
-                    2: '250K',
-                    3: '100K',
-                    4: '50K'
-                },
-                themeMode : false
-            }
-        },
-        mounted() {
-            // setTimeout(() => {
-            //     this.showAirDropGift();
-            // }, 2000);
-            // setInterval(() => {
-            //     this.showAirDropGift();
-            // }, 10000);
-        },
-        methods: {
-            toggleCollapse() {
-                this.showMenu = !this.showMenu
+export default {
+    data() {
+        return {
+            showMenu: true,
+            winner: [],
+            win_reward: {
+                0: '1M',
+                1: '500K',
+                2: '250K',
+                3: '100K',
+                4: '50K'
             },
-            async showAirDropGift() {
-                let win = [];
-                for (let i = 0; i < 5; i++) {
-                    let winners = await this.walletManager.contract.winners(i).call();
-                    winners = this.walletManager.ttronWeb.address.fromHex(winners);
-                    if (winners == this.walletManager.ttronWeb.address.fromHex('410000000000000000000000000000000000000000'))
-                        break;
-                    let w = await this.walletManager.contract.usersAirdrop(winners).call();
-                    w.address = winners;
-                    win.push(w);
-                }
-                this.winner = win;
-            },
-            closeSidebar(){
-                document.getElementById("mySidebar").style.width = "0";
-                document.getElementById("sidebarCover").classList.add('hideCover')
-            }
+            themeMode : false
+        }
+    },
+    mounted() {
+        // setTimeout(() => {
+        //     this.showAirDropGift();
+        // }, 2000);
+        // setInterval(() => {
+        //     this.showAirDropGift();
+        // }, 10000);
+    },
+    methods: {
+        toggleCollapse() {
+            this.showMenu = !this.showMenu
         },
+        async showAirDropGift() {
+            let win = [];
+            for (let i = 0; i < 5; i++) {
+                let winners = await this.walletManager.contract.winners(i).call();
+                winners = this.walletManager.ttronWeb.address.fromHex(winners);
+                if (winners == this.walletManager.ttronWeb.address.fromHex('410000000000000000000000000000000000000000'))
+                    break;
+                let w = await this.walletManager.contract.usersAirdrop(winners).call();
+                w.address = winners;
+                win.push(w);
+            }
+            this.winner = win;
+        },
+        closeSidebar(){
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("sidebarCover").classList.add('hideCover')
+        }
     }
+}
 </script>

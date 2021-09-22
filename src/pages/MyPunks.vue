@@ -747,25 +747,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
-    
-            <!--          <div id="sidebarBtn" >-->
-    
-            <!--              <div class="row" >-->
-            <!--                  <button aria-controls="example-collapse-text" aria-expanded="false" type="button" class="btn btn-outline-dark btn-block" style="margin-bottom: 5px;">-->
-            <!--                      Clear Filter-->
-            <!--                  </button>-->
-            <!--                  <button @click="closeSidebar" aria-controls="example-collapse-text" aria-expanded="false" type="button" class="btn btn-outline-dark btn-block" style="margin-bottom: 5px;">-->
-            <!--                      Done-->
-            <!--                  </button>-->
-            <!--              </div>-->
-            <!--          </div>-->
-    
+            </div>    
         </div>
-    
+
         <div id="sidebarCover" @click="closeSidebar" class="hideCover"></div>
-    
-    
+
         <div class="container">
             <div class="col-lg-12">
                 <div>
@@ -794,26 +780,10 @@
                 <div class="">
                     <div class="">
                         <div v-if="!this.walletStatus" class="row">
-                            <!-- <div v-if="this.walletStatus==false" style="margin: 0 auto;">
-                                <button type="button" class="btn">
-                                        <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
-                                    </button>
-                            </div> -->
                             <div class="text-center" style="margin: 0 auto;">
                                 <h1> Connect your Metamask </h1>
-                                <div class="text-center" style="margin-bottom: 20px;">
-                                </div>
-                                <button @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
-                                        Connect Wallet
-                                    </button>
-                                <!-- <button v-else type="button" class="btn crosspunk-btn">
-                                        Connect Wallet
-                                        <div class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
-                                    </button> -->
+                                <div class="text-center" style="margin-bottom: 20px;"></div>
+                                <ConnectWallet></ConnectWallet>
                             </div>
                         </div>
                         <div v-else-if="punks.length > 0" class="row">
@@ -850,10 +820,10 @@
                         </div>
                         <div v-else-if="punk_loading" class="row">
                             <button type="button" class="btn" style="margin: 0 auto;">
-                                    <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px"   role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </button>
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </button>
                         </div>
                         <div v-else-if="myAllPunks.length == 0" class="row">
                             <div class="col-md-4"></div>
@@ -873,6 +843,8 @@
 </template>
 
 <script>
+import ConnectWallet from "../components/ConnectWallet.vue"
+
 export default {
     name: "Details",
     data() {
@@ -907,8 +879,11 @@ export default {
             },
             price_idx: {},
             price_bid_idx: {},
-            walletAddr: "",
+            walletAddr: ""
         }
+    },
+    components: {
+        ConnectWallet
     },
     mounted() {
         setInterval(() => {
@@ -1077,7 +1052,6 @@ export default {
 
                     for (let i = l; i < l + 60 && i < this.allPunks.length; i++) {
                         this.punks.push(this.allPunks[i]);
-                        // console.log(i);
                     }
 
                     clearTimeout(this.last_add);
@@ -1330,17 +1304,14 @@ export default {
                 this.punks.push(this.allPunks[i]);
             }
         },
-
         changeFilterShow() {
             document.getElementById("mySidebar").style.left = "0px";
             document.getElementById("sidebarCover").classList.remove('hideCover')
         },
-
         closeSidebar() {
             document.getElementById("mySidebar").style.left = "-320px";
             document.getElementById("sidebarCover").classList.add('hideCover')
-
         }
-    },
+    }
 };
 </script>

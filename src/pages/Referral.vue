@@ -51,34 +51,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="row">
-                                <h3>
-                                    Owned CrossPunks
-                                    <b>({{ crossPunksBalance }})</b>
-                                </h3>
-                            </div> -->
                         </div>
 
                         <div v-if="!this.walletStatus" class="row">
-                            <!-- <div v-if="this.walletManager.web3Global !== false" style="margin: 0 auto">
-                                <button type="button" class="btn">
-                                    <div class="spinner-border" style="width: 3rem; height: 3rem; margin-bottom: 4px;" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </button>
-                            </div> -->
                             <div class="text-center" style="margin: 0 auto">
                                 <h1>Connect your Metamask</h1>
                                 <div class="text-center" style="margin-bottom: 20px"></div>
-                                <button id="connect-wallet" @click="walletManager.connectToMetamask()" type="button" class="btn crosspunk-btn">
-                                    Connect Wallet
-                                </button>
-                                <!-- <button v-else type="button" class="btn crosspunk-btn">
-                                    Connect Wallet
-                                    <div class="spinner-border" style="width: 1rem; height: 1rem; margin-bottom: 4px;" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </button> -->
+                                <ConnectWallet></ConnectWallet>
                             </div>
                         </div>
                     </div>
@@ -87,6 +66,72 @@
         </div>
     </div>
 </template>
+
+<script>
+import ConnectWallet from "../components/ConnectWallet.vue"
+
+export default {
+    name: "Wallet",
+    data() {
+        return {
+            walletStatus: false,
+            is_load_data: false,
+            crossPunksBalance: "",
+            withdraw_msg: "",
+            userBalanceOf: "",
+            userAirDrop: {},
+            airDropLoading: false,
+            walletAddr: ""
+        };
+    },
+    components: {
+        ConnectWallet
+    },
+    mounted() {
+        setInterval(() => {
+            this.walletStatus = this.walletManager.walletStatus;
+            if (this.walletStatus && !this.is_load_data) {
+                this.is_load_data = true;
+                this.showData();
+            }
+        }, 100);
+    },
+    methods: {
+        async showData() {
+            await this.walletManager.checkId();
+            let signer = await this.walletManager.web3Global.getSigner();
+            this.walletAddr = await signer.getAddress();
+
+            (async () => {
+                let bf = await this.walletManager.nft.balanceOf(this.walletAddr);
+                this.crossPunksBalance = bf;
+            })();
+
+            (async () => {
+                this.userAirDrop = await this.walletManager.nft.usersAirdrop(this.walletAddr);
+                this.airDropLoading = false;
+            })();
+        },
+        async getAirDropLink() {
+            if (!this.airDropLoading) {
+                this.airDropLoading = true;
+                let signer = await this.walletManager.web3Global.getSigner();
+                let nftSigner = this.walletManager.nft.connect(signer);
+
+                try {
+                    await nftSigner.startAirDrop();
+                } catch (e) {
+                    console.log(e.message);
+                }
+
+                setTimeout(() => {
+                    this.showData();
+                }, 10000);
+            }
+        }
+    }
+};
+</script>
 
 <style scoped>
 @media only screen and (min-width: 992px) {
@@ -103,62 +148,3 @@ p {
     margin-top: 15px;
 }
 </style>
-
-<script>
-export default {
-    name: "Wallet",
-    data() {
-        return {
-            walletStatus: false,
-            is_load_data: false,
-            crossPunksBalance: "",
-            withdraw_msg: "",
-            userBalanceOf: "",
-            userAirDrop: {},
-            airDropLoading: false,
-            walletAddr: "",
-        };
-    },
-    mounted() {
-        setInterval(() => {
-            this.walletStatus = this.walletManager.walletStatus;
-            if (this.walletStatus && !this.is_load_data) {
-                this.is_load_data = true;
-                this.showData();
-            }
-        }, 100);
-    },
-    methods: {
-        async showData() {
-            await this.walletManager.checkId();
-            let signer = await this.walletManager.web3Global.getSigner();
-            this.walletAddr = await signer.getAddress();
-            (async () => {
-                let bf = await this.walletManager.nft.balanceOf(this.walletAddr);
-                this.crossPunksBalance = bf;
-            })();
-
-            (async () => {
-                this.userAirDrop = await this.walletManager.nft.usersAirdrop(this.walletAddr);
-                this.airDropLoading = false;
-            })();
-        },
-        async getAirDropLink() {
-            if (!this.airDropLoading) {
-                this.airDropLoading = true;
-                let signer = await this.walletManager.web3Global.getSigner();
-                let nftSigner = this.walletManager.nft.connect(signer);
-                try {
-                    await nftSigner.startAirDrop();
-                } catch (e) {
-                    console.log(e.message);
-                }
-
-                setTimeout(() => {
-                    this.showData();
-                }, 10000);
-            }
-        },
-    },
-};
-</script>

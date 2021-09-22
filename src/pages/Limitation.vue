@@ -18,18 +18,19 @@
 </template>
 
 <style scoped>
-    @media only screen and (min-width: 1601px) {
-        h1 {
-            font-size: 50pt;
-        }
-    }
-    .crosspunk-limitation {
-        font-weight: 300;
-        color: white;
-    }
-
+@media only screen and (min-width: 1601px) {
     h1 {
-        color: #d93d76 !important;
-        text-shadow: #d93d76 0 0 10px;
+        font-size: 50pt;
     }
+}
+
+.crosspunk-limitation {
+    font-weight: 300;
+    color: white;
+}
+
+h1 {
+    color: #d93d76 !important;
+    text-shadow: #d93d76 0 0 10px;
+}
 </style>

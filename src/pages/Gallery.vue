@@ -889,7 +889,6 @@ export default {
 
                     for (let i = l; i < l + 60 && i < this.allPunks.length; i++) {
                         this.punks.push(this.allPunks[i]);
-                        // console.log(i);
                     }
 
                     clearTimeout(this.last_add);
@@ -898,7 +897,6 @@ export default {
             }
         },
         showDetail(index) {
-            // console.log(index);
             this.$router.push({ name: "details", params: { id: index } });
         },
         searchByInputId() {
@@ -999,7 +997,6 @@ export default {
                 }
             }
 
-            // console.log(_allPunksCount);
             let activeAttr = "all";
             let _allPunks = [];
             if (!this.checkbox.all) {
