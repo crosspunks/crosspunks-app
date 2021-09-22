@@ -13,7 +13,7 @@
                             </div>
                             <div class="modal-body" style="text-align: left;">
                                 <p>The site was unable to connect to your metamask wallet.</p>
-                                <p>Please use Metamask extensions for Chrome or Firefox on the desktop platform or Trust wallet for the Android platform.</p>
+                                <p>Please use Metamask extensions for Chrome or Firefox on the desktop platform. And also Metamask for the Android or iPhone platform.</p>
                             </div>
                         </div>
                     </div>

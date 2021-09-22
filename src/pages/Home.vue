@@ -130,18 +130,6 @@ export default {
         }
 
         let ua = navigator.userAgent.toLowerCase();
-        let ios = [
-            'iPad Simulator',
-            'iPhone Simulator',
-            'iPod Simulator',
-            'iPad',
-            'iPhone',
-            'iPod'
-        ].includes(navigator.platform)
-
-        if (ios) {
-            this.other_devices = true;
-        }
 
         if (ua.indexOf('safari') != -1) { 
             if (ua.indexOf('chrome') > -1) {

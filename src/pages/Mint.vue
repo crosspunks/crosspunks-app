@@ -109,6 +109,20 @@ export default {
             let signer = await this.walletManager.web3Global.getSigner();
             let nftSigner = this.walletManager.nft.connect(signer);
 
+            let mobile = [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod',
+                'Android'
+            ].includes(navigator.platform)
+
+            if (mobile) {
+                window.location = "https://metamask.app.link/dapp/crosspunks.com/#/mint"
+            }
+
             if (!this.btn_loading) {
                 this.btn_loading = true;
                 this.box_msg = "";
