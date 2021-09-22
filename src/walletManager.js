@@ -63,7 +63,7 @@ class _walletManager {
             }
         } else {
             this.web3Global = new ethers.providers.JsonRpcProvider(MAINNET.params[0].rpcUrls[0]);
-            // console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            err = "Metamask not found!";
         }
 
         if (window.ethereum) {

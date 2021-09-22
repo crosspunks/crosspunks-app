@@ -31,7 +31,6 @@ export default {
                     });
                     window.ym(85239514,'reachGoal','error');
                 }
-                window.location = "https://metamask.app.link/dapp/crosspunks.com/#/mint"
             }
         }
     }
