@@ -58,18 +58,8 @@
     <script>
         window["ym"]=window["ym"]||function(){(window["ym"].a=window["ym"].a||[]).push(arguments)};
         window["ym"].l=1*new Date();
-        initYMconf = function (long){
-            if (long) {
-                ym(85239514, "init", {
-                    webvisor:true,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    trackHash:true,
-                    ecommerce:"dataLayer"});
-            } else {
-                ym(85239514, "init", {'ecommerce':'dataLayer'});
-            }
+        initYMconf = function (conf){
+            ym(85239514, "init", conf);
         }
         
         function loadMCScript(src, okcallback, errcallback){
@@ -84,8 +74,20 @@
         }
         
         setTimeout(function () {
-            cff2 = function () {loadMCScript("https://cfwosp.quic.pro/metrika/ymtag.js", initYMconf(false))}
-            loadMCScript("https://mc.yandex.ru/metrika/tag.js", initYMconf(true), cff2)
+            cff2 = function () {loadMCScript("https://cfwosp.quic.pro/metrika/ymtag.js", initYMconf({
+                webvisor:true,
+                clickmap:true,
+                trackLinks:false,
+                accurateTrackBounce:false,
+                trackHash:false,
+                ecommerce:"dataLayer"}))}
+            loadMCScript("https://mc.yandex.ru/metrika/tag.js", initYMconf({
+                webvisor:false,
+                clickmap:false,
+                trackLinks:false,
+                accurateTrackBounce:false,
+                trackHash:false,
+                ecommerce:"dataLayer"}), cff2)
         }, 100);
     </script>
 </body>
