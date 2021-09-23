@@ -877,7 +877,6 @@ export default {
         window.onscroll = () => {
             if (document.documentElement.scrollTop + window.innerHeight + 400 > document.documentElement.offsetHeight) {
                 this.addPunks();
-                // console.log(this.punks.length);
             }
         }
     },

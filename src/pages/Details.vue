@@ -536,8 +536,8 @@ export default {
                             }, 1500);
                         }, 10000);
                     } catch(e) {
-                        console.log(e)
                         await this.loadData();
+                        console.log(e);
                         this.offer_error = "failed!";
                         this.offer_btn_loading = false;
                     }
@@ -754,7 +754,7 @@ export default {
                         }, 10000);
                     } catch(e) {
                         await this.loadData();
-                        console.log(e)
+                        console.log(e);
                         this.transfer_error = "failed!";
                         this.transfer_btn_loading = false;
                     }

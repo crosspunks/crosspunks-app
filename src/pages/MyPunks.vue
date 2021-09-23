@@ -916,24 +916,23 @@ export default {
                     let mybalance = 0;
 
                     let loadFromServer = false;
-                    try {
-                        let dataServer = await this.$http.get(`https://crosspunks.com/server/forSale`)
-                        let rows = JSON.parse(dataServer.data.msg);
-                        if (rows.length > 0) {
-                            loadFromServer = true;
-                            for (let rowId in rows) {
-                                let p = window.punks[rows[rowId].idx];
-                                p.bid = rows[rowId].bid;
-                                p.real_bid = rows[rowId].real_bid;
-                                if (p.bid.seller == this.walletAddr) {
-                                    console.log(p);
-                                    this.myAllPunks.push(p);
-                                }
-                            }
-                        }
-                    } catch (e) {
-                        console.log("can not read from server");
-                    }
+                    // try {
+                    //     let dataServer = await this.$http.get(`https://crosspunks.com/server/forSale`)
+                    //     let rows = JSON.parse(dataServer.data.msg);
+                    //     if (rows.length > 0) {
+                    //         loadFromServer = true;
+                    //         for (let rowId in rows) {
+                    //             let p = window.punks[rows[rowId].idx];
+                    //             p.bid = rows[rowId].bid;
+                    //             p.real_bid = rows[rowId].real_bid;
+                    //             if (p.bid.seller == this.walletAddr) {
+                    //                 this.myAllPunks.push(p);
+                    //             }
+                    //         }
+                    //     }
+                    // } catch (e) {
+                    //     console.log("can not read from server");
+                    // }
 
                     if (!loadFromServer) {
                         mybalance = await this.walletManager.nft.balanceOf(this.walletManager.dexAddr);
@@ -942,7 +941,6 @@ export default {
                             let number = await this.walletManager.nft.tokenOfOwnerByIndex(this.walletManager.dexAddr, i);
                             let p = JSON.parse(JSON.stringify(window.punks[(number)]));
                             p.bid = await this.walletManager.dex.punksOfferedForSale(number);
-                            console.log(p.bid.isForSale)
                             if (p.bid.seller.toLowerCase() == this.walletAddr.toLowerCase())
                                 this.myAllPunks.push(p);
                         }
@@ -950,19 +948,19 @@ export default {
 
                     loadFromServer = false;
 
-                    try {
-                        let dataServer = await this.$http.get(`https://crosspunks.com/server/myPunks?wallet=` + this.walletAddr)
-                        let rows = JSON.parse(dataServer.data.msg);
-                        if (rows.length > 0) {
-                            loadFromServer = true;
-                            for (let rowId in rows) {
-                                this.myAllPunks.push(window.punks[rows[rowId].p_index]);
-                            }
+                    // try {
+                    //     let dataServer = await this.$http.get(`https://crosspunks.com/server/myPunks?wallet=` + this.walletAddr)
+                    //     let rows = JSON.parse(dataServer.data.msg);
+                    //     if (rows.length > 0) {
+                    //         loadFromServer = true;
+                    //         for (let rowId in rows) {
+                    //             this.myAllPunks.push(window.punks[rows[rowId].p_index]);
+                    //         }
 
-                        }
-                    } catch (e) {
-                        console.log("can not read my punks from server");
-                    }
+                    //     }
+                    // } catch (e) {
+                    //     console.log("can not read my punks from server");
+                    // }
 
                     if (!loadFromServer) {
                         mybalance = await this.walletManager.nft.balanceOf(this.walletAddr);
@@ -972,21 +970,6 @@ export default {
                             this.myAllPunks.push(window.punks[(number)]);
                         }
                     }
-
-                    // for(let i=0; i<100; i++){
-                    //     this.myAllPunks.push(window.punks[i]);
-                    // }
-
-
-                    // console.log(res);
-                    // this.punks = [];
-                    // for (let w = 0; w < res.data.msg.length; w++) {
-                    //     for (let i = 0; i < 10000; i++) {
-                    //         if (res.data.msg[w].p_index == i) {
-                    //             this.punks.push(window.punks[i]);
-                    //         }
-                    //     }
-                    // }
 
                     setTimeout(() => {
                         this.filterAttr();

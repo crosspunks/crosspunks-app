@@ -109,7 +109,6 @@ class _walletManager {
 
 const walletManager = {
     install(Vue, options) {
-        console.log(options);
         Vue.prototype.walletManager = new _walletManager();
     }
 }

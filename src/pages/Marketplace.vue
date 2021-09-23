@@ -808,23 +808,23 @@ export default {
 
                 try {
                     let loadFromServer = false;
-                    try {
-                        let dataServer = await this.$http.get(`https://crosspunks.com/server/forSale`)
-                        let rows = JSON.parse(dataServer.data.msg);
-                        if (rows.length > 0) {
-                            loadFromServer = true;
-                            // don't show onlySellTo items in forSale tab
-                            rows = rows.filter((item) => !Array.isArray(item) && item.bid.onlySellTo == '410000000000000000000000000000000000000000')
-                            for (let rowId in rows) {
-                                let p = window.punks[rows[rowId].idx];
-                                p.bid = rows[rowId].bid;
-                                p.real_bid = rows[rowId].real_bid;
-                                this.myAllPunks.push(p);
-                            }
-                        }
-                    } catch (e) {
-                        console.log("can not read from server");
-                    }
+                    // try {
+                    //     let dataServer = await this.$http.get(`https://crosspunks.com/server/forSale`)
+                    //     let rows = JSON.parse(dataServer.data.msg);
+                    //     if (rows.length > 0) {
+                    //         loadFromServer = true;
+                    //         // don't show onlySellTo items in forSale tab
+                    //         rows = rows.filter((item) => !Array.isArray(item) && item.bid.onlySellTo == '410000000000000000000000000000000000000000')
+                    //         for (let rowId in rows) {
+                    //             let p = window.punks[rows[rowId].idx];
+                    //             p.bid = rows[rowId].bid;
+                    //             p.real_bid = rows[rowId].real_bid;
+                    //             this.myAllPunks.push(p);
+                    //         }
+                    //     }
+                    // } catch (e) {
+                    //     console.log("can not read from server");
+                    // }
 
                     if (!loadFromServer) {
                         let mybalance = await this.walletManager.nft.balanceOf(this.walletManager.dexAddr);
@@ -838,21 +838,6 @@ export default {
                             this.myAllPunks.push(p);
                         }
                     }
-
-                    // for(let i=0; i<100; i++){
-                    //     this.myAllPunks.push(window.punks[i]);
-                    // }
-
-
-                    // console.log(res);
-                    // this.punks = [];
-                    // for (let w = 0; w < res.data.msg.length; w++) {
-                    //     for (let i = 0; i < 10000; i++) {
-                    //         if (res.data.msg[w].p_index == i) {
-                    //             this.punks.push(window.punks[i]);
-                    //         }
-                    //     }
-                    // }
 
                     setTimeout(() => {
                         this.filterAttr();
@@ -917,7 +902,6 @@ export default {
 
                     for (let i = l; i < l + 60 && i < this.allPunks.length; i++) {
                         this.punks.push(this.allPunks[i]);
-                        // console.log(i);
                     }
 
                     clearTimeout(this.last_add);
