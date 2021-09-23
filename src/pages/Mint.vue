@@ -119,6 +119,19 @@ export default {
 
                     dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
                     dataLayer.push({
+                        event: "add_to_cart",
+                        ecommerce: {
+                            items: [{
+                                item_name: "Punk", // Name or ID is required.
+                                item_id: "0",
+                                price: 50.0,
+                                item_brand: "CrossPunks",
+                                index: 1,
+                                quantity: this.crosspunks_count
+                            }]
+                        }
+                    });
+                    dataLayer.push({
                         event: "begin_checkout",
                         ecommerce: {
                             items: [{
