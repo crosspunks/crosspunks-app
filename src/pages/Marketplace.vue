@@ -683,14 +683,7 @@
             <div class="col">
                 <div class="">
                     <div class="">
-                        <div v-if="punk_loading" class="row">
-                            <button type="button" class="btn" style="margin: 0 auto;">
-                                        <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
-                                    </button>
-                        </div>
-                        <div v-else-if="punks.length > 0" class="row">
+                        <div v-if="punks.length > 0" class="row">
                             <div v-for="(punk) in punks" v-bind:key="punk.idx" style="margin-bottom: 10px;" class="col" @click="showDetail(punk.idx)">
                                 <div style="height: 100%; max-width: 300px; min-width: 210px; margin: 0 auto;" class="card">
                                     <img v-if="crypto_Punks.indexOf(punk.idx) > -1" class="card-img-top pixelated" :src="(`/crypto/${punk.idx}.png`)">
@@ -720,6 +713,13 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div v-if="punk_loading" class="row">
+                            <button type="button" class="btn" style="margin: 0 auto;">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </button>
                         </div>
                         <div v-else-if="myAllPunks.length == 0" class="row">
                             <div class="col-md-4"></div>
@@ -771,7 +771,7 @@ export default {
             changeRangeTime: null,
             sortBy: {
                 // token_id_lowest : true
-                price_lowest: true
+                // price_lowest: true
             },
             only_have_bid: false,
             price_idx: {},
@@ -836,14 +836,13 @@ export default {
                             let p = window.punks[(number)];
                             p.bid = await this.walletManager.dex.punksOfferedForSale(number);
                             this.myAllPunks.push(p);
+
+                            setTimeout(() => {
+                                this.filterAttr();
+                                this.setFilterDetails();
+                            }, 100);
                         }
                     }
-
-                    setTimeout(() => {
-                        this.filterAttr();
-                        this.setFilterDetails();
-                    }, 100);
-
                 } catch (e) {
                     console.log(e.message);
                 }

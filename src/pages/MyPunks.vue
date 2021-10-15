@@ -818,7 +818,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-else-if="punk_loading" class="row">
+                        <div v-if="punk_loading" class="row">
                             <button type="button" class="btn" style="margin: 0 auto;">
                                 <div class="spinner-border" style="width: 3rem; height: 3rem;margin-bottom: 4px" role="status">
                                     <span class="sr-only">Loading...</span>
@@ -916,6 +916,32 @@ export default {
                     let mybalance = 0;
 
                     let loadFromServer = false;
+
+                    // try {
+                    //     let dataServer = await this.$http.get(`https://crosspunks.com/server/myPunks?wallet=` + this.walletAddr)
+                    //     let rows = JSON.parse(dataServer.data.msg);
+                    //     if (rows.length > 0) {
+                    //         loadFromServer = true;
+                    //         for (let rowId in rows) {
+                    //             this.myAllPunks.push(window.punks[rows[rowId].p_index]);
+                    //         }
+
+                    //     }
+                    // } catch (e) {
+                    //     console.log("can not read my punks from server");
+                    // }
+
+                    if (!loadFromServer) {
+                        mybalance = await this.walletManager.nft.balanceOf(this.walletAddr);
+
+                        for (let i = 0; i < mybalance; i++) {
+                            let number = await this.walletManager.nft.tokenOfOwnerByIndex(this.walletAddr, i);
+                            this.myAllPunks.push(window.punks[(number)]);
+                        }
+                    }
+
+                    loadFromServer = false;
+
                     // try {
                     //     let dataServer = await this.$http.get(`https://crosspunks.com/server/forSale`)
                     //     let rows = JSON.parse(dataServer.data.msg);
@@ -943,45 +969,19 @@ export default {
                             p.bid = await this.walletManager.dex.punksOfferedForSale(number);
                             if (p.bid.seller.toLowerCase() == this.walletAddr.toLowerCase())
                                 this.myAllPunks.push(p);
+
+                            setTimeout(() => {
+                                this.filterAttr();
+                                this.setFilterDetails();
+                            }, 100);
                         }
                     }
-
-                    loadFromServer = false;
-
-                    // try {
-                    //     let dataServer = await this.$http.get(`https://crosspunks.com/server/myPunks?wallet=` + this.walletAddr)
-                    //     let rows = JSON.parse(dataServer.data.msg);
-                    //     if (rows.length > 0) {
-                    //         loadFromServer = true;
-                    //         for (let rowId in rows) {
-                    //             this.myAllPunks.push(window.punks[rows[rowId].p_index]);
-                    //         }
-
-                    //     }
-                    // } catch (e) {
-                    //     console.log("can not read my punks from server");
-                    // }
-
-                    if (!loadFromServer) {
-                        mybalance = await this.walletManager.nft.balanceOf(this.walletAddr);
-
-                        for (let i = 0; i < mybalance; i++) {
-                            let number = await this.walletManager.nft.tokenOfOwnerByIndex(this.walletAddr, i);
-                            this.myAllPunks.push(window.punks[(number)]);
-                        }
-                    }
-
-                    setTimeout(() => {
-                        this.filterAttr();
-                        this.setFilterDetails();
-                    }, 100);
                 } catch (e) {
                     console.log(e.message);
                 }
 
                 this.punk_loading = false;
             }
-
         },
         setFilterDetails() {
             this.filter_data.punk_Attribute = {};
