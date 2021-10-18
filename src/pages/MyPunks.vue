@@ -754,7 +754,7 @@
 
         <div class="container">
             <div class="col-lg-12">
-                <div>
+                <div v-if="this.walletStatus">
                     <form class="row form-group">
                         <div class="form-group col-6">
                             <input @keyup="searchByInputId" placeholder="Search by Id" v-model="searchById" type="number" class="form-control">
@@ -785,6 +785,15 @@
                                 <div class="text-center" style="margin-bottom: 20px;"></div>
                                 <ConnectWallet></ConnectWallet>
                             </div>
+                        </div>
+                        <div v-else-if="myAllPunks.length == 0" class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 card">
+                                <div class="card-body">
+                                    <p class="card-title">You don't have CrossPunks yet, your CrossPunks will be show a moment after mint</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4"></div>
                         </div>
                         <div v-else-if="punks.length > 0" class="row">
                             <div v-for="(punk) in myAllPunks" v-bind:key="punk.idx" style="margin-bottom: 10px;" class="col" @click="showDetail(punk.idx)">
@@ -824,15 +833,6 @@
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </button>
-                        </div>
-                        <div v-else-if="myAllPunks.length == 0" class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4 card">
-                                <div class="card-body">
-                                    <p class="card-title">You don't have CrossPunks yet, your CrossPunks will be show a moment after mint</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4"></div>
                         </div>
                         <h4></h4>
                     </div>
