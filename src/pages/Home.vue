@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div style="height: 800px" class="crosspunk-block crosspunk-stats-block">
+            <!-- <div style="height: 800px" class="crosspunk-block crosspunk-stats-block">
                 <div class="crosspunk-image bg-stats-image"></div>
                 <div class="crosspunk-text container bg-stats-text">
                     <h2 class="crosspunk-h1">Have a quick peek at some global Punks stats!</h2>
@@ -44,7 +44,7 @@
                     <p>The total value of punks sold over the last year is <b>472,909.33 ETH (1,786,821,759.52 USD).</b></p>
                     <p><b>Just think about these numbers! Breathtaking, huh?</b></p>
                 </div>
-            </div>
+            </div> -->
             <div style="height: 530px" class="crosspunk-block crosspunk-what-block">
                 <div class="crosspunk-image bg-what-image"></div>
                 <div class="crosspunk-text container bg-what-text">
@@ -56,15 +56,6 @@
                             <p>Each punk you buy is 1 in 10,000 steps towards realizing the newest ability to move your NFTs across all blockchain networks.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div style="height: 630px" class="crosspunk-block crosspunk-why-block">
-                <div class="crosspunk-image bg-why-image"></div>
-                <div class="crosspunk-text container bg-why-text">
-                    <h2 class="crosspunk-h1">Why now</h2>
-                    <p>Hey, wanderer! Pretty sure, you’re familiar with a feeling of a missed train. A wideass train fully stocked with explosive profit juice, and it runs near you just in a blink. Bang, you never had a moment to do something. What exactly do you feel at this point, perhaps you want to get back in time and buy first Punk for $30 or Bitcoin for $5 in 2012? Well, we don’t have a spare time machine, but, here we are to give you a precious possibility to be on time on a “profit platform”. We’ll have you covered, here’s your ticket!</p>
-                    <p>We start with one of the most popular Binance networks, but very soon you will be able to buy and sell our punks in any network, without limiting yourself to anything and not being tied to a particular blockchain.</p>
-                    <p>Stay tuned for good news and share your success stories on our social networks!</p>
                 </div>
             </div>
             <div style="height: 800px" class="crosspunk-block crosspunk-how-block">
@@ -85,6 +76,15 @@
                 <div class="crosspunk-image bg-roadmap-image"></div>
                 <div class="crosspunk-text container bg-roadmap-text">
                     <img src="/img/cp_roadmap_04.svg" />
+                </div>
+            </div>
+            <div style="height: 630px" class="crosspunk-block crosspunk-why-block">
+                <div class="crosspunk-image bg-why-image"></div>
+                <div class="crosspunk-text container bg-why-text">
+                    <h2 class="crosspunk-h1">Why now</h2>
+                    <p>Hey, wanderer! Pretty sure, you’re familiar with a feeling of a missed train. A wideass train fully stocked with explosive profit juice, and it runs near you just in a blink. Bang, you never had a moment to do something. What exactly do you feel at this point, perhaps you want to get back in time and buy first Punk for $30 or Bitcoin for $5 in 2012? Well, we don’t have a spare time machine, but, here we are to give you a precious possibility to be on time on a “profit platform”. We’ll have you covered, here’s your ticket!</p>
+                    <p>We start with one of the most popular Binance networks, but very soon you will be able to buy and sell our punks in any network, without limiting yourself to anything and not being tied to a particular blockchain.</p>
+                    <p>Stay tuned for good news and share your success stories on our social networks!</p>
                 </div>
             </div>
         </div>
