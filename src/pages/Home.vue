@@ -5,8 +5,11 @@
                 <div class="crosspunk-image bg-mint-image"></div>
                 <div class="crosspunk-text container bg-mint-text">
                     <h1 class="crosspunk-h1">
-                        Mint&nbsp;your&nbsp;CrossPunk&nbsp;now or&nbsp;watch&nbsp;your&nbsp;friends become&nbsp;millionaires&nbsp;later!
+                        Mint&nbsp;your&nbsp;CrossPunk&nbsp;now
                     </h1>
+                    <p style="text-transform: uppercase;">
+                        or&nbsp;watch&nbsp;your&nbsp;friends become&nbsp;millionaires&nbsp;later
+                    </p>
                     <router-link :to="{ name : 'mint' }" id="go-to-mint" class="btn crosspunk-btn-rev">
                         Get one of {{ punkLeft }}
                     </router-link>
@@ -45,19 +48,6 @@
                     <p><b>Just think about these numbers! Breathtaking, huh?</b></p>
                 </div>
             </div> -->
-            <div style="height: 530px" class="crosspunk-block crosspunk-what-block">
-                <div class="crosspunk-image bg-what-image"></div>
-                <div class="crosspunk-text container bg-what-text">
-                    <h2 class="crosspunk-h1">What are the CrossPunks</h2>
-                    <div>
-                        <img src="/img/CP_PUNKS.png" style="float: left;">
-                        <div style="margin-right: 0;">
-                            <p>This is the first of its kind NFT cross-chain collection. 10,000 unique pixel characters. Including 11 the most important influencers in the Crypto World ever! 11 rare figures brought crypto and NFT future forward. Who inspired us as well!</p>
-                            <p>Each punk you buy is 1 in 10,000 steps towards realizing the newest ability to move your NFTs across all blockchain networks.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div style="height: 800px" class="crosspunk-block crosspunk-how-block">
                 <div class="crosspunk-image bg-how-image"></div>
                 <div class="crosspunk-text container bg-how-text">
@@ -72,19 +62,34 @@
                     <p>8) Wait an enjoy your freshly-baked CrossPunk</p>
                 </div>
             </div>
-            <div style="height: 800px" class="crosspunk-block crosspunk-roadmap-block">
+            <div style="height: 530px" class="crosspunk-block crosspunk-what-block">
+                <div class="crosspunk-image bg-what-image"></div>
+                <div class="crosspunk-text container bg-what-text">
+                    <h2 class="crosspunk-h1">What are the CrossPunks</h2>
+                    <div>
+                        <img src="/img/CP_PUNKS.png" style="float: left;">
+                        <div style="margin-right: 0;">
+                            <p>This is the first of its kind NFT cross-chain collection. 10,000 unique pixel characters. Including 11 the most important influencers in the Crypto World ever! 11 rare figures brought crypto and NFT future forward. Who inspired us as well!</p>
+                            <p>Each punk you buy is 1 in 10,000 steps towards realizing the newest ability to move your NFTs across all blockchain networks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 1000px" class="crosspunk-block crosspunk-roadmap-block">
                 <div class="crosspunk-image bg-roadmap-image"></div>
                 <div class="crosspunk-text container bg-roadmap-text">
+                    <h2 class="crosspunk-h1">ROADMAP</h2>
+                    <p>See upcoming steps of CROSSPUNKS project</p>
                     <img src="/img/cp_roadmap_04.svg" />
                 </div>
             </div>
-            <div style="height: 630px" class="crosspunk-block crosspunk-why-block">
+            <div style="height: 530px" class="crosspunk-block crosspunk-why-block">
                 <div class="crosspunk-image bg-why-image"></div>
                 <div class="crosspunk-text container bg-why-text">
                     <h2 class="crosspunk-h1">Why now</h2>
-                    <p>Hey, wanderer! Pretty sure, you’re familiar with a feeling of a missed train. A wideass train fully stocked with explosive profit juice, and it runs near you just in a blink. Bang, you never had a moment to do something. What exactly do you feel at this point, perhaps you want to get back in time and buy first Punk for $30 or Bitcoin for $5 in 2012? Well, we don’t have a spare time machine, but, here we are to give you a precious possibility to be on time on a “profit platform”. We’ll have you covered, here’s your ticket!</p>
-                    <p>We start with one of the most popular Binance networks, but very soon you will be able to buy and sell our punks in any network, without limiting yourself to anything and not being tied to a particular blockchain.</p>
-                    <p>Stay tuned for good news and share your success stories on our social networks!</p>
+                    <p>Are you familiar with a feeling of a missed train?</p>
+                    <p>A wideass train fully stocked with explosive profit juice, and it runs near you just in a blink. Bang, you never had a moment to do something. What exactly do you feel at this point, perhaps you want to get back in time and buy first Punk for $30 or Bitcoin for $5 in 2012? Well, we don’t have a spare time machine, but, here we are to give you a precious possibility to be on time on a “profit platform”.</p>
+                    <p>We’ll have you covered, and here’s your ticket!</p>
                 </div>
             </div>
         </div>
@@ -186,7 +191,7 @@ export default {
     }
 
     .crosspunk-why-block {
-        height: 530px !important;
+        height: 400px !important;
     }
 
     .crosspunk-how-block {
@@ -194,7 +199,7 @@ export default {
     }
 
     .crosspunk-roadmap-block {
-        height: 700px !important;
+        height: 800px !important;
     }
 }
 
@@ -220,6 +225,10 @@ export default {
 
     .crosspunk-stats-block {
         height: 600px !important;
+    }
+
+    .crosspunk-why-block {
+        height: 340px !important;
     }
 
     .crosspunk-roadmap-block {
@@ -272,7 +281,7 @@ export default {
     }
 
     .crosspunk-why-block {
-        height: 430px !important;
+        height: 300px !important;
     }
 
     .crosspunk-how-block {
@@ -280,7 +289,7 @@ export default {
     }
 
     .crosspunk-roadmap-block {
-        height: 400px !important;
+        height: 500px !important;
     }
 }
 
@@ -302,11 +311,11 @@ export default {
     }
 
     .crosspunk-why-block {
-        height: 330px !important;
+        height: 260px !important;
     }
 
     .crosspunk-roadmap-block {
-        height: 300px !important;
+        height: 400px !important;
     }
 }
 
@@ -328,7 +337,7 @@ export default {
     }
 
     .crosspunk-why-block {
-        height: 450px !important;
+        height: 270px !important;
     }
 
     .crosspunk-how-block {
@@ -336,7 +345,7 @@ export default {
     }
 
     .crosspunk-roadmap-block {
-        height: 250px !important;
+        height: 350px !important;
     }
 }
 
