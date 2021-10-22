@@ -85,6 +85,23 @@
                     <p>We’ll have you covered, and here’s your ticket!</p>
                 </div>
             </div>
+            <div style="height: 400px" class="crosspunk-block crosspunk-seen-block">
+                <div class="crosspunk-image bg-seen-image"></div>
+                <div class="crosspunk-text container bg-seen-text">
+                    <h2 class="crosspunk-h1">As seen on</h2>
+                    <div>
+                        <a href="https://dappradar.com/binance-smart-chain/collectibles/crosspunks">
+                            <img src="/img/dappradar.png">
+                        </a>
+                        <a href="https://nftcalendar.io/event/crosspunks-mint/">
+                            <img src="/img/nftcalendar.png">
+                        </a>
+                        <a href="https://www.dapp.com/app/crosspunks">
+                            <img src="/img/dapp.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- <div v-if="other_devices">
             <transition name="modal">
@@ -284,6 +301,10 @@ export default {
     .crosspunk-roadmap-block {
         height: 500px !important;
     }
+
+    .crosspunk-seen-block {
+        height: 500px !important;
+    }
 }
 
 @media only screen and (max-width: 499px) {
@@ -339,6 +360,10 @@ export default {
 
     .crosspunk-roadmap-block {
         height: 350px !important;
+    }
+
+    .crosspunk-seen-block {
+        height: 700px !important;
     }
 }
 
@@ -465,6 +490,21 @@ export default {
 
 .bg-roadmap-text img {
     width: 100%;
+}
+
+.bg-seen-text {
+    top: 10%;
+}
+
+.bg-seen-text div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bg-seen-text img {
+    height: 190px;
+    border-radius: calc(.25rem - 1px);
 }
 
 .bg-pinku {
