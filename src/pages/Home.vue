@@ -73,7 +73,7 @@
                 <div class="crosspunk-text container bg-roadmap-text">
                     <h2 class="crosspunk-h1">ROADMAP</h2>
                     <p>See upcoming steps of CROSSPUNKS project</p>
-                    <img src="/img/cp_roadmap_04.svg" />
+                    <img src="/img/roadmap.svg" />
                 </div>
             </div>
             <div style="height: 530px" class="crosspunk-block crosspunk-why-block">
