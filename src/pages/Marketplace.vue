@@ -694,7 +694,7 @@
                                             <div class="text-muted card-subtitle h6">
                                                 {{ punk.type == 'Crypto' ? 'Crypto Friend' : punk.type }}
                                                 <span style="float: right">
-                                                    {{ walletManager.ethers.utils.formatEther(punk.bid.minValue.hex ? punk.bid.minValue.hex : punk.bid.minValue) }}
+                                                    {{ walletManager.ethers.utils.formatEther(punk.bid.minValue) }}
                                                     <img style="margin-left: 5px;" height="20px" src="/bnb.svg">
                                                 </span>
                                                 <div class="clearfix"></div>
@@ -771,7 +771,7 @@ export default {
             changeRangeTime: null,
             sortBy: {
                 // token_id_lowest : true
-                // price_lowest: true
+                price_lowest: true
             },
             only_have_bid: false,
             price_idx: {},
@@ -808,23 +808,23 @@ export default {
 
                 try {
                     let loadFromServer = false;
-                    // try {
-                    //     let dataServer = await this.$http.get(`https://crosspunks.com/server/forSale`)
-                    //     let rows = JSON.parse(dataServer.data.msg);
-                    //     if (rows.length > 0) {
-                    //         loadFromServer = true;
-                    //         // don't show onlySellTo items in forSale tab
-                    //         rows = rows.filter((item) => !Array.isArray(item) && item.bid.onlySellTo == '410000000000000000000000000000000000000000')
-                    //         for (let rowId in rows) {
-                    //             let p = window.punks[rows[rowId].idx];
-                    //             p.bid = rows[rowId].bid;
-                    //             p.real_bid = rows[rowId].real_bid;
-                    //             this.myAllPunks.push(p);
-                    //         }
-                    //     }
-                    // } catch (e) {
-                    //     console.log("can not read from server");
-                    // }
+                    try {
+                        let dataServer = await this.$http.get(`https://api.crosspunks.com/punks?limit=10000&owner=` + this.walletManager.dexAddr);
+                        let punks = dataServer.data.punks;
+                        if (punks.length > 0) {
+                            loadFromServer = true;
+                            for (let i = 0; i < punks.length; i++) {                                
+                                if (punks[i].offer) {
+                                    let p = window.punks[punks[i].idx];
+                                    p.bid = {};
+                                    p.bid.minValue = this.walletManager.ethers.BigNumber.from("0x" + punks[i].offer.min_value.toString(16));
+                                    this.myAllPunks.push(p);
+                                }
+                            }
+                        }
+                    } catch (e) {
+                        console.log("can not read from server");
+                    }
 
                     if (!loadFromServer) {
                         let mybalance = await this.walletManager.nft.balanceOf(this.walletManager.dexAddr);
@@ -835,14 +835,15 @@ export default {
                             let number = await this.walletManager.nft.tokenOfOwnerByIndex(this.walletManager.dexAddr, i);
                             let p = window.punks[(number)];
                             p.bid = await this.walletManager.dex.punksOfferedForSale(number);
+                            p.real_bid = await this.walletManager.dex.punksOfferedForSale(number);
                             this.myAllPunks.push(p);
-
-                            setTimeout(() => {
-                                this.filterAttr();
-                                this.setFilterDetails();
-                            }, 100);
                         }
                     }
+
+                    setTimeout(() => {
+                        this.filterAttr();
+                        this.setFilterDetails();
+                    }, 100);
                 } catch (e) {
                     console.log(e.message);
                 }
