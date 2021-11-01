@@ -917,7 +917,7 @@ export default {
                     let loadFromServer = false;
 
                     try {
-                        let dataServer = await this.$http.get(`https://api.crosspunks.com/punks?owner=` + this.walletAddr);
+                        let dataServer = await this.$http.get(`https://api.crosspunks.com/punks?limit=1000&owner=` + this.walletAddr);
                         let punks = dataServer.data.punks;
                         if (punks.length > 0) {
                             loadFromServer = true;
