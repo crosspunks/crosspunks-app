@@ -817,7 +817,7 @@ export default {
                                 if (punks[i].offer) {
                                     let p = window.punks[punks[i].idx];
                                     p.bid = {};
-                                    p.bid.minValue = this.walletManager.ethers.BigNumber.from("0x" + punks[i].offer.min_value.toString(16));
+                                    p.bid.minValue = punks[i].offer.min_value;
                                     this.myAllPunks.push(p);
                                 }
                             }
