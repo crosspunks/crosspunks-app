@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="row justify-content-between">
                                     <button id="get-avatar" class="btn crosspunk-btn" @click="getAvatar(currentPunk.idx)">Get avatar</button>
-                                    <button id="transfer-punk" class="btn crosspunk-btn" @click="showTransfer()" v-if="this.walletStatus && this.token_owner && this.token_owner.toLowerCase() == this.walletAddr.toLowerCase()">
+                                    <button id="transfer-punk" class="btn crosspunk-btn" @click="showTransfer()" v-if="this.walletStatus && this.token_owner && this.token_owner.toLowerCase() == this.walletAddr.toLowerCase() && !is_for_sale">
                                         Transfer punk
                                     </button>
                                 </div>
