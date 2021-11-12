@@ -51,7 +51,7 @@
                         <a id="twitter" target="_blank" href="https://twitter.com/crosspunks" class="p-1">
                             <img src="/img/soc_tw.png" style="width: 30px; height: 30px;">
                         </a>
-                        <a id="discord" target="_blank" href="https://discord.gg/xznVUF92" class="p-1">
+                        <a id="discord" target="_blank" href="https://discord.gg/AyZPkypcfZ" class="p-1">
                             <img src="/img/discord-icon.png" style="width: 30px; height: 30px;">
                         </a>
                         <a id="telegram" target="_blank" href="https://t.me/crosspunks" class="p-1">
