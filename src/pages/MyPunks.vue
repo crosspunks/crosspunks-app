@@ -755,6 +755,10 @@
         <div class="container">
             <div class="col-lg-12">
                 <div v-if="this.walletStatus">
+                    <div class="row justify-content-center"><h1>Your Wallet</h1></div>
+                    <div class="row justify-content-center">
+                        <p style="color: white;">CrossToken Balance: {{ cst_balance }} CST</p>
+                    </div>
                     <form class="row form-group">
                         <div class="form-group col-6">
                             <input @keyup="searchByInputId" placeholder="Search by Id" v-model="searchById" type="number" class="form-control">
@@ -878,7 +882,8 @@ export default {
             },
             price_idx: {},
             price_bid_idx: {},
-            walletAddr: ""
+            walletAddr: "",
+            cst_balance: 0
         }
     },
     components: {
@@ -890,6 +895,7 @@ export default {
             if (this.walletStatus && !this.is_load_my_punk) {
                 this.is_load_my_punk = true;
                 this.getMyPunks();
+                this.getCSTBalance();
             }
         }, 100);
     },
@@ -903,6 +909,13 @@ export default {
     methods: {
         showDetail(index) {
             this.$router.push({ name: "details", params: { id: index } });
+        },
+        async getCSTBalance() {
+            await this.walletManager.checkId();
+            setTimeout(async () => {
+                let balance = await this.walletManager.cst.balanceOf(this.walletAddr);
+                this.cst_balance = this.walletManager.ethers.utils.formatEther(balance);
+            }, 1000);
         },
         async getMyPunks() {
             await this.walletManager.checkId();
