@@ -4,10 +4,10 @@ import Front from "./pages/Front";
 import Home from "./pages/Home";
 import Marketplace from "./pages/Marketplace";
 import Details from "./pages/Details";
-import Mint from "./pages/Mint";
+// import Mint from "./pages/Mint";
 import MyPunks from "./pages/MyPunks";
 import Gallery from "./pages/Gallery";
-import Referral from "./pages/Referral";
+// import Referral from "./pages/Referral";
 import Limitation from "./pages/Limitation.vue";
 
 const routes = [{
@@ -26,12 +26,12 @@ const routes = [{
         component: Home,
         meta: { title: 'Home' },
     },
-    {
-        path: '/mint',
-        name: 'mint',
-        component: Mint,
-        meta: { title: 'Mint' },
-    },
+    // {
+    //     path: '/mint',
+    //     name: 'mint',
+    //     component: Mint,
+    //     meta: { title: 'Mint' },
+    // },
     {
         path: '/myPunks',
         name: 'myPunks',
@@ -56,12 +56,12 @@ const routes = [{
         component: Details,
         meta: { title: 'Details' },
     },
-    {
-        path: '/referralLink',
-        name: 'referralLink',
-        component: Referral,
-        meta: { title: 'My referral link' },
-    },
+    // {
+    //     path: '/referralLink',
+    //     name: 'referralLink',
+    //     component: Referral,
+    //     meta: { title: 'My referral link' },
+    // },
     {
         path: '/limitation_of_liability',
         name: 'limitationOfLiability',

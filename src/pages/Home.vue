@@ -5,14 +5,14 @@
                 <div class="crosspunk-image bg-mint-image"></div>
                 <div class="crosspunk-text container bg-mint-text">
                     <h1 class="crosspunk-h1">
-                        Mint&nbsp;your&nbsp;CrossPunk&nbsp;now
+                        Buy&nbsp;your&nbsp;CrossPunk&nbsp;now
                     </h1>
                     <p style="text-transform: uppercase;">
                         or&nbsp;watch&nbsp;your&nbsp;friends become&nbsp;millionaires&nbsp;later
                     </p>
-                    <router-link :to="{ name : 'mint' }" id="go-to-mint" class="btn crosspunk-btn-rev">
+                    <!-- <router-link :to="{ name : 'mint' }" id="go-to-mint" class="btn crosspunk-btn-rev">
                         Get one of {{ punkLeft }}
-                    </router-link>
+                    </router-link> -->
                 </div>
             </div>
             <div style="height: 800px" class="crosspunk-block">
@@ -48,13 +48,13 @@
                     <p><b>Just think about these numbers! Breathtaking, huh?</b></p>
                 </div>
             </div> -->
-            <div style="height: 800px" class="crosspunk-block crosspunk-how-block">
+            <!-- <div style="height: 800px" class="crosspunk-block crosspunk-how-block">
                 <div class="crosspunk-image bg-how-image"></div>
                 <div class="crosspunk-text container bg-how-text" style="height: 100%;">
                     <h2 class="crosspunk-h1">How to mint</h2>
                     <iframe width="100%" height="66%" src="https://www.youtube.com/embed/XuXulaydN9k?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-            </div>
+            </div> -->
             <div style="height: 530px" class="crosspunk-block crosspunk-what-block">
                 <div class="crosspunk-image bg-what-image"></div>
                 <div class="crosspunk-text container bg-what-text">
