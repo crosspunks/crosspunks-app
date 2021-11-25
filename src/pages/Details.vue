@@ -510,8 +510,8 @@ export default {
 
                 if (!(price >= 0)) {
                     this.offer_error = "enter correct price (BNB)";
-                } else if(0.1 > price) {
-                    this.offer_error = "you can not enter price lower than 0.1 BNB";
+                } else if(0.2 > price) {
+                    this.offer_error = "you can not enter price lower than 0.2 BNB";
                 } else if((address.length > 0 && !this.walletManager.web3Global.utils.isAddress(address))) {
                     this.offer_error = "wallet address is not correct";
                 } else if((address.length > 0 && address === this.walletAddr)) {
