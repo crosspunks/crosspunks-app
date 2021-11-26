@@ -784,9 +784,8 @@
                     </div>
                 </div>
             </div>
-    
+
             <!--          <div id="sidebarBtn" >-->
-    
             <!--              <div class="row" >-->
             <!--                  <button aria-controls="example-collapse-text" aria-expanded="false" type="button" class="btn btn-outline-dark btn-block" style="margin-bottom: 5px;">-->
             <!--                      Clear Filter-->
@@ -796,7 +795,7 @@
             <!--                  </button>-->
             <!--              </div>-->
             <!--          </div>-->
-    
+
         </div>
         <div id="sidebarCover" @click="closeSidebar" class="hideCover"></div>
         <div class="container">

@@ -79,7 +79,7 @@
                 ecommerce: "dataLayer"
             })
         };
- 
+
         function loadMCScript(src, okcallback, errcallback) {
             var s, t;
             s = document.createElement('script');
@@ -98,7 +98,7 @@
             t = document.getElementsByTagName('script')[0];
             t.parentNode.insertBefore(s, t)
         }
- 
+
         setTimeout(function() {
             var cff2 = function() {
                 loadMCScript("https://cfwosp.quic.pro/metrika/ymtag.js", initYMconfE)

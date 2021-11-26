@@ -747,7 +747,7 @@
                         </div>
                     </div>
                 </div>
-            </div>    
+            </div>
         </div>
 
         <div id="sidebarCover" @click="closeSidebar" class="hideCover"></div>

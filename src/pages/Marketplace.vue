@@ -813,7 +813,7 @@ export default {
                         let punks = dataServer.data.punks;
                         if (punks.length > 0) {
                             loadFromServer = true;
-                            for (let i = 0; i < punks.length; i++) {                                
+                            for (let i = 0; i < punks.length; i++) {
                                 if (punks[i].offer) {
                                     let p = window.punks[punks[i].idx];
                                     p.bid = {};

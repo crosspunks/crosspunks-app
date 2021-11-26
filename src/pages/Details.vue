@@ -48,11 +48,11 @@
                                     <!-- <div v-if="!is_for_sale" class="row text-danger">
                                         <p>it's not for sale</p>
                                     </div> -->
-                                    <div v-if="is_for_sale">
+                                    <div v-if="is_for_sale && walletStatus">
                                         <!-- <div class="row text-success">
                                             <p>Offered by owner for <span style="color: #e7e2e2">{{ sale_by_owner }} BNB</span></p>
                                         </div> -->
-                                        <div v-if="this.walletStatus">
+                                        <div>
                                             <!-- <div v-if="punkBids.hasBid" class="row text-warning" >
                                                 <p>There is a bid of <span style="color: #e7e2e2">{{ punkBids.value }} BNB</span> for this punk from <a :href="'https://bscscan.com/address/'+ this.punkBids.bidder">{{ this.punkBids.bidder.substr(0, 8)}}</a></p>
                                             </div> -->
@@ -68,7 +68,7 @@
                                             </div> -->
 
                                             <div v-if="this.token_owner.toLowerCase() !== walletAddr.toLowerCase()" class="row">
-                                                <div class="col-md-6" >
+                                                <div class="col-md-6">
                                                     <button id="buy" class="btn crosspunk-btn btn-block" @click="buy">
                                                         Buy {{ sale_by_owner }} BNB
                                                         <div v-if="buy_btn_loading" class="spinner-border" style="width: 1rem; height: 1rem;margin-bottom: 4px" role="status">
@@ -104,7 +104,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-else-if="this.walletStatus && this.token_owner.toLowerCase() == this.walletAddr.toLowerCase()" class="row">
+                                    <div v-else-if="this.walletStatus && !is_for_sale && this.token_owner.toLowerCase() == this.walletAddr.toLowerCase()" class="row">
                                         <div class="col-md-12" >
                                             <button id="offer-for-sale" @click="showOfferForSale()" class="btn crosspunk-btn btn-block">
                                                 Offer for sale
@@ -414,56 +414,74 @@ export default {
             });
         },
         async loadData() {
-            await this.walletManager.checkId();
-            let signer = await this.walletManager.web3Global.getSigner();
-            if (this.walletStatus) {
+            try {
+                await this.walletManager.checkId();
+                let signer = await this.walletManager.web3Global.getSigner();
                 this.walletAddr = await signer.getAddress();
+            } catch (e) {
+                console.log(e);
+                this.is_load_this_punk = false;
             }
+
             if (!this.walletManager.nft.ownerOf) {
                 this.is_load_this_punk = false;
             } else {
                 try {
-                    // let dataServer = await this.$http.get(`https://crosspunks.com/server/history?id=${this.currentPunk.idx}`)
-                    // dataServer = JSON.parse(dataServer.data.msg);
-                    // this.birthday = dataServer['birthday'] ? dataServer['birthday'][0] : false;
-                    // this.marketHistory = [];
-                    // for (let r in dataServer['trade_history']) {
-                    //     if (dataServer['trade_history'][r].status == "SUCCESS") {
-                    //         dataServer['trade_history'][r].data = JSON.parse(dataServer['trade_history'][r].data);
-                    //         dataServer['trade_history'][r].methodParam = JSON.parse(dataServer['trade_history'][r].methodParam);
-                    //         this.marketHistory.push(dataServer['trade_history'][r]);
-                    //     }
-                    // }
+                    let loadFromServer = false;
+                    try {
+                        let dataServer = await this.$http.get(`https://api.crosspunks.com/punks/${this.currentPunk.idx}`);
+                        let punk = dataServer.data;
 
-                    // console.log(this.marketHistory);
+                        let token_owner = punk.owner;
 
-                    this.token_owner = await this.walletManager.nft.ownerOf(this.currentPunk.idx);
+                        if (token_owner == this.walletManager.dexAddr) {
+                            if (punk.offer) {
+                                this.token_owner = punk.offer.seller;
+                                this.is_for_sale = true;
+                                this.sale_by_owner = this.walletManager.ethers.utils.formatEther(punk.offer.min_value);
+                            }
+                        } else {
+                            this.token_owner = token_owner;
+                            this.is_for_sale = false;
+                            this.sale_by_owner = false;
+                            this.punkBids = false;
+                            await this.checkApproved();
+                        }
 
-                    this.punkBids = await this.walletManager.dex.punkBids(this.currentPunk.idx);
-                    if (this.punkBids && this.punkBids.hasBid) {
-                        this.punkBids.value = this.punkBids.value / 1000000;
+                        loadFromServer = true;
+                    } catch (e) {
+                        console.log("can not read from server");
                     }
 
-                    if (this.token_owner == this.walletManager.dexAddr) {
-                        this.token_owner = false;
-                        let offeredForSale = await this.walletManager.dex.punksOfferedForSale(this.currentPunk.idx);
-                        this.token_owner = offeredForSale.seller;
-                        this.is_for_sale = offeredForSale.isForSale
-                        this.sale_by_owner = this.walletManager.ethers.utils.formatEther(offeredForSale.minValue);
-                    } else {
-                        this.is_for_sale = false;
-                        this.sale_by_owner = false;
-                        this.punkBids = false;
-                        await this.checkApproved();
+                    if (!loadFromServer) {
+                        let token_owner = await this.walletManager.nft.ownerOf(this.currentPunk.idx);
+
+                        if (token_owner == this.walletManager.dexAddr) {
+                            this.punkBids = await this.walletManager.dex.punkBids(this.currentPunk.idx);
+                            if (this.punkBids && this.punkBids.hasBid) {
+                                this.punkBids.value = this.punkBids.value / 1000000;
+                            }
+
+                            let offeredForSale = await this.walletManager.dex.punksOfferedForSale(this.currentPunk.idx);
+                            this.token_owner = offeredForSale.seller;
+                            this.is_for_sale = offeredForSale.isForSale
+                            this.sale_by_owner = this.walletManager.ethers.utils.formatEther(offeredForSale.minValue);
+                        } else {
+                            this.token_owner = token_owner;
+                            this.is_for_sale = false;
+                            this.sale_by_owner = false;
+                            this.punkBids = false;
+                            await this.checkApproved();
+                        }
                     }
 
                     this.is_approved_first_time = this.is_approved;
 
-                    if (this.walletStatus) {
-                        this.balance = await signer.getBalance();
-                    } else {
-                        this.balance = 0;
-                    }
+                    // if (this.walletStatus) {
+                    //     this.balance = await signer.getBalance();
+                    // } else {
+                    //     this.balance = 0;
+                    // }
                 } catch (e) {
                     console.log(e);
                 }
@@ -661,7 +679,7 @@ export default {
         //             this.accept_bid_btn_loading = false;
         //         }
         //     }
-        // }, 
+        // },
         // async cancelBid() {
         //     let from = await this.walletManager.web3Global.eth.getCoinbase();
         //     if (!this.cancel_btn_loading) {
