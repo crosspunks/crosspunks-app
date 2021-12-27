@@ -2,6 +2,7 @@ const ethers = require('ethers');
 const nftAbi = require('./abi/CrossPunks.json');
 const dexAbi = require('./abi/CrossPunksDex.json');
 const cstAbi = require('./abi/CrossToken.json');
+const tokenAbi = require('./abi/TokenLP.json');
 
 const TESTNET = {
     method: 'wallet_addEthereumChain',
@@ -99,6 +100,10 @@ class _walletManager {
         if (!this.cst) {
             this.cst = new ethers.Contract(this.cstAddr, cstAbi.abi, this.web3Global);
         }
+    }
+
+    async connectToContractToken(addr) {
+        return new ethers.Contract(addr, tokenAbi.abi, this.web3Global);
     }
 
     async checkId() {
