@@ -32,6 +32,9 @@
                                 <a id="bscscan" target="_blank" class="crosspunk-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
                                     Contract
                                 </a>
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'news' }" class="crosspunk-link">
+                                    News
+                                </router-link>
                             </div>
                         </div>
                     </div>

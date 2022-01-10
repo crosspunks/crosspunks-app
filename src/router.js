@@ -10,6 +10,7 @@ import MyPunks from "./pages/MyPunks";
 import Gallery from "./pages/Gallery";
 // import Referral from "./pages/Referral";
 import Limitation from "./pages/Limitation.vue";
+import News from "./pages/News.vue";
 
 const routes = [{
     path: '/',
@@ -74,6 +75,12 @@ const routes = [{
         name: 'limitationOfLiability',
         component: Limitation,
         meta: { title: 'Limitation of Liability' },
+    },
+    {
+        path: '/news',
+        name: 'news',
+        component: News,
+        meta: { title: 'News' },
     },
     ]
 }];
