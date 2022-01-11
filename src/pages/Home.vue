@@ -13,9 +13,12 @@
                     <!-- <router-link :to="{ name : 'mint' }" id="go-to-mint" class="btn crosspunk-btn-rev">
                         Get one of {{ punkLeft }}
                     </router-link> -->
-                    <a href="https://pancakeswap.finance/swap?outputCurrency=0x014be200c192bd8366df781a96cec51b3d9dcd93" class="btn crosspunk-btn-rev">
+                    <!-- <a href="https://pancakeswap.finance/swap?outputCurrency=0x014be200c192bd8366df781a96cec51b3d9dcd93" class="btn crosspunk-btn-rev">
                         Buy CST Token
-                    </a>
+                    </a> -->
+                    <router-link :to="{ name : 'factory' }" id="go-to-mint" class="btn crosspunk-btn-rev">
+                        Fuel up to survive!
+                    </router-link>
                 </div>
             </div>
             <div style="height: 800px" class="crosspunk-block">

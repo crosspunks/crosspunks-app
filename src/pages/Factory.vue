@@ -152,7 +152,18 @@ export default {
             unstake_btn_loading: false,
             unstake_id: 0,
             // LP data
-            lps: [{}]
+            lps: [{
+                // TODO: info
+                id: 0,
+                name_lp: 'CST',
+                path_img: '/cst.png',
+                address_lp: '0x014be200c192bD8366dF781a96cec51B3D9Dcd93',
+                harvest: false,
+                harvest_btn_loading: false,
+                fuel_earned: 0,
+                approve: false,
+                lp_staked: 0,
+            }]
         }
     },
     components: {
@@ -215,6 +226,14 @@ export default {
             setTimeout(async () => {
                 await this.checkApproved(id);
             }, 10000);
+        },
+        async getEarned(id) {
+            let earned = await this.walletManager.staking.pendingReward(this.lps[id].id, this.walletAddr);
+            this.lps[id].fuel_earned = this.formatEther(this.walletManager.ethers.utils.formatEther(earned));
+
+            if (earned > 0) {
+                this.lps[id].harvest = true;
+            }
         },
         async getStaked(id) {
             let staked = await this.walletManager.staking.userInfo(this.lps[id].id, this.walletAddr);
@@ -383,7 +402,7 @@ export default {
         font-size: 12px;
     }
 
-    .factory-item-earned .btn, .factory-item-staked .btn {
+    .factory-item-earned .btn, .factory-item-staked .btn, .factory-btn {
         background-color: #4f6c59;
         color: white;
     }
