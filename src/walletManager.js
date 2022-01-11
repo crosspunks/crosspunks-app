@@ -2,6 +2,8 @@ const ethers = require('ethers');
 const nftAbi = require('./abi/CrossPunks.json');
 const dexAbi = require('./abi/CrossPunksDex.json');
 const cstAbi = require('./abi/CrossToken.json');
+const stakingAbi = require('./abi/Staking.json');
+const tokenAbi = require('./abi/TokenLP.json');
 
 const TESTNET = {
     method: 'wallet_addEthereumChain',
@@ -46,6 +48,7 @@ class _walletManager {
     nftAddr = "0x360673A34cf5055DfC22C53bc063e948A243293B";
     dexAddr = "0x36894d06ac91B09760b4310C75Ed2348E3eA063C";
     cstAddr = "0x014be200c192bD8366dF781a96cec51B3D9Dcd93";
+    stakingAddr = "0xD16ba5a716E1338e8328B8aC7e2896cf32313E46";
 
     constructor() {
         this.connectToMetamask();
@@ -99,6 +102,14 @@ class _walletManager {
         if (!this.cst) {
             this.cst = new ethers.Contract(this.cstAddr, cstAbi.abi, this.web3Global);
         }
+
+        if (!this.staking) {
+            this.staking = new ethers.Contract(this.stakingAddr, stakingAbi.abi, this.web3Global);
+        }
+    }
+
+    async connectToContractToken(addr) {
+        return new ethers.Contract(addr, tokenAbi.abi, this.web3Global);
     }
 
     async checkId() {

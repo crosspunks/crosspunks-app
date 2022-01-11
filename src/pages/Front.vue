@@ -14,9 +14,9 @@
                         </button>
                         <div class="ml-auto navbar-collapse" v-bind:class="{ 'collapse' : showMenu }" id="responsive-navbar-nav">
                             <div class="ml-auto navbar-nav">
-                                <!-- <router-link @click.native="toggleCollapse" :to="{ name : 'mint' }" class="crosspunk-link">
-                                    <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Mint</b>
-                                </router-link> -->
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'factory' }" class="crosspunk-link">
+                                    <b style="color: #d93d76 !important; text-shadow: #d93d76 0 0 10px;">Factory</b>
+                                </router-link>
                                 <router-link @click.native="toggleCollapse" :to="{ name : 'myPunks' }" class="crosspunk-link">
                                     My Punks
                                 </router-link>
@@ -32,6 +32,9 @@
                                 <a id="bscscan" target="_blank" class="crosspunk-link" :href="(`https://bscscan.com/address/${this.walletManager.nftAddr}`)">
                                     Contract
                                 </a>
+                                <router-link @click.native="toggleCollapse" :to="{ name : 'news' }" class="crosspunk-link">
+                                    News
+                                </router-link>
                             </div>
                         </div>
                     </div>

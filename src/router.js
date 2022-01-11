@@ -5,10 +5,12 @@ import Home from "./pages/Home";
 import Marketplace from "./pages/Marketplace";
 import Details from "./pages/Details";
 // import Mint from "./pages/Mint";
+import Factory from "./pages/Factory";
 import MyPunks from "./pages/MyPunks";
 import Gallery from "./pages/Gallery";
 // import Referral from "./pages/Referral";
 import Limitation from "./pages/Limitation.vue";
+import News from "./pages/News.vue";
 
 const routes = [{
     path: '/',
@@ -32,6 +34,12 @@ const routes = [{
     //     component: Mint,
     //     meta: { title: 'Mint' },
     // },
+    {
+        path: '/factory',
+        name: 'factory',
+        component: Factory,
+        meta: { title: 'Factory' },
+    },
     {
         path: '/myPunks',
         name: 'myPunks',
@@ -67,6 +75,12 @@ const routes = [{
         name: 'limitationOfLiability',
         component: Limitation,
         meta: { title: 'Limitation of Liability' },
+    },
+    {
+        path: '/news',
+        name: 'news',
+        component: News,
+        meta: { title: 'News' },
     },
     ]
 }];
