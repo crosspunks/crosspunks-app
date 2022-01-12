@@ -40,11 +40,15 @@ export default {
     }
 
     .news-articles {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 32px;
+        grid-auto-flow: dense;
         margin-left: 15px;
+    }
+
+    .news-article:nth-child(31n + 1) {
+        grid-column: 1 / -2;
     }
 
     .news-article, .news-article:hover, .news-article:active {
