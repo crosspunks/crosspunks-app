@@ -20,75 +20,74 @@ const routes = [{
         path: '/',
         name: 'home',
         component: Home,
-        meta: { title: 'Home' },
+        meta: { title: 'Home' }
     },
     {
         path: '/i/:id',
         name: 'invite_home',
         component: Home,
-        meta: { title: 'Home' },
+        meta: { title: 'Home' }
     },
     // {
     //     path: '/mint',
     //     name: 'mint',
     //     component: Mint,
-    //     meta: { title: 'Mint' },
+    //     meta: { title: 'Mint' }
     // },
     {
         path: '/factory',
         name: 'factory',
         component: Factory,
-        meta: { title: 'Factory' },
+        meta: { title: 'Factory' }
     },
     {
         path: '/myPunks',
         name: 'myPunks',
         component: MyPunks,
-        meta: { title: 'My Punks' },
+        meta: { title: 'My Punks' }
     },
     {
         path: '/gallery',
         name: 'gallery',
         component: Gallery,
-        meta: { title: 'Gallery' },
+        meta: { title: 'Gallery' }
     },
     {
         path: '/marketplace',
         name: 'marketplace',
         component: Marketplace,
-        meta: { title: 'Marketplace' },
+        meta: { title: 'Marketplace' }
     },
     {
         path: '/detail/crosspunk/:id',
         name: 'details',
         component: Details,
-        meta: { title: 'Details' },
+        meta: { title: 'Details' }
     },
     // {
     //     path: '/referralLink',
     //     name: 'referralLink',
     //     component: Referral,
-    //     meta: { title: 'My referral link' },
+    //     meta: { title: 'My referral link' }
     // },
     {
         path: '/limitation_of_liability',
         name: 'limitationOfLiability',
         component: Limitation,
-        meta: { title: 'Limitation of Liability' },
+        meta: { title: 'Limitation of Liability' }
     },
     {
         path: '/news',
         name: 'news',
         component: News,
-        meta: { title: 'News' },
-    },
-    ]
+        meta: { title: 'News' }
+    }]
 }];
 
 const router = new VueRouter({
     history: true,
     mode: 'hash',
-    routes,
+    routes
 });
 
 export default router
