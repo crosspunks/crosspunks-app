@@ -5,10 +5,10 @@
                 <div class="row factory-header">
                     <h2>Fuel up to survive!</h2>
                 </div>
-                <div class="row factory-items">
+                <div class="container row factory-items">
                     <div v-for="(item, index) in lps" v-bind:key="item.id" class="factory-item">
                         <div class="factory-item-header">
-                            <img :src="item.path_img">
+                            <img v-for="(img) in item.paths_img" v-bind:key="img" :src="img">
                             {{ item.name_lp }}
                         </div>
                         <div class="factory-item-earned">
@@ -153,16 +153,55 @@ export default {
             unstake_id: 0,
             // LP data
             lps: [{
-                // TODO: info
                 id: 0,
                 name_lp: 'CST',
-                path_img: '/cst.png',
+                paths_img: ['/cst.png'],
                 address_lp: '0x014be200c192bD8366dF781a96cec51B3D9Dcd93',
                 harvest: false,
                 harvest_btn_loading: false,
                 fuel_earned: 0,
                 approve: false,
-                lp_staked: 0,
+                lp_staked: 0
+            }, {
+                id: 1,
+                name_lp: 'CST-BNB',
+                paths_img: ['/cst.png', '/factory-img/bnb.png'],
+                address_lp: '0x87Eaf2Fbf23326A07a4A95B3D5C44960B09cf1a6',
+                harvest: false,
+                harvest_btn_loading: false,
+                fuel_earned: 0,
+                approve: false,
+                lp_staked: 0
+            }, {
+                id: 2,
+                name_lp: 'CST-BUSD',
+                paths_img: ['/cst.png', '/factory-img/busd.png'],
+                address_lp: '0x782a7112461402ca02a71f4920387dbc29ba023a',
+                harvest: false,
+                harvest_btn_loading: false,
+                fuel_earned: 0,
+                approve: false,
+                lp_staked: 0
+            }, {
+                id: 3,
+                name_lp: 'FUEL-BNB',
+                paths_img: ['/factory-img/fuel.png', '/factory-img/bnb.png'],
+                address_lp: '0x5ecda979b0abde851d2b077db86f037f353e0949',
+                harvest: false,
+                harvest_btn_loading: false,
+                fuel_earned: 0,
+                approve: false,
+                lp_staked: 0
+            }, {
+                id: 4,
+                name_lp: 'FUEL-USDT',
+                paths_img: ['/factory-img/fuel.png', '/factory-img/usdt.png'],
+                address_lp: '0xa081900cf535cd06db13bbca05eef064966ebc46',
+                harvest: false,
+                harvest_btn_loading: false,
+                fuel_earned: 0,
+                approve: false,
+                lp_staked: 0
             }]
         }
     },
@@ -365,7 +404,8 @@ export default {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
+        margin: auto;
     }
 
     .factory-item {
@@ -375,6 +415,7 @@ export default {
         border: #4f6c59 solid 2px;
         padding: 20px;
         width: 350px;
+        margin-top: 10px;
     }
 
     .factory-item-header {
