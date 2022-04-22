@@ -4,8 +4,11 @@
             <div style="height: 670px" class="crosspunk-block crosspunk-mint-block">
                 <div class="crosspunk-image bg-mint-image"></div>
                 <div class="crosspunk-text container bg-mint-text">
-                    <h1 class="crosspunk-h1">
+                    <!-- <h1 class="crosspunk-h1">
                         Buy&nbsp;your&nbsp;CrossPunk&nbsp;now
+                    </h1> -->
+                    <h1 class="crosspunk-h1">
+                        BUY&nbsp;YOUR&nbsp;CROSSCAR&nbsp;NOW
                     </h1>
                     <p style="text-transform: uppercase;">
                         or&nbsp;watch&nbsp;your&nbsp;friends become&nbsp;millionaires&nbsp;later
@@ -16,9 +19,12 @@
                     <!-- <a href="https://pancakeswap.finance/swap?outputCurrency=0x014be200c192bd8366df781a96cec51b3d9dcd93" class="btn crosspunk-btn-rev">
                         Buy CST Token
                     </a> -->
-                    <router-link :to="{ name : 'factory' }" id="go-to-mint" class="btn crosspunk-btn-rev">
+                    <!-- <router-link :to="{ name : 'factory' }" id="go-to-mint" class="btn crosspunk-btn-rev">
                         Fuel up to survive!
-                    </router-link>
+                    </router-link> -->
+                    <a href="https://cars.crosspunks.com/" class="btn crosspunk-btn">
+                        Get your car
+                    </a>
                 </div>
             </div>
             <div style="height: 800px" class="crosspunk-block">
@@ -397,7 +403,7 @@ export default {
 }
 
 .bg-mint-image {
-    background-image: url("/img/cp_web_bg_03_punk.jpg");
+    background-image: url("/img/cars.png");
 }
 
 .bg-our-image {
