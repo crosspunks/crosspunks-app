@@ -22,7 +22,7 @@
                     <!-- <router-link :to="{ name : 'factory' }" id="go-to-mint" class="btn crosspunk-btn-rev">
                         Fuel up to survive!
                     </router-link> -->
-                    <a href="https://cars.crosspunks.com/" class="btn crosspunk-btn">
+                    <a href="https://cars.crosspunks.com/mint" class="btn crosspunk-btn">
                         Get your car
                     </a>
                 </div>
